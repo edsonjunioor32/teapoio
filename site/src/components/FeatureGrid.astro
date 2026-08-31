@@ -1,0 +1,107 @@
+---
+const resources = [
+  {
+    icon: '⌖',
+    title: 'Como buscar avaliação',
+    detail: 'Entenda quais perguntas levar para a conversa e como organizar o próximo passo.',
+    tags: 'saude diagnostico joao pessoa',
+    label: 'Comece aqui',
+  },
+  {
+    icon: '⌂',
+    title: 'Apoio na sua cidade',
+    detail: 'Encontre uma lista regional organizada por município, tipo de apoio e público atendido.',
+    tags: 'local municipio apoio',
+    label: 'Rede local',
+  },
+  {
+    icon: '▦',
+    title: 'Escola e direitos',
+    detail: 'Guias para preparar conversas com a escola e conhecer caminhos de orientação.',
+    tags: 'escola direitos educacao',
+    label: 'Guia prático',
+  },
+  {
+    icon: '♡',
+    title: 'Cuidar de quem cuida',
+    detail: 'Informação para a rotina, a comunicação e o bem-estar de pais e cuidadores.',
+    tags: 'familia rotina bem estar',
+    label: 'Cotidiano',
+  },
+];
+---
+
+<section class="features section-shell" id="recursos" aria-labelledby="features-title">
+  <div class="features__heading">
+    <p class="eyebrow">APOIO NA REGIÃO</p>
+    <h2 id="features-title">Encontre a informação que combina com o seu momento.</h2>
+    <p class="section-lede">Escolha um caminho ou pesquise por uma palavra. A estrutura está pronta para receber novos municípios e recursos verificados.</p>
+  </div>
+
+  <div class="directory-toolbar" role="search" aria-label="Buscar conteúdos do TEApoio">
+    <label class="search-field">
+      <span aria-hidden="true">⌕</span>
+      <span class="sr-only">Buscar conteúdo</span>
+      <input id="resource-search" type="search" placeholder="Ex.: diagnóstico, escola, direitos" autocomplete="off" />
+    </label>
+    <label class="select-field">
+      <span class="sr-only">Filtrar por município</span>
+      <select id="resource-city">
+        <option value="">Todos os municípios</option>
+        <option value="joao pessoa">João Pessoa</option>
+        <option value="regiao">Grande João Pessoa</option>
+      </select>
+    </label>
+    <button class="filter-clear" type="button" id="clear-resource-filters">Limpar filtros</button>
+  </div>
+  <p class="filter-status" id="resource-status" aria-live="polite">Mostrando todos os caminhos.</p>
+
+  <div class="features__grid resources-grid" id="resource-list">
+    {resources.map((resource) => (
+      <article class="feature-card resource-card" data-resource data-tags={resource.tags}>
+        <div class="resource-card__icon" aria-hidden="true">{resource.icon}</div>
+        <span class="feature-index">{resource.label}</span>
+        <h3>{resource.title}</h3>
+        <p>{resource.detail}</p>
+        <a class="text-link" href="#conteudo-inicial">Ver orientação <span aria-hidden="true">→</span></a>
+      </article>
+    ))}
+  </div>
+  <p class="empty-state" id="resource-empty" hidden>Nenhum caminho encontrado. Tente outra palavra ou limpe os filtros.</p>
+</section>
+
+<script>
+  const resourceSearch = document.querySelector<HTMLInputElement>('#resource-search');
+  const resourceCity = document.querySelector<HTMLSelectElement>('#resource-city');
+  const resourceStatus = document.querySelector<HTMLParagraphElement>('#resource-status');
+  const resourceEmpty = document.querySelector<HTMLParagraphElement>('#resource-empty');
+  const clearResourceFilters = document.querySelector<HTMLButtonElement>('#clear-resource-filters');
+  const resourceCards = [...document.querySelectorAll<HTMLElement>('[data-resource]')];
+
+  const filterResources = () => {
+    const query = resourceSearch?.value.trim().toLowerCase() ?? '';
+    const city = resourceCity?.value ?? '';
+    let visible = 0;
+
+    resourceCards.forEach((card) => {
+      const tags = card.getAttribute('data-tags') ?? '';
+      const matchesQuery = !query || tags.includes(query) || card.textContent?.toLowerCase().includes(query);
+      const matchesCity = !city || tags.includes(city);
+      const show = matchesQuery && matchesCity;
+      card.toggleAttribute('hidden', !show);
+      if (show) visible += 1;
+    });
+
+    if (resourceStatus) resourceStatus.textContent = visible === resourceCards.length ? 'Mostrando todos os caminhos.' : `${visible} caminho${visible === 1 ? '' : 's'} encontrado${visible === 1 ? '' : 's'}.`;
+    if (resourceEmpty) resourceEmpty.hidden = visible !== 0;
+  };
+
+  resourceSearch?.addEventListener('input', filterResources);
+  resourceCity?.addEventListener('change', filterResources);
+  clearResourceFilters?.addEventListener('click', () => {
+    if (resourceSearch) resourceSearch.value = '';
+    if (resourceCity) resourceCity.value = '';
+    filterResources();
+    resourceSearch?.focus();
+  });
+</script>

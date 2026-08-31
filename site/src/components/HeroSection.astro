@@ -1,0 +1,36 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<section class="hero section-shell" id="inicio" aria-labelledby="hero-title">
+  <div class="hero__copy">
+    <p class="eyebrow"><span class="eyebrow__pulse" aria-hidden="true"></span>APOIO LOCAL · INFORMAÇÃO CLARA</p>
+    <h1 id="hero-title">Um próximo passo<br /><span>de cada vez.</span></h1>
+    <p class="hero__lede">
+      O TEApoio reúne orientações confiáveis e caminhos da Grande João Pessoa para ajudar pais,
+      mães e cuidadores a entender o TEA e encontrar apoio.
+    </p>
+    <div class="hero__actions">
+      <a class="button button--primary" href="#comece">Comece por aqui <span aria-hidden="true">→</span></a>
+      <a class="button button--quiet" href="#recursos">Encontrar apoio <span aria-hidden="true">⌖</span></a>
+    </div>
+    <div class="hero__trust" aria-label="Compromissos do TEApoio">
+      <span><i aria-hidden="true">✓</i> Linguagem simples</span>
+      <span><i aria-hidden="true">✓</i> Fontes verificadas</span>
+    </div>
+  </div>
+
+  <div class="hero__visual">
+    <div class="hero__image-wrap">
+      <img
+        src={`${base}/teapoio-brand.png`}
+        alt="Marca TEApoio com uma fita formada por corações coloridos e faixas em arco-íris"
+        width="640"
+        height="640"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="hero__note hero__note--top"><span aria-hidden="true">♥</span><strong>Acolhimento</strong><small>para cada família</small></div>
+    <div class="hero__note hero__note--bottom"><span aria-hidden="true">⌖</span><strong>Grande João Pessoa</strong><small>apoio mais perto</small></div>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="#inicio" aria-label="TEApoio — início">
+      <span class="brand__mark" aria-hidden="true"><span></span><span></span></span>
+      <span class="brand__name"><strong>TEA</strong><em>poio</em></span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+      <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i><i></i></span>
+      Menu
+    </button>
+
+    <nav id="site-menu" aria-label="Navegação principal">
+      <a href="#comece">Comece aqui</a>
+      <a href="#entenda">Entenda o TEA</a>
+      <a href="#recursos">Apoio na região</a>
+      <a href="#noticias">Notícias e agenda</a>
+    </nav>
+
+    <a class="header-cta" href="#recursos">
+      Buscar apoio <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</header>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('#site-menu');
+
+  if (menuToggle && menu) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      menu.classList.toggle('is-open', !isOpen);
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('is-open');
+      });
+    });
+  }
+</script>
