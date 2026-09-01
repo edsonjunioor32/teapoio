@@ -1,0 +1,132 @@
+---
+import { searchItems } from '../data/search';
+
+interface Props {
+  mode?: 'home' | 'page';
+}
+
+const { mode = 'home' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const inputId = `site-search-${mode}`;
+const titleId = `search-title-${mode}`;
+const maxResults = mode === 'home' ? 5 : searchItems.length;
+---
+
+<section class:list={['search-panel', 'section-shell', mode === 'home' ? 'search-panel--home' : 'search-panel--page']} data-search-root data-max-results={maxResults} data-search-mode={mode} aria-labelledby={titleId}>
+  <div class="search-panel__heading">
+    <p class="eyebrow">BUSCA RÁPIDA</p>
+    <h2 id={titleId}>{mode === 'home' ? 'O que você procura?' : 'Digite uma palavra-chave.'}</h2>
+    <p>Busque por serviço, direito, documento ou assunto.</p>
+  </div>
+
+  <form class="site-search" data-search-form role="search">
+    <label class="sr-only" for={inputId}>Buscar no TEAPOIO</label>
+    <div class="site-search__field">
+      <svg class="site-search__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
+        <circle cx="11" cy="11" r="6.5"></circle>
+        <path d="m16 16 4 4"></path>
+      </svg>
+      <input id={inputId} data-search-input type="search" placeholder="Ex.: FUNAD, advogados, terapia, escola" autocomplete="off" spellcheck="false" />
+      <button type="submit">Buscar</button>
+    </div>
+  </form>
+
+  <div class="search-suggestions" aria-label="Sugestões de busca">
+    <span>Mais buscados:</span>
+    {['FUNAD', 'Advogados', 'Terapia', 'Escola'].map((term) => (
+      <button type="button" data-search-suggestion={term}>{term}</button>
+    ))}
+  </div>
+
+  <p class="search-status" data-search-status aria-live="polite">Digite pelo menos duas letras para buscar.</p>
+  <div class="search-results" data-search-results hidden>
+    {searchItems.map((item) => (
+      <a class="search-result" href={`${base}${item.href}`} data-search-item data-search-text={`${item.title} ${item.description} ${item.category} ${item.keywords}`}>
+        <span class="search-result__category">{item.category}</span>
+        <strong>{item.title}</strong>
+        <p>{item.description}</p>
+        <span class="search-result__action">Abrir <span aria-hidden="true">→</span></span>
+      </a>
+    ))}
+  </div>
+  <p class="search-empty" data-search-empty hidden>Nenhum resultado encontrado. Tente outra palavra, como “FUNAD”, “escola” ou “terapia”.</p>
+</section>
+
+<script>
+  const normalizeSearchText = (value: string) => value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+
+  document.querySelectorAll<HTMLElement>('[data-search-root]').forEach((root) => {
+    const form = root.querySelector<HTMLFormElement>('[data-search-form]');
+    const input = root.querySelector<HTMLInputElement>('[data-search-input]');
+    const results = root.querySelector<HTMLElement>('[data-search-results]');
+    const status = root.querySelector<HTMLElement>('[data-search-status]');
+    const empty = root.querySelector<HTMLElement>('[data-search-empty]');
+    const suggestions = root.querySelectorAll<HTMLButtonElement>('[data-search-suggestion]');
+    const items = [...root.querySelectorAll<HTMLElement>('[data-search-item]')];
+    const maxResults = Number(root.dataset.maxResults || items.length);
+
+    if (!form || !input || !results || !status || !empty) return;
+
+    const runSearch = () => {
+      const query = normalizeSearchText(input.value);
+
+      items.forEach((item) => item.hidden = true);
+
+      if (query.length < 2) {
+        results.hidden = true;
+        empty.hidden = true;
+        status.textContent = 'Digite pelo menos duas letras para buscar.';
+        return;
+      }
+
+      const matches = items
+        .map((item) => {
+          const text = normalizeSearchText(item.dataset.searchText || '');
+          const title = normalizeSearchText(item.querySelector('strong')?.textContent || '');
+          const score = title.startsWith(query) ? 4 : title.includes(query) ? 3 : text.includes(query) ? 1 : 0;
+          return { item, score };
+        })
+        .filter(({ score }) => score > 0)
+        .sort((a, b) => b.score - a.score);
+
+      matches.slice(0, maxResults).forEach(({ item }) => {
+        item.hidden = false;
+        results.append(item);
+      });
+
+      const visible = Math.min(matches.length, maxResults);
+      results.hidden = visible === 0;
+      empty.hidden = visible !== 0;
+      status.textContent = visible === 0
+        ? `Nenhum resultado para “${input.value.trim()}”.`
+        : `${visible} resultado${visible === 1 ? '' : 's'} para “${input.value.trim()}”.`;
+    };
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      runSearch();
+    });
+
+    input.addEventListener('input', runSearch);
+
+    suggestions.forEach((button) => {
+      button.addEventListener('click', () => {
+        input.value = button.dataset.searchSuggestion || '';
+        runSearch();
+        input.focus();
+      });
+    });
+
+    if (root.dataset.searchMode === 'page') {
+      const initialQuery = new URLSearchParams(window.location.search).get('q');
+      if (initialQuery) {
+        input.value = initialQuery;
+        runSearch();
+      }
+    }
+  });
+</script>

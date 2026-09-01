@@ -31,7 +31,7 @@ import { directoryEntries } from '../data/directory';
 
   <div class="directory-grid" id="directory-list">
     {directoryEntries.map((entry) => (
-      <article class="directory-card" data-directory data-search={`${entry.name} ${entry.category} ${entry.location} ${entry.tags}`} data-verification={entry.verification}>
+      <article class="directory-card" id={entry.id} data-directory data-search={`${entry.name} ${entry.category} ${entry.location} ${entry.tags}`} data-verification={entry.verification}>
         <div class="directory-card__top">
           <span class:list={['status-badge', entry.verification === 'official' ? 'status-badge--official' : 'status-badge--community']}>
             {entry.verificationLabel}
