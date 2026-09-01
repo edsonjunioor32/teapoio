@@ -77,4 +77,11 @@ describe('site search index', () => {
     expect(acaflorItem?.keywords).toContain('cbd');
     expect(acaflorItem?.href).toBe('/apoio/#acaflor-canabidiol');
   });
+
+  it('keeps the CER IV map reference available in the support directory', () => {
+    const cerItem = directoryEntries.find((entry) => entry.id === 'cer-iv-espaco-acolher');
+
+    expect(cerItem?.mapHref).toContain('google.com/maps/place/CER+IV');
+    expect(cerItem?.mapLabel).toBe('Abrir localização no Google Maps');
+  });
 });

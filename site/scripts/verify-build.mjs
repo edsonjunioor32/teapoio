@@ -54,6 +54,8 @@ for (const fragment of [
   'Procon-JP — João Pessoa',
   'Procon-PB — estadual',
   'Paloma Silva',
+  'Gratuidade ou meia-entrada em eventos',
+  'Lei nº 2.044/2025',
   'Assento preferencial no transporte estadual',
   'Levar alimentos e itens de uso pessoal',
   'Ver a notícia da ALPB',
@@ -70,6 +72,7 @@ for (const fragment of [
   'Fornecedores de canabidiol',
   'Abrace Esperança',
   'Acaflor',
+  'Abrir localização no Google Maps',
 ]) {
   if (!supportPage.includes(fragment)) throw new Error(`Missing support page fragment: ${fragment}`);
 }

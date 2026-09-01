@@ -101,6 +101,9 @@ const directoryGroups = directorySegments.map((segment) => ({
                 {entry.social && (
                   <a class="directory-card__source" href={entry.social} target="_blank" rel="noopener noreferrer">{entry.socialLabel ?? 'Instagram'} <span aria-hidden="true">↗</span></a>
                 )}
+                {entry.mapHref && (
+                  <a class="directory-card__source" href={entry.mapHref} target="_blank" rel="noopener noreferrer">{entry.mapLabel ?? 'Abrir localização no mapa'} <span aria-hidden="true">↗</span></a>
+                )}
                 {entry.source ? (
                   <a class="directory-card__source" href={entry.source} target="_blank" rel="noopener noreferrer">{entry.sourceLabel} <span aria-hidden="true">↗</span></a>
                 ) : (

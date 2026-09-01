@@ -15,6 +15,8 @@ export type DirectoryEntry = {
   contactLabel?: string;
   social?: string;
   socialLabel?: string;
+  mapHref?: string;
+  mapLabel?: string;
 };
 
 export type DirectorySegmentId =
@@ -204,6 +206,8 @@ export const directoryEntries: DirectoryEntry[] = [
     verificationLabel: 'Fonte oficial',
     source: 'https://www.joaopessoa.pb.gov.br/noticias/prefeitura-entrega-novo-centro-especializado-em-reabilitacao-o-cer-iv-nesta-quarta-feira/',
     sourceLabel: 'Ver notícia da Prefeitura',
+    mapHref: 'https://www.google.com/maps/place/CER+IV+-+REABILITA%C3%87%C3%83O/@-7.1463614,-34.8394502,17z/data=!3m1!4b1!4m6!3m5!1s0x7acc3b24d6181eb:0x64756d134a03f341!8m2!3d-7.1463667!4d-34.8368753!16s%2Fg%2F11z9rk_ty1?entry=ttu&g_ep=EgoyMDI2MDgzMC4wIKXMDSoASAFQAw%3D%3D',
+    mapLabel: 'Abrir localização no Google Maps',
   },
   {
     id: 'bpc-loas',
