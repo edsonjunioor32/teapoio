@@ -1,0 +1,29 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<section class="brand-story section-shell" aria-labelledby="brand-story-title">
+  <div class="brand-story__visual">
+    <div class="brand-story__image-frame">
+      <img
+        src={`${base}/teapoio-reference-logo.jpg`}
+        alt="Identidade visual do TEAPOIO com fita colorida, corações e o nome TEAPOIO"
+        width="2494"
+        height="1696"
+        loading="lazy"
+      />
+    </div>
+    <span class="brand-story__badge">Identidade TEAPOIO</span>
+  </div>
+  <div class="brand-story__copy">
+    <p class="eyebrow">UMA MARCA PARA ACOLHER</p>
+    <h2 id="brand-story-title">A informação também pode acolher.</h2>
+    <p>A fita colorida, os corações e o símbolo do infinito inspiram uma identidade que fala de diversidade, vínculo e continuidade. No site, esses elementos ganham mais respiro para que a leitura continue clara.</p>
+    <div class="brand-story__values" aria-label="Valores da identidade visual">
+      <span>Acolhimento</span>
+      <span>Diversidade</span>
+      <span>Apoio local</span>
+    </div>
+    <a class="text-link" href={`${base}/entenda-o-tea/`}>Conhecer o TEA com calma <span aria-hidden="true">→</span></a>
+  </div>
+</section>

@@ -560,6 +560,89 @@ body.menu-is-open {
   border-radius: 12px;
 }
 
+/* Brand reference */
+.brand-story {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.86fr);
+  gap: clamp(44px, 7vw, 104px);
+  align-items: center;
+  padding-top: 112px;
+  padding-bottom: 120px;
+  background: #fff;
+}
+
+.brand-story__visual {
+  position: relative;
+  padding: 14px 22px 22px 0;
+}
+
+.brand-story__image-frame {
+  overflow: hidden;
+  border: 1px solid var(--pro-line);
+  border-radius: 24px;
+  background: #f9fbfd;
+  box-shadow: var(--pro-shadow-md);
+}
+
+.brand-story__image-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.47;
+  object-fit: cover;
+}
+
+.brand-story__badge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 11px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  border-radius: 12px;
+  background: rgba(10, 36, 66, 0.94);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.brand-story__copy h2 {
+  max-width: 510px;
+  color: var(--pro-navy);
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  letter-spacing: -0.055em;
+}
+
+.brand-story__copy > p:not(.eyebrow) {
+  max-width: 500px;
+  margin-top: 24px;
+  color: var(--pro-muted);
+  font-size: 1rem;
+  line-height: 1.78;
+}
+
+.brand-story__values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 28px;
+}
+
+.brand-story__values span {
+  padding: 9px 12px;
+  border: 1px solid var(--pro-line);
+  border-radius: 999px;
+  background: var(--pro-surface-muted);
+  color: var(--pro-navy);
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.brand-story__copy .text-link {
+  display: inline-flex;
+  margin-top: 30px;
+}
+
 /* Internal pages + footer */
 .page-hero {
   background:
@@ -616,6 +699,15 @@ body.menu-is-open {
 
   .hero-dashboard__brand {
     width: 170px;
+  }
+
+  .brand-story {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .brand-story__visual {
+    max-width: 720px;
   }
 }
 
@@ -695,6 +787,20 @@ body.menu-is-open {
 
   .audience-card {
     min-height: 210px;
+  }
+
+  .brand-story {
+    display: block;
+    padding-top: 78px;
+    padding-bottom: 84px;
+  }
+
+  .brand-story__visual {
+    padding-right: 12px;
+  }
+
+  .brand-story__copy {
+    margin-top: 46px;
   }
 }
 
