@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest';
 import { product } from './product';
 
 describe('product landing content', () => {
-  it('exposes the TEApoio identity and regional focus', () => {
-    expect(product.name).toBe('TEApoio');
+  it('exposes the TEAPOIO identity and regional focus', () => {
+    expect(product.name).toBe('TEAPOIO');
     expect(product.region).toBe('Grande João Pessoa, Paraíba');
   });
 

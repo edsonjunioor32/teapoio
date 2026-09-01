@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-labelledby="title desc">
+  <title id="title">Símbolo TEAPOIO</title>
+  <desc id="desc">Fita fluida em forma de coração com gradiente azul, ciano, coral e dourado.</desc>
+  <defs>
+    <linearGradient id="ribbon" x1="22" y1="30" x2="157" y2="153" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#25B7CE" />
+      <stop offset="0.32" stop-color="#5B91C4" />
+      <stop offset="0.68" stop-color="#EF806F" />
+      <stop offset="1" stop-color="#D8B563" />
+    </linearGradient>
+  </defs>
+  <path d="M90 157C75 132 35 105 35 62c0-26 28-42 50-20l5 5 5-5c22-22 50-6 50 20 0 43-40 70-55 95Z" fill="none" stroke="url(#ribbon)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M45 51c16 14 29 29 44 43 12 11 24 18 35 28" fill="none" stroke="#fffdf9" stroke-width="7" stroke-linecap="round" opacity=".8" />
+  <path d="M90 75c-4-8-16-8-16 3 0 9 16 18 16 18s16-9 16-18c0-11-12-11-16-3Z" fill="#EF806F" opacity=".95" />
+  <path d="M27 111c-7-8-18-1-13 8 3 5 13 8 13 8s10-5 10-11c0-7-7-9-10-5Z" fill="#5B91C4" />
+  <path d="M153 42c-6-7-16-1-12 7 3 5 12 8 12 8s9-4 9-10c0-6-6-8-9-5Z" fill="#25B7CE" />
+</svg>

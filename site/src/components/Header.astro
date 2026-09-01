@@ -1,11 +1,15 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="brand" href="#inicio" aria-label="TEApoio — início">
-      <span class="brand__mark" aria-hidden="true"><span></span><span></span></span>
-      <span class="brand__name"><strong>TEA</strong><em>poio</em></span>
+    <a class="brand" href="#inicio" aria-label="TEAPOIO — início">
+      <img class="brand__logo" src={`${base}/teapoio-symbol.svg`} alt="" width="38" height="38" />
+      <span class="brand__name">TEAPOIO</span>
     </a>
 
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menu principal">
       <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i><i></i></span>
       Menu
     </button>
@@ -24,21 +28,46 @@
 </header>
 
 <script>
-  const menuToggle = document.querySelector('.menu-toggle');
-  const menu = document.querySelector('#site-menu');
+  const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menu = document.querySelector<HTMLElement>('#site-menu');
 
   if (menuToggle && menu) {
+    const closeMenu = () => {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Abrir menu principal');
+      menu.classList.remove('is-open');
+    };
+
+    const openMenu = () => {
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuToggle.setAttribute('aria-label', 'Fechar menu principal');
+      menu.classList.add('is-open');
+    };
+
     menuToggle.addEventListener('click', () => {
       const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', String(!isOpen));
-      menu.classList.toggle('is-open', !isOpen);
+      if (isOpen) closeMenu();
+      else openMenu();
     });
 
     menu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menu.classList.remove('is-open');
-      });
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+        closeMenu();
+        menuToggle.focus();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (menuToggle.getAttribute('aria-expanded') !== 'true') return;
+      if (!(event.target instanceof Element) || !event.target.closest('.site-header')) closeMenu();
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 760) closeMenu();
     });
   }
 </script>

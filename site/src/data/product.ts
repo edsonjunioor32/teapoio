@@ -1,5 +1,5 @@
 export const product = {
-  name: 'TEApoio',
+  name: 'TEAPOIO',
   tagline: 'Informação clara para o próximo passo.',
   region: 'Grande João Pessoa, Paraíba',
   features: [

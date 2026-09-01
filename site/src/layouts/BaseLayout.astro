@@ -7,7 +7,7 @@ interface Props {
 }
 
 const {
-  title = 'TEApoio — informação clara para o próximo passo',
+  title = 'TEAPOIO — informação clara para o próximo passo',
   description = 'Orientação acolhedora e recursos de apoio para famílias de crianças com TEA na Grande João Pessoa.',
 } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -27,6 +27,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <title>{title}</title>
   </head>
   <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
     <slot />
   </body>
 </html>

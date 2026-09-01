@@ -1,8 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="TEApoio">
-  <rect width="64" height="64" rx="18" fill="#1457d5"/>
-  <circle cx="21" cy="21" r="7" fill="#f3dd19"/>
-  <circle cx="43" cy="21" r="7" fill="#09b8d2"/>
-  <circle cx="21" cy="43" r="7" fill="#ef4c4e"/>
-  <circle cx="43" cy="43" r="7" fill="#fffdf9"/>
-  <path d="M22 32c5-8 15-8 20 0-5 8-15 8-20 0Z" fill="none" stroke="#fffdf9" stroke-width="4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">TEAPOIO</title>
+  <defs>
+    <linearGradient id="ribbon" x1="10" y1="9" x2="55" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#25B7CE" />
+      <stop offset="0.45" stop-color="#5B91C4" />
+      <stop offset="0.75" stop-color="#EF806F" />
+      <stop offset="1" stop-color="#D8B563" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="#FFFDF9" />
+  <path d="M32 55C26 45 13 37 13 22c0-9 10-14 17-7l2 2 2-2c7-7 17-2 17 7 0 15-13 23-19 33Z" fill="none" stroke="url(#ribbon)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M32 25c-2-3-6-2-6 2 0 3 6 7 6 7s6-4 6-7c0-4-4-5-6-2Z" fill="#EF806F" />
 </svg>

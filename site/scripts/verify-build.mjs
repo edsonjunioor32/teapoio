@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 const required = [
   'Um próximo passo',
-  'TEApoio',
+  'TEAPOIO',
   'Comece por aqui',
   'Apoio na região',
   'NOTÍCIAS SEM COMPLICAÇÃO',
