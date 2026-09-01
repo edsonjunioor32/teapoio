@@ -73,6 +73,16 @@ const pageItems: SearchItem[] = [
     topics: ['noticias'],
     regions: ['todos'],
   },
+  {
+    id: 'lazer',
+    title: 'Lazer e experiências',
+    description: 'Espaços com gratuidade, descontos e sessões adaptadas para pessoas com TEA.',
+    category: 'Lazer',
+    href: '/lazer/',
+    keywords: 'lazer brincar cinema parque desconto gratuidade gratuito sessão adaptada experiências experiencias aquário aquario game station bica autismo tea',
+    topics: ['servicos'],
+    regions: ['todos', 'paraiba', 'grande-joao-pessoa'],
+  },
 ];
 
 const normalize = (value: string) => value
@@ -116,7 +126,7 @@ const leisureItems: SearchItem[] = leisureEntries.map((entry) => ({
   title: entry.name,
   description: entry.benefit,
   category: 'Lazer e experiências',
-  href: `/apoio/#lazer-${entry.id}`,
+  href: `/lazer/#lazer-${entry.id}`,
   keywords: `${entry.tags} ${entry.location} ${entry.address} ${entry.benefit} ${entry.access}`,
   topics: ['servicos'],
   regions: entry.region === 'grande-joao-pessoa'

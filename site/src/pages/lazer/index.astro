@@ -1,0 +1,16 @@
+---
+import Header from '../../components/Header.astro';
+import LeisureDirectory from '../../components/LeisureDirectory.astro';
+import PageHero from '../../components/PageHero.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Lazer acessível | TEAPOIO" description="Espaços de lazer e experiências acessíveis para pessoas com TEA na Grande João Pessoa.">
+  <Header />
+  <main id="conteudo-principal" tabindex="-1">
+    <PageHero eyebrow="LAZER E EXPERIÊNCIAS" current="Lazer" title="Mais lugares para viver boas experiências." intro="Encontre espaços com gratuidade, descontos ou sessões adaptadas. Confira a condição e o endereço antes de sair." />
+    <LeisureDirectory />
+  </main>
+  <SiteFooter />
+</BaseLayout>

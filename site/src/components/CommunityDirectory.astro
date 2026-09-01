@@ -1,14 +1,19 @@
 ---
-import { directoryEntries } from '../data/directory';
+import { directoryEntries, directorySegments, getDirectorySegment } from '../data/directory';
+
+const directoryGroups = directorySegments.map((segment) => ({
+  ...segment,
+  entries: directoryEntries.filter((entry) => getDirectorySegment(entry) === segment.id),
+})).filter((group) => group.entries.length > 0);
 ---
 
 <section class="directory-section section-shell" aria-labelledby="directory-title">
   <div class="directory-section__heading">
     <div>
       <p class="eyebrow">CATÁLOGO REGIONAL</p>
-      <h2 id="directory-title">Encontre clínicas e espaços.</h2>
+      <h2 id="directory-title">Encontre apoio por tipo.</h2>
     </div>
-    <p class="section-lede">Referências encontradas no Google Maps para a Grande João Pessoa. Confira a origem de cada resultado antes de entrar em contato.</p>
+    <p class="section-lede">Escolha o segmento que combina com o que você procura. Cada resultado informa a origem e o caminho para confirmar o atendimento.</p>
   </div>
   <div class="directory-coverage" aria-label="Cobertura da busca regional">
     <strong>Busca inicial</strong>
@@ -17,6 +22,16 @@ import { directoryEntries } from '../data/directory';
     <span>Santa Rita · referências encontradas</span>
     <span>Cabedelo · nenhum cadastro específico localizado nesta busca</span>
   </div>
+
+  <nav class="directory-segment-nav" aria-label="Segmentos de apoio">
+    <a class="directory-segment-link directory-segment-link--all" href="#directory-list">Todos os segmentos</a>
+    {directoryGroups.map((group) => (
+      <a class="directory-segment-link" href={`#segmento-${group.id}`}>
+        <span>{group.label}</span>
+        <strong>{group.entries.length}</strong>
+      </a>
+    ))}
+  </nav>
 
   <div class="directory-toolbar directory-toolbar--local" role="search" aria-label="Buscar serviços e caminhos locais">
     <label class="search-field">
@@ -43,36 +58,56 @@ import { directoryEntries } from '../data/directory';
         <option value="community">Referências não oficiais</option>
       </select>
     </label>
+    <label class="select-field">
+      <span class="sr-only">Filtrar por segmento</span>
+      <select id="directory-segment">
+        <option value="">Todos os segmentos</option>
+        {directorySegments.map((segment) => <option value={segment.id}>{segment.label}</option>)}
+      </select>
+    </label>
     <button class="filter-clear" type="button" id="clear-directory-filters">Limpar filtros</button>
   </div>
   <p class="filter-status" id="directory-status" aria-live="polite">Mostrando todos os caminhos.</p>
 
-  <div class="directory-grid" id="directory-list">
-    {directoryEntries.map((entry) => (
-      <article class="directory-card" id={entry.id} data-directory data-search={`${entry.name} ${entry.category} ${entry.location} ${entry.tags}`} data-region={entry.region ?? 'outros'} data-verification={entry.verification}>
-        <div class="directory-card__top">
-          <span class:list={['status-badge', entry.verification === 'official' ? 'status-badge--official' : 'status-badge--community']}>
-            {entry.verificationLabel}
-          </span>
-          <span class="directory-card__category">{entry.category}</span>
+  <div id="directory-list">
+    {directoryGroups.map((group) => (
+      <section class="directory-segment" id={`segmento-${group.id}`} data-directory-group data-segment={group.id} aria-labelledby={`segment-title-${group.id}`}>
+        <div class="directory-segment__heading">
+          <div>
+            <p class="eyebrow">{String(group.entries.length).padStart(2, '0')} CAMINHOS</p>
+            <h3 id={`segment-title-${group.id}`}>{group.label}</h3>
+          </div>
+          <p>{group.description}</p>
         </div>
-        <h3>{entry.name}</h3>
-        <p>{entry.description}</p>
-        <dl class="directory-card__facts">
-          <div><dt>Localização</dt><dd>{entry.location}</dd></div>
-          <div><dt>Como acessar</dt><dd>{entry.access}</dd></div>
-        </dl>
-        <div class="directory-card__actions">
-          {entry.contact && (
-            <a class="directory-card__source" href={entry.contact} target={entry.contact.startsWith('tel:') ? undefined : '_blank'} rel={entry.contact.startsWith('tel:') ? undefined : 'noopener noreferrer'}>{entry.contactLabel ?? 'Contato direto'} <span aria-hidden="true">↗</span></a>
-          )}
-          {entry.source ? (
-            <a class="directory-card__source" href={entry.source} target="_blank" rel="noopener noreferrer">{entry.sourceLabel} <span aria-hidden="true">↗</span></a>
-          ) : (
-            <span class="directory-card__source directory-card__source--muted">{entry.sourceLabel}</span>
-          )}
+        <div class="directory-grid">
+          {group.entries.map((entry) => (
+            <article class="directory-card" id={entry.id} data-directory data-search={`${entry.name} ${entry.category} ${entry.location} ${entry.tags}`} data-region={entry.region ?? 'outros'} data-verification={entry.verification} data-segment={getDirectorySegment(entry)}>
+              <div class="directory-card__top">
+                <span class:list={['status-badge', entry.verification === 'official' ? 'status-badge--official' : 'status-badge--community']}>
+                  {entry.verificationLabel}
+                </span>
+                <span class="directory-card__category">{entry.category}</span>
+              </div>
+              <h4>{entry.name}</h4>
+              <p>{entry.description}</p>
+              <dl class="directory-card__facts">
+                <div><dt>Localização</dt><dd>{entry.location}</dd></div>
+                <div><dt>Como acessar</dt><dd>{entry.access}</dd></div>
+              </dl>
+              <div class="directory-card__actions">
+                {entry.contact && (
+                  <a class="directory-card__source" href={entry.contact} target={entry.contact.startsWith('tel:') ? undefined : '_blank'} rel={entry.contact.startsWith('tel:') ? undefined : 'noopener noreferrer'}>{entry.contactLabel ?? 'Contato direto'} <span aria-hidden="true">↗</span></a>
+                )}
+                {entry.source ? (
+                  <a class="directory-card__source" href={entry.source} target="_blank" rel="noopener noreferrer">{entry.sourceLabel} <span aria-hidden="true">↗</span></a>
+                ) : (
+                  <span class="directory-card__source directory-card__source--muted">{entry.sourceLabel}</span>
+                )}
+              </div>
+            </article>
+          ))}
         </div>
-      </article>
+      </section>
     ))}
   </div>
   <p class="empty-state" id="directory-empty" hidden>Nenhum serviço encontrado. Tente outra palavra ou mude o filtro de origem.</p>
@@ -83,10 +118,12 @@ import { directoryEntries } from '../data/directory';
   const directorySearch = document.querySelector<HTMLInputElement>('#directory-search');
   const directoryRegion = document.querySelector<HTMLSelectElement>('#directory-region');
   const directoryVerification = document.querySelector<HTMLSelectElement>('#directory-verification');
+  const directorySegment = document.querySelector<HTMLSelectElement>('#directory-segment');
   const directoryStatus = document.querySelector<HTMLParagraphElement>('#directory-status');
   const directoryEmpty = document.querySelector<HTMLParagraphElement>('#directory-empty');
   const clearDirectoryFilters = document.querySelector<HTMLButtonElement>('#clear-directory-filters');
   const directoryCards = [...document.querySelectorAll<HTMLElement>('[data-directory]')];
+  const directoryGroups = [...document.querySelectorAll<HTMLElement>('[data-directory-group]')];
   const normalizeDirectoryText = (value: string) => value
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
@@ -97,17 +134,25 @@ import { directoryEntries } from '../data/directory';
     const query = normalizeDirectoryText(directorySearch?.value ?? '');
     const region = directoryRegion?.value ?? '';
     const verification = directoryVerification?.value ?? '';
+    const segment = directorySegment?.value ?? '';
     let visible = 0;
 
     directoryCards.forEach((card) => {
       const searchText = card.getAttribute('data-search')?.toLowerCase() ?? '';
       const cardRegion = card.getAttribute('data-region') ?? '';
       const cardVerification = card.getAttribute('data-verification') ?? '';
+      const cardSegment = card.getAttribute('data-segment') ?? '';
       const show = (!query || normalizeDirectoryText(searchText).includes(query))
         && (!region || cardRegion === region || (region === 'grande-joao-pessoa' && ['joao-pessoa', 'bayeux', 'santa-rita', 'cabedelo'].includes(cardRegion)))
-        && (!verification || cardVerification === verification);
+        && (!verification || cardVerification === verification)
+        && (!segment || cardSegment === segment);
       card.toggleAttribute('hidden', !show);
       if (show) visible += 1;
+    });
+
+    directoryGroups.forEach((group) => {
+      const groupVisible = group.querySelectorAll<HTMLElement>('[data-directory]:not([hidden])').length;
+      group.toggleAttribute('hidden', groupVisible === 0);
     });
 
     if (directoryStatus) directoryStatus.textContent = `${visible} caminho${visible === 1 ? '' : 's'} disponível${visible === 1 ? '' : 'is'} no diretório.`;
@@ -116,10 +161,12 @@ import { directoryEntries } from '../data/directory';
 
   directorySearch?.addEventListener('input', filterDirectory);
   directoryVerification?.addEventListener('change', filterDirectory);
+  directorySegment?.addEventListener('change', filterDirectory);
   clearDirectoryFilters?.addEventListener('click', () => {
     if (directorySearch) directorySearch.value = '';
     if (directoryRegion) directoryRegion.value = '';
     if (directoryVerification) directoryVerification.value = '';
+    if (directorySegment) directorySegment.value = '';
     filterDirectory();
     directorySearch?.focus();
   });

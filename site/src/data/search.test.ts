@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
+import { directoryEntries, getDirectorySegment } from './directory';
 import { searchItems } from './search';
 
 describe('site search index', () => {
@@ -49,8 +50,20 @@ describe('site search index', () => {
 
     expect(cinemaItem?.category).toBe('Lazer e experiências');
     expect(cinemaItem?.keywords).toContain('meia-entrada');
-    expect(cinemaItem?.href).toBe('/apoio/#lazer-cinepolis-manaira');
+    expect(cinemaItem?.href).toBe('/lazer/#lazer-cinepolis-manaira');
     expect(cinemaItem?.regions).toContain('joao-pessoa');
     expect(bicaItem?.keywords).toContain('gratuita');
+  });
+
+  it('keeps the support directory divided into clear segments', () => {
+    const funadRights = directoryEntries.find((entry) => entry.id === 'funad-ciptea');
+    const funadEducation = directoryEntries.find((entry) => entry.id === 'funad-educacao-inclusiva');
+    const clinic = directoryEntries.find((entry) => entry.id === 'viver-kids');
+    const publicChannel = directoryEntries.find((entry) => entry.id === 'defensoria-publica-paraiba');
+
+    expect(funadRights && getDirectorySegment(funadRights)).toBe('direitos-beneficios');
+    expect(funadEducation && getDirectorySegment(funadEducation)).toBe('educacao-inclusao');
+    expect(clinic && getDirectorySegment(clinic)).toBe('clinicas-terapias');
+    expect(publicChannel && getDirectorySegment(publicChannel)).toBe('orgaos-servicos-publicos');
   });
 });

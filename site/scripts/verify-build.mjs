@@ -13,6 +13,7 @@ const required = [
   'Dúvidas frequentes',
   'Veja opções que podem lhe ajudar',
   'Encontrar apoio',
+  'Lazer',
 ];
 
 for (const fragment of required) {
@@ -25,6 +26,7 @@ const routes = [
   'comece-aqui/index.html',
   'entenda-o-tea/index.html',
   'apoio/index.html',
+  'lazer/index.html',
   'direitos/index.html',
   'noticias/index.html',
   'faq/index.html',
@@ -61,12 +63,22 @@ for (const fragment of [
 
 const supportPage = await readFile(new URL('../dist/apoio/index.html', import.meta.url), 'utf8');
 for (const fragment of [
+  'Encontre apoio por tipo.',
+  'Clínicas e terapias',
+  'Órgãos e serviços públicos',
+  'Direitos, benefícios e documentos',
+]) {
+  if (!supportPage.includes(fragment)) throw new Error(`Missing support page fragment: ${fragment}`);
+}
+
+const leisurePage = await readFile(new URL('../dist/lazer/index.html', import.meta.url), 'utf8');
+for (const fragment of [
   'Programas para aproveitar com mais previsibilidade.',
   'Game Station — Mangabeira Shopping',
   'Aquário Paraíba',
   'Abrir no Google Maps',
 ]) {
-  if (!supportPage.includes(fragment)) throw new Error(`Missing support page fragment: ${fragment}`);
+  if (!leisurePage.includes(fragment)) throw new Error(`Missing leisure page fragment: ${fragment}`);
 }
 
 const sitemap = await readFile(new URL('../dist/sitemap.xml', import.meta.url), 'utf8');

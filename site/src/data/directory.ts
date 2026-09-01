@@ -15,6 +15,58 @@ export type DirectoryEntry = {
   contactLabel?: string;
 };
 
+export type DirectorySegmentId =
+  | 'clinicas-terapias'
+  | 'orgaos-servicos-publicos'
+  | 'direitos-beneficios'
+  | 'educacao-inclusao'
+  | 'orientacao-juridica'
+  | 'planos-saude'
+  | 'apoio-comunitario'
+  | 'informacao';
+
+export type DirectorySegment = {
+  id: DirectorySegmentId;
+  label: string;
+  description: string;
+};
+
+export const directorySegments: DirectorySegment[] = [
+  { id: 'clinicas-terapias', label: 'Clínicas e terapias', description: 'Espaços, profissionais e terapias para desenvolvimento e cuidado.' },
+  { id: 'orgaos-servicos-publicos', label: 'Órgãos e serviços públicos', description: 'Instituições públicas, canais oficiais e portas de entrada.' },
+  { id: 'direitos-beneficios', label: 'Direitos, benefícios e documentos', description: 'CIPTEA, Passe Livre, BPC e outras orientações previstas em políticas públicas.' },
+  { id: 'educacao-inclusao', label: 'Educação e inclusão', description: 'Escolas, educação especializada e caminhos de inclusão.' },
+  { id: 'orientacao-juridica', label: 'Orientação jurídica', description: 'Canais e profissionais para entender direitos e próximos passos.' },
+  { id: 'planos-saude', label: 'Planos de saúde', description: 'Orientação para comparar e contratar planos com mais segurança.' },
+  { id: 'apoio-comunitario', label: 'Associações e apoio', description: 'Projetos sociais, associações e redes de apoio familiar.' },
+  { id: 'informacao', label: 'Informação', description: 'Conteúdos oficiais para entender o TEA e a rede de cuidado.' },
+];
+
+export const getDirectorySegment = (entry: DirectoryEntry): DirectorySegmentId => {
+  const category = entry.category.toLocaleLowerCase('pt-BR');
+  const id = entry.id.toLocaleLowerCase('pt-BR');
+
+  if (category.includes('jurídica') || category.includes('juridica')) return 'orientacao-juridica';
+  if (category.includes('planos de saúde') || category.includes('planos de saude')) return 'planos-saude';
+  if (category.includes('direito') || category.includes('benefício') || category.includes('beneficio') || category.includes('documentação') || category.includes('documentacao') || category.includes('transporte')) {
+    return 'direitos-beneficios';
+  }
+  if (category.includes('educação') || category.includes('educacao') || category.includes('inclusão') || category.includes('inclusao') || category.includes('escola')) {
+    return 'educacao-inclusao';
+  }
+  if (id.startsWith('funad-') || id.startsWith('cer-') || id.startsWith('defensoria-') || id.startsWith('ans-') || id.startsWith('ministerio-') || id.startsWith('procon-') || category.includes('canais oficiais') || category.includes('suporte público') || category.includes('suporte publico') || category.includes('saúde mental pública') || category.includes('saude mental publica')) {
+    return 'orgaos-servicos-publicos';
+  }
+  if (category.includes('clínica') || category.includes('clinica') || category.includes('terapia') || category.includes('aba') || category.includes('fisioterapia') || category.includes('psicopedagogia') || category.includes('desenvolvimento') || category.includes('atendimento ao autista') || category.includes('saúde mental') || category.includes('saude mental')) {
+    return 'clinicas-terapias';
+  }
+  if (category.includes('associação') || category.includes('associacao') || category.includes('projeto social') || category.includes('apoio')) {
+    return 'apoio-comunitario';
+  }
+
+  return 'informacao';
+};
+
 /**
  * O diretório separa fontes oficiais de cadastros em confirmação.
  * Os registros encontrados no Google Maps devem ser confirmados antes do atendimento.

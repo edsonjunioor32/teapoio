@@ -1,7 +1,6 @@
 ---
 import CommunityDirectory from '../../components/CommunityDirectory.astro';
 import Header from '../../components/Header.astro';
-import LeisureDirectory from '../../components/LeisureDirectory.astro';
 import PageHero from '../../components/PageHero.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -10,9 +9,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 <BaseLayout title="Encontre apoio | TEAPOIO" description="Caminhos de apoio para famílias de crianças com TEA na Grande João Pessoa.">
   <Header />
   <main id="conteudo-principal" tabindex="-1">
-    <PageHero eyebrow="BUSCA LOCAL" current="Apoio perto" title="Encontre um caminho e confirme antes de ir." intro="Pesquise pelo nome, pelo tipo de apoio ou pela localização. Cada resultado informa se a fonte é oficial ou se os dados ainda estão em confirmação." />
+    <PageHero eyebrow="BUSCA LOCAL" current="Encontrar apoio" title="Encontre apoio por tipo." intro="Escolha clínicas, órgãos públicos, direitos, educação ou orientação. Cada resultado informa a origem e o caminho para confirmar o atendimento." />
     <CommunityDirectory />
-    <LeisureDirectory />
     <section class="verification-panel section-shell" aria-labelledby="verification-title">
       <div>
         <p class="eyebrow">INFORMAÇÃO RESPONSÁVEL</p>
