@@ -6,26 +6,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const steps = [
-  { number: '01', title: 'Tenho uma suspeita', text: 'Anote situações observadas no dia a dia e converse com a equipe da Unidade Básica de Saúde ou com um profissional habilitado.' },
-  { number: '02', title: 'Vou buscar uma avaliação', text: 'Leve suas dúvidas, documentos disponíveis e exemplos de comunicação, rotina, interação e desenvolvimento.' },
-  { number: '03', title: 'Recebi um diagnóstico', text: 'Peça uma explicação clara sobre as necessidades da criança e quais caminhos de acompanhamento fazem sentido para ela.' },
-  { number: '04', title: 'Quero organizar a rede', text: 'Conheça as opções de saúde, escola, assistência e direitos. O cuidado pode envolver mais de uma área.' },
-  { number: '05', title: 'Preciso de apoio hoje', text: 'Procure a rede de referência do seu município e use o diretório do TEAPOIO para localizar caminhos confirmados.' },
+  { number: '01', title: 'Observe e anote', text: 'Registre situações do cotidiano, quando começaram e o que ajuda ou dificulta a rotina da criança.' },
+  { number: '02', title: 'Procure orientação', text: 'Converse com a Unidade Básica de Saúde ou com um profissional habilitado e leve suas principais dúvidas.' },
+  { number: '03', title: 'Organize o próximo passo', text: 'Guarde encaminhamentos e protocolos. Depois, consulte apoio local, escola e direitos conforme a necessidade.' },
 ];
 ---
 
 <BaseLayout title="Comece aqui | TEAPOIO" description="Um passo a passo simples para famílias que estão começando a buscar orientação sobre TEA.">
   <Header />
   <main id="conteudo-principal" tabindex="-1">
-    <PageHero eyebrow="UM PASSO DE CADA VEZ" current="Comece aqui" title="Você não precisa saber tudo para começar." intro="Escolha o ponto que mais combina com o seu momento. O próximo passo pode ser pequeno, claro e possível." />
+    <PageHero eyebrow="PRIMEIROS PASSOS" current="Comece aqui" title="Você não precisa resolver tudo hoje." intro="Use este roteiro curto para organizar a dúvida e decidir a primeira ação." />
 
     <section class="page-section section-shell" aria-labelledby="journey-title">
       <div class="section-heading-row">
         <div>
           <p class="eyebrow">CAMINHO INICIAL</p>
-          <h2 id="journey-title">Um roteiro para sair da dúvida e encontrar direção.</h2>
+          <h2 id="journey-title">Três passos para começar.</h2>
         </div>
-        <p class="section-lede">O diagnóstico é feito por profissionais habilitados. Aqui, você encontra perguntas e caminhos para organizar a busca por apoio.</p>
+        <p class="section-lede">O TEAPOIO orienta a busca. Avaliação e diagnóstico devem ser realizados por profissionais habilitados.</p>
       </div>
 
       <ol class="journey-list">
@@ -41,22 +39,9 @@ const steps = [
       </ol>
     </section>
 
-    <section class="support-band section-shell" aria-labelledby="questions-title">
-      <div>
-        <p class="eyebrow">PARA A PRÓXIMA CONVERSA</p>
-        <h2 id="questions-title">Leve perguntas. Não precisa levar respostas prontas.</h2>
-      </div>
-      <ul class="check-list">
-        <li>O que observei e desde quando?</li>
-        <li>O que ajuda ou dificulta a rotina?</li>
-        <li>Quais são minhas dúvidas sobre avaliação?</li>
-        <li>Que apoio a família precisa neste momento?</li>
-      </ul>
-    </section>
-
     <section class="page-actions section-shell" aria-label="Próximos caminhos">
       <a class="button button--primary" href={`${base}/apoio/`}>Encontrar apoio perto <span aria-hidden="true">→</span></a>
-      <a class="button button--quiet" href={`${base}/entenda-o-tea/`}>Entender o TEA <span aria-hidden="true">↗</span></a>
+      <a class="button button--secondary" href={`${base}/entenda-o-tea/`}>Entender o TEA</a>
     </section>
   </main>
   <SiteFooter />

@@ -2,12 +2,12 @@ import { readFile } from 'node:fs/promises';
 
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 const required = [
-  'Um próximo passo',
+  'Orientação clara para o próximo passo',
   'TEAPOIO',
-  'Comece por aqui',
-  'Encontre apoio',
-  'NOTÍCIAS SEM COMPLICAÇÃO',
-  'Informação clara. Apoio perto.',
+  'Ver primeiros passos',
+  'O que você precisa agora?',
+  'Atualizações recentes',
+  'Dúvidas frequentes',
 ];
 
 for (const fragment of required) {
@@ -20,6 +20,7 @@ const routes = [
   'comece-aqui/index.html',
   'entenda-o-tea/index.html',
   'apoio/index.html',
+  'direitos/index.html',
   'noticias/index.html',
   'faq/index.html',
   '404.html',

@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import '../styles/professional.css';
 
 interface Props {
   title?: string;
@@ -48,7 +47,7 @@ const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href :
       document.documentElement.classList.add('js-enhanced');
 
       const revealTargets = document.querySelectorAll<HTMLElement>(
-        '.audience-card, .narrative-step, .feature-card, .news-card, .faq-list details'
+        '.path-card, .journey-card, .info-card, .directory-card, .news-card, .faq-list details'
       );
 
       revealTargets.forEach((item) => item.setAttribute('data-reveal', ''));
