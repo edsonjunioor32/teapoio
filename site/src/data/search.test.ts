@@ -42,4 +42,15 @@ describe('site search index', () => {
     expect(bayeuxItem?.regions).toEqual(expect.arrayContaining(['bayeux', 'grande-joao-pessoa', 'paraiba']));
     expect(santaRitaItem?.regions).toEqual(expect.arrayContaining(['santa-rita', 'grande-joao-pessoa', 'paraiba']));
   });
+
+  it('indexes leisure offers by benefit and destination', () => {
+    const cinemaItem = searchItems.find((item) => item.title.includes('Cinépolis — Manaíra'));
+    const bicaItem = searchItems.find((item) => item.title.includes('Parque Zoobotânico'));
+
+    expect(cinemaItem?.category).toBe('Lazer e experiências');
+    expect(cinemaItem?.keywords).toContain('meia-entrada');
+    expect(cinemaItem?.href).toBe('/apoio/#lazer-cinepolis-manaira');
+    expect(cinemaItem?.regions).toContain('joao-pessoa');
+    expect(bicaItem?.keywords).toContain('gratuita');
+  });
 });

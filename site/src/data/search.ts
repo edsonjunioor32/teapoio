@@ -1,4 +1,5 @@
 import { directoryEntries } from './directory';
+import { leisureEntries } from './leisure';
 
 export type SearchItem = {
   id: string;
@@ -110,4 +111,21 @@ const directoryItems: SearchItem[] = directoryEntries.map((entry) => {
   };
 });
 
-export const searchItems: SearchItem[] = [...pageItems, ...directoryItems];
+const leisureItems: SearchItem[] = leisureEntries.map((entry) => ({
+  id: `lazer-${entry.id}`,
+  title: entry.name,
+  description: entry.benefit,
+  category: 'Lazer e experiências',
+  href: `/apoio/#lazer-${entry.id}`,
+  keywords: `${entry.tags} ${entry.location} ${entry.address} ${entry.benefit} ${entry.access}`,
+  topics: ['servicos'],
+  regions: entry.region === 'grande-joao-pessoa'
+    ? ['grande-joao-pessoa', 'paraiba']
+    : entry.region === 'fora-regiao'
+      ? ['fora-regiao']
+      : entry.region === 'outros'
+        ? ['todos']
+        : [entry.region, 'grande-joao-pessoa', 'paraiba'],
+}));
+
+export const searchItems: SearchItem[] = [...pageItems, ...directoryItems, ...leisureItems];

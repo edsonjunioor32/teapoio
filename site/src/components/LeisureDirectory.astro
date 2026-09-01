@@ -1,0 +1,131 @@
+---
+import { leisureEntries } from '../data/leisure';
+---
+
+<section class="leisure-section section-shell" aria-labelledby="leisure-title">
+  <div class="leisure-section__heading">
+    <div>
+      <p class="eyebrow">LAZER E EXPERIÊNCIAS</p>
+      <h2 id="leisure-title">Programas para aproveitar com mais previsibilidade.</h2>
+    </div>
+    <p class="section-lede">Uma seleção de espaços que informaram gratuidade, desconto ou sessões adaptadas para pessoas com TEA. Consulte a condição atual antes de sair.</p>
+  </div>
+
+  <div class="leisure-legend" aria-label="Tipos de benefício">
+    <span><i class="leisure-legend__dot leisure-legend__dot--free" aria-hidden="true"></i>Gratuidade</span>
+    <span><i class="leisure-legend__dot leisure-legend__dot--discount" aria-hidden="true"></i>Desconto</span>
+    <span><i class="leisure-legend__dot leisure-legend__dot--adapted" aria-hidden="true"></i>Sessão adaptada</span>
+    <span><i class="leisure-legend__dot leisure-legend__dot--other" aria-hidden="true"></i>Benefício próprio</span>
+  </div>
+
+  <div class="directory-toolbar leisure-toolbar" role="search" aria-label="Buscar lazer e experiências">
+    <label class="search-field">
+      <span aria-hidden="true">⌕</span>
+      <span class="sr-only">Buscar espaço ou benefício</span>
+      <input id="leisure-search" type="search" placeholder="Ex.: cinema, desconto, Bica" autocomplete="off" />
+    </label>
+    <label class="select-field">
+      <span class="sr-only">Filtrar por cidade</span>
+      <select id="leisure-region">
+        <option value="">Todas as cidades</option>
+        <option value="joao-pessoa">João Pessoa</option>
+        <option value="bayeux">Bayeux</option>
+        <option value="santa-rita">Santa Rita</option>
+        <option value="cabedelo">Cabedelo</option>
+        <option value="grande-joao-pessoa">Grande João Pessoa</option>
+        <option value="fora-regiao">Fora da região</option>
+      </select>
+    </label>
+    <label class="select-field">
+      <span class="sr-only">Filtrar por tipo de espaço</span>
+      <select id="leisure-category">
+        <option value="">Todos os tipos</option>
+        <option value="Brincar">Brincar</option>
+        <option value="Cinema acessível">Cinema acessível</option>
+        <option value="Parque e natureza">Parque e natureza</option>
+        <option value="Educação e natureza">Educação e natureza</option>
+        <option value="Experiência imersiva">Experiência imersiva</option>
+      </select>
+    </label>
+    <button class="filter-clear" type="button" id="clear-leisure-filters">Limpar filtros</button>
+  </div>
+  <p class="filter-status" id="leisure-status" aria-live="polite">Mostrando todos os espaços.</p>
+
+  <div class="leisure-grid" id="leisure-list">
+    {leisureEntries.map((entry, index) => (
+      <article class:list={['leisure-card', `leisure-card--${(index % 5) + 1}`]} id={`lazer-${entry.id}`} data-leisure data-search={`${entry.name} ${entry.category} ${entry.location} ${entry.address} ${entry.benefit} ${entry.access} ${entry.tags}`} data-region={entry.region} data-category={entry.category}>
+        <div class="leisure-card__top">
+          <span class="leisure-card__index">{String(index + 1).padStart(2, '0')}</span>
+          <span class="leisure-card__category">{entry.category}</span>
+        </div>
+        <h3>{entry.name}</h3>
+        <p class="leisure-card__benefit">{entry.benefit}</p>
+        <dl class="leisure-card__facts">
+          <div><dt>Onde fica</dt><dd>{entry.address}</dd></div>
+          <div><dt>Antes de ir</dt><dd>{entry.access}</dd></div>
+        </dl>
+        <div class="leisure-card__actions">
+          <a class="leisure-card__link" href={entry.source} target="_blank" rel="noopener noreferrer">{entry.sourceLabel} <span aria-hidden="true">↗</span></a>
+          {entry.instagram && <a class="leisure-card__link leisure-card__link--secondary" href={entry.instagram} target="_blank" rel="noopener noreferrer">{entry.instagramLabel ?? 'Mais informações'} <span aria-hidden="true">↗</span></a>}
+          {entry.mapHref && <a class="leisure-card__link leisure-card__link--map" href={entry.mapHref} target="_blank" rel="noopener noreferrer">Abrir no Google Maps <span aria-hidden="true">↗</span></a>}
+        </div>
+      </article>
+    ))}
+  </div>
+  <p class="empty-state" id="leisure-empty" hidden>Nenhum espaço encontrado. Tente outra palavra ou mude o filtro.</p>
+
+  <aside class="leisure-note" aria-label="Nota sobre a origem das informações">
+    <strong>Oferta informada</strong>
+    <p>As condições desta lista foram reunidas a partir dos perfis indicados e de páginas públicas dos espaços. Elas podem mudar sem aviso. Leve a CIPTEA, laudo ou documento solicitado e confirme a regra diretamente com o estabelecimento.</p>
+  </aside>
+</section>
+
+<script>
+  const leisureSearch = document.querySelector<HTMLInputElement>('#leisure-search');
+  const leisureRegion = document.querySelector<HTMLSelectElement>('#leisure-region');
+  const leisureCategory = document.querySelector<HTMLSelectElement>('#leisure-category');
+  const leisureStatus = document.querySelector<HTMLParagraphElement>('#leisure-status');
+  const leisureEmpty = document.querySelector<HTMLParagraphElement>('#leisure-empty');
+  const clearLeisureFilters = document.querySelector<HTMLButtonElement>('#clear-leisure-filters');
+  const leisureCards = [...document.querySelectorAll<HTMLElement>('[data-leisure]')];
+  const normalizeLeisureText = (value: string) => value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+
+  const filterLeisure = () => {
+    const query = normalizeLeisureText(leisureSearch?.value ?? '');
+    const region = leisureRegion?.value ?? '';
+    const category = leisureCategory?.value ?? '';
+    let visible = 0;
+
+    leisureCards.forEach((card) => {
+      const searchText = normalizeLeisureText(card.getAttribute('data-search') ?? '');
+      const cardRegion = card.getAttribute('data-region') ?? '';
+      const cardCategory = card.getAttribute('data-category') ?? '';
+      const inRegion = !region
+        || cardRegion === region
+        || (region === 'grande-joao-pessoa' && ['joao-pessoa', 'bayeux', 'santa-rita', 'cabedelo', 'grande-joao-pessoa'].includes(cardRegion));
+      const show = (!query || searchText.includes(query)) && inRegion && (!category || cardCategory === category);
+      card.toggleAttribute('hidden', !show);
+      if (show) visible += 1;
+    });
+
+    if (leisureStatus) leisureStatus.textContent = `${visible} espaço${visible === 1 ? '' : 's'} disponível${visible === 1 ? '' : 'is'} nesta seleção.`;
+    if (leisureEmpty) leisureEmpty.hidden = visible !== 0;
+  };
+
+  leisureSearch?.addEventListener('input', filterLeisure);
+  leisureRegion?.addEventListener('change', filterLeisure);
+  leisureCategory?.addEventListener('change', filterLeisure);
+  clearLeisureFilters?.addEventListener('click', () => {
+    if (leisureSearch) leisureSearch.value = '';
+    if (leisureRegion) leisureRegion.value = '';
+    if (leisureCategory) leisureCategory.value = '';
+    filterLeisure();
+    leisureSearch?.focus();
+  });
+
+  filterLeisure();
+</script>

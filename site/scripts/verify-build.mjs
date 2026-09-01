@@ -50,8 +50,21 @@ for (const fragment of [
   'Procon-JP — João Pessoa',
   'Procon-PB — estadual',
   'Paloma Silva',
+  'Assento preferencial no transporte estadual',
+  'Levar alimentos e itens de uso pessoal',
+  'Ver a notícia da ALPB',
 ]) {
   if (!rightsPage.includes(fragment)) throw new Error(`Missing rights page fragment: ${fragment}`);
+}
+
+const supportPage = await readFile(new URL('../dist/apoio/index.html', import.meta.url), 'utf8');
+for (const fragment of [
+  'Programas para aproveitar com mais previsibilidade.',
+  'Game Station — Mangabeira Shopping',
+  'Aquário Paraíba',
+  'Abrir no Google Maps',
+]) {
+  if (!supportPage.includes(fragment)) throw new Error(`Missing support page fragment: ${fragment}`);
 }
 
 const sitemap = await readFile(new URL('../dist/sitemap.xml', import.meta.url), 'utf8');
