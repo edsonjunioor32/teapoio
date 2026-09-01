@@ -14,14 +14,13 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
 
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="brand" href={`${base}/`} aria-label="TEAPOIO — início">
-      <img class="brand__logo" src={`${base}/teapoio-symbol.svg`} alt="" width="38" height="38" />
-      <span class="brand__name">TEAPOIO</span>
+    <a class="brand" href={`${base}/`} aria-label="TEAPOIO — página inicial">
+      <img class="brand__logo--full" src={`${base}/teapoio-logo.svg`} alt="TEAPOIO" width="148" height="42" />
     </a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menu principal">
       <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i><i></i></span>
-      Menu
+      <span>Menu</span>
     </button>
 
     <nav id="site-menu" aria-label="Navegação principal">
@@ -37,20 +36,30 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
 </header>
 
 <script>
+  const header = document.querySelector<HTMLElement>('.site-header');
   const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const menu = document.querySelector<HTMLElement>('#site-menu');
+
+  const syncHeaderState = () => {
+    header?.classList.toggle('is-scrolled', window.scrollY > 12);
+  };
+
+  syncHeaderState();
+  window.addEventListener('scroll', syncHeaderState, { passive: true });
 
   if (menuToggle && menu) {
     const closeMenu = () => {
       menuToggle.setAttribute('aria-expanded', 'false');
       menuToggle.setAttribute('aria-label', 'Abrir menu principal');
       menu.classList.remove('is-open');
+      document.body.classList.remove('menu-is-open');
     };
 
     const openMenu = () => {
       menuToggle.setAttribute('aria-expanded', 'true');
       menuToggle.setAttribute('aria-label', 'Fechar menu principal');
       menu.classList.add('is-open');
+      document.body.classList.add('menu-is-open');
     };
 
     menuToggle.addEventListener('click', () => {
@@ -59,9 +68,7 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
       else openMenu();
     });
 
-    menu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', closeMenu);
-    });
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
