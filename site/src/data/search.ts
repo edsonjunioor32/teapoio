@@ -90,8 +90,11 @@ const directoryItems: SearchItem[] = directoryEntries.map((entry) => {
   const regions = new Set<string>();
 
   if (location.includes('joao pessoa')) regions.add('joao-pessoa');
-  if (location.includes('grande joao pessoa') || location.includes('joao pessoa')) regions.add('grande-joao-pessoa');
-  if (location.includes('paraiba') || location.includes('joao pessoa')) regions.add('paraiba');
+  if (location.includes('bayeux')) regions.add('bayeux');
+  if (location.includes('santa rita')) regions.add('santa-rita');
+  if (location.includes('cabedelo')) regions.add('cabedelo');
+  if (location.includes('grande joao pessoa') || ['joao pessoa', 'bayeux', 'santa rita', 'cabedelo'].some((city) => location.includes(city))) regions.add('grande-joao-pessoa');
+  if (location.includes('paraiba') || ['joao pessoa', 'bayeux', 'santa rita', 'cabedelo'].some((city) => location.includes(city))) regions.add('paraiba');
   if (location.includes('online') || location.includes('consulta online') || location.includes('meu inss')) regions.add('online');
   if (regions.size === 0) regions.add('todos');
 

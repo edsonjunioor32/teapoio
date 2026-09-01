@@ -5,24 +5,42 @@ import { directoryEntries } from '../data/directory';
 <section class="directory-section section-shell" aria-labelledby="directory-title">
   <div class="directory-section__heading">
     <div>
-      <p class="eyebrow">REFERÊNCIAS LOCAIS</p>
-      <h2 id="directory-title">Busque pelo que você precisa.</h2>
+      <p class="eyebrow">CATÁLOGO REGIONAL</p>
+      <h2 id="directory-title">Encontre clínicas e espaços.</h2>
     </div>
-    <p class="section-lede">Use a busca e confira a origem de cada resultado antes de entrar em contato.</p>
+    <p class="section-lede">Referências encontradas no Google Maps para a Grande João Pessoa. Confira a origem de cada resultado antes de entrar em contato.</p>
+  </div>
+  <div class="directory-coverage" aria-label="Cobertura da busca regional">
+    <strong>Busca inicial</strong>
+    <span>João Pessoa · referências encontradas</span>
+    <span>Bayeux · referências encontradas</span>
+    <span>Santa Rita · referências encontradas</span>
+    <span>Cabedelo · nenhum cadastro específico localizado nesta busca</span>
   </div>
 
   <div class="directory-toolbar directory-toolbar--local" role="search" aria-label="Buscar serviços e caminhos locais">
     <label class="search-field">
       <span aria-hidden="true">⌕</span>
       <span class="sr-only">Buscar serviço</span>
-      <input id="directory-search" type="search" placeholder="Ex.: terapia, FUNAD, Bancários" autocomplete="off" />
+      <input id="directory-search" type="search" placeholder="Ex.: ABA, FUNAD, CRIS" autocomplete="off" />
+    </label>
+    <label class="select-field">
+      <span class="sr-only">Filtrar por cidade</span>
+      <select id="directory-region">
+        <option value="">Todas as cidades</option>
+        <option value="joao-pessoa">João Pessoa</option>
+        <option value="bayeux">Bayeux</option>
+        <option value="santa-rita">Santa Rita</option>
+        <option value="cabedelo">Cabedelo</option>
+        <option value="grande-joao-pessoa">Toda a Grande João Pessoa</option>
+      </select>
     </label>
     <label class="select-field">
       <span class="sr-only">Filtrar por origem</span>
       <select id="directory-verification">
         <option value="">Todas as origens</option>
         <option value="official">Fontes oficiais</option>
-        <option value="community">Relatos da comunidade</option>
+        <option value="community">Referências não oficiais</option>
       </select>
     </label>
     <button class="filter-clear" type="button" id="clear-directory-filters">Limpar filtros</button>
@@ -31,7 +49,7 @@ import { directoryEntries } from '../data/directory';
 
   <div class="directory-grid" id="directory-list">
     {directoryEntries.map((entry) => (
-      <article class="directory-card" id={entry.id} data-directory data-search={`${entry.name} ${entry.category} ${entry.location} ${entry.tags}`} data-verification={entry.verification}>
+      <article class="directory-card" id={entry.id} data-directory data-search={`${entry.name} ${entry.category} ${entry.location} ${entry.tags}`} data-region={entry.region ?? 'outros'} data-verification={entry.verification}>
         <div class="directory-card__top">
           <span class:list={['status-badge', entry.verification === 'official' ? 'status-badge--official' : 'status-badge--community']}>
             {entry.verificationLabel}
@@ -58,21 +76,31 @@ import { directoryEntries } from '../data/directory';
 
 <script>
   const directorySearch = document.querySelector<HTMLInputElement>('#directory-search');
+  const directoryRegion = document.querySelector<HTMLSelectElement>('#directory-region');
   const directoryVerification = document.querySelector<HTMLSelectElement>('#directory-verification');
   const directoryStatus = document.querySelector<HTMLParagraphElement>('#directory-status');
   const directoryEmpty = document.querySelector<HTMLParagraphElement>('#directory-empty');
   const clearDirectoryFilters = document.querySelector<HTMLButtonElement>('#clear-directory-filters');
   const directoryCards = [...document.querySelectorAll<HTMLElement>('[data-directory]')];
+  const normalizeDirectoryText = (value: string) => value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
 
   const filterDirectory = () => {
-    const query = directorySearch?.value.trim().toLowerCase() ?? '';
+    const query = normalizeDirectoryText(directorySearch?.value ?? '');
+    const region = directoryRegion?.value ?? '';
     const verification = directoryVerification?.value ?? '';
     let visible = 0;
 
     directoryCards.forEach((card) => {
       const searchText = card.getAttribute('data-search')?.toLowerCase() ?? '';
+      const cardRegion = card.getAttribute('data-region') ?? '';
       const cardVerification = card.getAttribute('data-verification') ?? '';
-      const show = (!query || searchText.includes(query)) && (!verification || cardVerification === verification);
+      const show = (!query || normalizeDirectoryText(searchText).includes(query))
+        && (!region || cardRegion === region || (region === 'grande-joao-pessoa' && ['joao-pessoa', 'bayeux', 'santa-rita', 'cabedelo'].includes(cardRegion)))
+        && (!verification || cardVerification === verification);
       card.toggleAttribute('hidden', !show);
       if (show) visible += 1;
     });
@@ -85,6 +113,7 @@ import { directoryEntries } from '../data/directory';
   directoryVerification?.addEventListener('change', filterDirectory);
   clearDirectoryFilters?.addEventListener('click', () => {
     if (directorySearch) directorySearch.value = '';
+    if (directoryRegion) directoryRegion.value = '';
     if (directoryVerification) directoryVerification.value = '';
     filterDirectory();
     directorySearch?.focus();

@@ -20,5 +20,10 @@ describe('site search index', () => {
     expect(funadItem?.regions).toContain('paraiba');
     expect(cerItem?.topics).toContain('servicos');
     expect(cerItem?.regions).toContain('joao-pessoa');
+
+    const bayeuxItem = searchItems.find((item) => item.title.includes('Afettos'));
+    const santaRitaItem = searchItems.find((item) => item.title.includes('Aprimorar'));
+    expect(bayeuxItem?.regions).toEqual(expect.arrayContaining(['bayeux', 'grande-joao-pessoa', 'paraiba']));
+    expect(santaRitaItem?.regions).toEqual(expect.arrayContaining(['santa-rita', 'grande-joao-pessoa', 'paraiba']));
   });
 });

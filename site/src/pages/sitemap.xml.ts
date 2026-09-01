@@ -6,7 +6,6 @@ const routes = [
   '/entenda-o-tea/',
   '/apoio/',
   '/direitos/',
-  '/busca/',
   '/noticias/',
   '/faq/',
 ];

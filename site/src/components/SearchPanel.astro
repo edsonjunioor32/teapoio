@@ -1,24 +1,19 @@
 ---
 import { searchItems } from '../data/search';
 
-interface Props {
-  mode?: 'home' | 'page';
-}
-
-const { mode = 'home' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const inputId = `site-search-${mode}`;
-const titleId = `search-title-${mode}`;
-const topicId = `site-search-topic-${mode}`;
-const regionId = `site-search-region-${mode}`;
-const maxResults = mode === 'home' ? 5 : searchItems.length;
+const inputId = 'site-search-home';
+const titleId = 'search-title-home';
+const topicId = 'site-search-topic-home';
+const regionId = 'site-search-region-home';
+const maxResults = 5;
 ---
 
-<section class:list={['search-panel', mode === 'page' && 'section-shell', mode === 'home' ? 'search-panel--home' : 'search-panel--page']} data-search-root data-max-results={maxResults} data-search-mode={mode} aria-labelledby={titleId}>
+<section class="search-panel search-panel--home" data-search-root data-max-results={maxResults} aria-labelledby={titleId}>
   <div class="search-panel__heading">
     <div>
-      <p class="eyebrow">{mode === 'home' ? 'REFINE SUA BUSCA' : 'BUSCA NO TEAPOIO'}</p>
-      <h2 id={titleId}>{mode === 'home' ? 'Encontre o que precisa.' : 'Digite uma palavra-chave.'}</h2>
+      <p class="eyebrow">REFINE SUA BUSCA</p>
+      <h2 id={titleId}>Encontre o que precisa.</h2>
       <p>Pesquise por nome, assunto ou tipo de ajuda.</p>
     </div>
     <button class="search-reset" type="button" data-search-reset>Limpar</button>
@@ -56,6 +51,9 @@ const maxResults = mode === 'home' ? 5 : searchItems.length;
           <select id={regionId} data-search-region>
             <option value="">Toda a região</option>
             <option value="joao-pessoa">João Pessoa</option>
+            <option value="bayeux">Bayeux</option>
+            <option value="santa-rita">Santa Rita</option>
+            <option value="cabedelo">Cabedelo</option>
             <option value="grande-joao-pessoa">Grande João Pessoa</option>
             <option value="paraiba">Paraíba</option>
             <option value="online">Atendimento online</option>
@@ -194,12 +192,5 @@ const maxResults = mode === 'home' ? 5 : searchItems.length;
       });
     });
 
-    if (root.dataset.searchMode === 'page') {
-      const initialQuery = new URLSearchParams(window.location.search).get('q');
-      if (initialQuery) {
-        input.value = initialQuery;
-        runSearch();
-      }
-    }
   });
 </script>
