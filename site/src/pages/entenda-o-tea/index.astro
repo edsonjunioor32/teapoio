@@ -11,6 +11,51 @@ const points = [
   { title: 'Sinais não são diagnóstico', text: 'Alguns sinais podem indicar a necessidade de uma avaliação, mas somente profissionais habilitados podem realizar o diagnóstico.' },
   { title: 'Apoio pode começar antes do laudo', text: 'Mesmo durante a investigação, a família pode receber orientação e buscar apoio para a rotina, a comunicação e o desenvolvimento.' },
 ];
+
+const medicationGuidance = [
+  {
+    name: 'Risperidona',
+    className: 'Antipsicótico',
+    action: 'Modula a ação de substâncias como dopamina e serotonina no sistema nervoso central.',
+    when: 'Pode ser avaliada para irritabilidade intensa, agressividade, autoagressão ou crises comportamentais graves. O SUS possui protocolo específico para comportamento agressivo no TEA, com critérios e monitoramento.',
+    caution: 'O médico acompanha possíveis efeitos como sonolência, alterações de apetite, peso e exames metabólicos.',
+  },
+  {
+    name: 'Aripiprazol',
+    className: 'Antipsicótico',
+    action: 'Atua em receptores de dopamina e serotonina, ajustando parte da sinalização cerebral.',
+    when: 'Pode aparecer em referências internacionais para irritabilidade associada ao TEA, sempre em situações específicas e conforme a idade.',
+    caution: 'O Ministério da Saúde informa que não há registro sanitário aprovado para TEA no Brasil. Isso não significa disponibilidade ou indicação automática no SUS.',
+  },
+  {
+    name: 'Metilfenidato e outros estimulantes',
+    className: 'Estimulantes',
+    action: 'Aumentam a sinalização de dopamina e noradrenalina em circuitos ligados à atenção e ao controle de impulsos.',
+    when: 'Podem ser considerados quando também existe TDAH com desatenção, hiperatividade ou impulsividade. Não tratam as características centrais do autismo.',
+    caution: 'A resposta e a tolerância variam. O acompanhamento médico deve observar sono, apetite, ansiedade e comportamento.',
+  },
+  {
+    name: 'Guanfacina ou clonidina',
+    className: 'Agonistas alfa-2',
+    action: 'Reduzem parte da ativação noradrenérgica, ajudando a regular alerta e impulsividade em algumas pessoas.',
+    when: 'Podem ser consideradas em casos selecionados de hiperatividade, impulsividade, tiques ou dificuldades de sono, conforme a avaliação clínica.',
+    caution: 'Podem alterar pressão, frequência cardíaca e causar sonolência. Não devem ser iniciadas, combinadas ou retiradas sem orientação.',
+  },
+  {
+    name: 'Antidepressivos',
+    className: 'Ex.: fluoxetina e sertralina',
+    action: 'Aumentam a disponibilidade de serotonina entre as células nervosas.',
+    when: 'São avaliados quando há outro quadro, como ansiedade, depressão ou sintomas obsessivos, e não como tratamento de rotina para as características centrais do TEA.',
+    caution: 'Em crianças e adolescentes, a indicação exige avaliação cuidadosa, acompanhamento próximo e revisão da resposta.',
+  },
+  {
+    name: 'Anticonvulsivantes',
+    className: 'Medicamentos para epilepsia',
+    action: 'Diminuem a atividade elétrica excessiva no cérebro, cada um por mecanismos próprios.',
+    when: 'São indicados quando a pessoa também apresenta epilepsia ou crises convulsivas diagnosticadas. Não são remédios para o autismo.',
+    caution: 'A escolha depende do tipo de crise, idade, outros medicamentos e exames. A decisão é do neurologista ou médico responsável.',
+  },
+];
 ---
 
 <BaseLayout title="Entenda o TEA | TEAPOIO" description="Informação simples e respeitosa para entender o Transtorno do Espectro Autista.">
@@ -34,6 +79,56 @@ const points = [
             <p>{point.text}</p>
           </article>
         ))}
+      </div>
+    </section>
+
+    <section class="medication-section section-shell" id="medicamentos" aria-labelledby="medication-title">
+      <div class="section-heading-row">
+        <div>
+          <p class="eyebrow">SAÚDE E CUIDADO</p>
+          <h2 id="medication-title">Medicamentos tratam sintomas associados, não o autismo.</h2>
+        </div>
+        <p class="section-lede">Não existe medicamento que cure o TEA ou elimine suas características centrais. Em alguns casos, o médico pode considerar remédios para irritabilidade, TDAH, sono, ansiedade, depressão ou epilepsia.</p>
+      </div>
+
+      <div class="medication-alert" role="note">
+        <strong>Importante antes de qualquer decisão.</strong>
+        <p>A prescrição, a dose, o horário, a combinação e a retirada devem ser definidos pelo médico que acompanha a pessoa. Não use remédios, suplementos ou canabidiol por indicação de redes sociais, conhecidos ou fornecedores.</p>
+      </div>
+
+      <div class="medication-grid">
+        {medicationGuidance.map((medication, index) => (
+          <article class:list={['medication-card', index % 3 === 1 && 'medication-card--coral', index % 3 === 2 && 'medication-card--yellow']}>
+            <span class="medication-card__type">{medication.className}</span>
+            <h3>{medication.name}</h3>
+            <dl>
+              <div>
+                <dt>Como age no corpo</dt>
+                <dd>{medication.action}</dd>
+              </div>
+              <div>
+                <dt>Em que situação pode ser avaliado</dt>
+                <dd>{medication.when}</dd>
+              </div>
+              <div>
+                <dt>O que observar</dt>
+                <dd>{medication.caution}</dd>
+              </div>
+            </dl>
+          </article>
+        ))}
+      </div>
+
+      <div class="medication-note">
+        <strong>Sobre melatonina e canabidiol</strong>
+        <p>A melatonina participa do ciclo de sono e vigília, mas no Brasil é autorizada como suplemento alimentar, não como medicamento para tratar insônia ou TEA; o Ministério da Saúde orienta atenção especial e não recomenda automedicação em crianças. Para canabidiol e outros canabinoides, o protocolo do Ministério da Saúde não estabeleceu recomendação para comportamento agressivo no TEA por falta de indicação em bula. Converse com o médico antes de considerar qualquer produto.</p>
+      </div>
+
+      <div class="medication-sources">
+        <span>Fontes para conferir atualizações:</span>
+        <a href="https://www.gov.br/saude/pt-br/assuntos/pcdt/c/comportamento-agressivo-no-transtorno-do-espectro-do-autismo" target="_blank" rel="noopener noreferrer">PCDT do Ministério da Saúde <span aria-hidden="true">↗</span></a>
+        <a href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/m/melatonina/melatonina" target="_blank" rel="noopener noreferrer">Orientação sobre melatonina <span aria-hidden="true">↗</span></a>
+        <a href="https://www.gov.br/anvisa/pt-br/sistemas/bulario-eletronico" target="_blank" rel="noopener noreferrer">Bulário da Anvisa <span aria-hidden="true">↗</span></a>
       </div>
     </section>
 

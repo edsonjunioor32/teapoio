@@ -30,6 +30,14 @@ describe('site search index', () => {
     expect(rightsItem?.keywords).toContain('meia-entrada');
   });
 
+  it('makes medication guidance discoverable from the home search', () => {
+    const teaItem = searchItems.find((item) => item.id === 'entenda-tea');
+
+    expect(teaItem?.keywords).toContain('risperidona');
+    expect(teaItem?.keywords).toContain('melatonina');
+    expect(teaItem?.href).toBe('/entenda-o-tea/');
+  });
+
   it('indexes the user-provided lawyer contacts as rights resources', () => {
     const raphaellaItem = searchItems.find((item) => item.title.includes('Raphaella Martins'));
 
@@ -92,5 +100,18 @@ describe('site search index', () => {
 
     expect(cerItem?.mapHref).toContain('google.com/maps/place/CER+IV');
     expect(cerItem?.mapLabel).toBe('Abrir localização no Google Maps');
+  });
+
+  it('keeps the Fisio&Estímulos contact channels available', () => {
+    const fisioItem = directoryEntries.find((entry) => entry.id === 'fisio-estimulos-bayeux-maps');
+
+    expect(fisioItem?.source).toBe('https://www.fisioestimulos.com.br/');
+    expect(fisioItem?.contact).toBe('https://wa.me/5583993299823');
+    expect(fisioItem?.social).toBe('https://www.instagram.com/fisioeestimulos/');
+  });
+
+  it('does not keep the directory entries requested for removal', () => {
+    expect(directoryEntries.some((entry) => entry.name.includes('Instituto Lápis de Cera'))).toBe(false);
+    expect(directoryEntries.some((entry) => entry.name.includes('ABC Autismo 123'))).toBe(false);
   });
 });

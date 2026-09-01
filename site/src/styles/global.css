@@ -1096,6 +1096,134 @@ body.menu-is-open {
   background: var(--surface-purple);
 }
 
+.medication-section {
+  padding-top: 84px;
+  padding-bottom: 92px;
+  border-top: 1px solid var(--line);
+  background: #f4f1f8;
+}
+
+.medication-alert {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 18px;
+  margin-top: 34px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--coral);
+  border-radius: 0 var(--radius-small) var(--radius-small) 0;
+  background: #fff0ed;
+}
+
+.medication-alert strong {
+  color: #b3323f;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.medication-alert p {
+  color: #6d4a50;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.medication-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.medication-card {
+  min-height: 370px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--blue-bright);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.medication-card--coral {
+  border-top-color: var(--coral);
+  background: var(--surface-coral);
+}
+
+.medication-card--yellow {
+  border-top-color: var(--yellow);
+  background: var(--surface-yellow);
+}
+
+.medication-card__type {
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.medication-card h3 {
+  margin-top: 14px;
+  color: var(--navy);
+  font-size: 1.15rem;
+}
+
+.medication-card dl {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.medication-card dt {
+  color: var(--navy);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.medication-card dd {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.52;
+}
+
+.medication-note {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+  gap: 26px;
+  margin-top: 18px;
+  padding: 22px 24px;
+  border: 1px solid #d4c3eb;
+  border-radius: 8px;
+  background: var(--surface-purple);
+}
+
+.medication-note strong {
+  color: var(--purple);
+  font-size: 0.82rem;
+}
+
+.medication-note p {
+  color: #5e4f6c;
+  font-size: 0.8rem;
+  line-height: 1.58;
+}
+
+.medication-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  align-items: center;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.medication-sources a {
+  color: var(--blue);
+  font-weight: 800;
+  text-decoration: none;
+}
+
 .page-actions {
   display: flex;
   flex-wrap: wrap;
@@ -2626,6 +2754,7 @@ body.menu-is-open {
 
   .home-paths,
   .page-section,
+  .medication-section,
   .leisure-section,
   .faq-page,
   .myths {
@@ -2706,6 +2835,20 @@ body.menu-is-open {
     grid-template-columns: 1fr;
     margin-right: 18px;
     margin-left: 18px;
+  }
+
+  .medication-alert,
+  .medication-note {
+    display: block;
+  }
+
+  .medication-alert p,
+  .medication-note p {
+    margin-top: 14px;
+  }
+
+  .medication-grid {
+    grid-template-columns: 1fr;
   }
 
   .leisure-note {

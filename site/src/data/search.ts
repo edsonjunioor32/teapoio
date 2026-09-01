@@ -29,7 +29,7 @@ const pageItems: SearchItem[] = [
     description: 'Informação introdutória, mitos comuns e fontes oficiais para aprofundar a leitura.',
     category: 'Informação',
     href: '/entenda-o-tea/',
-    keywords: 'autismo tea transtorno espectro sinais neurodesenvolvimento comportamento comunicação comunicacao',
+    keywords: 'autismo tea transtorno espectro sinais neurodesenvolvimento comportamento comunicação comunicacao medicamento medicamentos remédio remédios remedio remedios risperidona aripiprazol metilfenidato guanfacina clonidina fluoxetina sertralina melatonina canabidiol epilepsia tdah ansiedade sono',
     topics: ['primeiros-passos'],
     regions: ['todos'],
   },

@@ -75,6 +75,23 @@ for (const fragment of [
   if (!rightsPage.includes(fragment)) throw new Error(`Missing rights page fragment: ${fragment}`);
 }
 
+const teaPage = await readFile(new URL('../dist/entenda-o-tea/index.html', import.meta.url), 'utf8');
+for (const fragment of [
+  'Medicamentos tratam sintomas associados, não o autismo.',
+  'Risperidona',
+  'Aripiprazol',
+  'Metilfenidato e outros estimulantes',
+  'Guanfacina ou clonidina',
+  'Antidepressivos',
+  'Anticonvulsivantes',
+  'Sobre melatonina e canabidiol',
+  'Bulário da Anvisa',
+]) {
+  if (!teaPage.includes(fragment)) throw new Error(`Missing medication guidance fragment: ${fragment}`);
+}
+
+if (teaPage.includes('dose recomendada')) throw new Error('Medication guidance must not publish dosing.');
+
 const supportPage = await readFile(new URL('../dist/apoio/index.html', import.meta.url), 'utf8');
 for (const fragment of [
   'Encontre apoio por tipo.',
@@ -84,9 +101,16 @@ for (const fragment of [
   'Fornecedores de canabidiol',
   'Abrace Esperança',
   'Acaflor',
+  'Fisio&amp;Estímulos',
+  '+55 83 99329-9823',
+  '@fisioeestimulos',
   'Abrir localização no Google Maps',
 ]) {
   if (!supportPage.includes(fragment)) throw new Error(`Missing support page fragment: ${fragment}`);
+}
+
+for (const fragment of ['Instituto Lápis de Cera', 'ABC Autismo 123']) {
+  if (supportPage.includes(fragment)) throw new Error(`Removed directory entry still present: ${fragment}`);
 }
 
 const leisurePage = await readFile(new URL('../dist/lazer/index.html', import.meta.url), 'utf8');
