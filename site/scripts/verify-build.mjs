@@ -44,6 +44,12 @@ for (const fragment of [
   'É direito do autista na Paraíba ter acesso a:',
   'É direito do autista em João Pessoa ter acesso a:',
   'comissaopcd.oabpb',
+  'defparaiba',
+  'ANS — Agência Nacional de Saúde Suplementar',
+  'Ministério Público da Paraíba — MPPB',
+  'Procon-JP — João Pessoa',
+  'Procon-PB — estadual',
+  'Paloma Silva',
 ]) {
   if (!rightsPage.includes(fragment)) throw new Error(`Missing rights page fragment: ${fragment}`);
 }

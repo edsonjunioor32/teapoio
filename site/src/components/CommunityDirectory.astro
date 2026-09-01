@@ -64,7 +64,7 @@ import { directoryEntries } from '../data/directory';
         </dl>
         <div class="directory-card__actions">
           {entry.contact && (
-            <a class="directory-card__source" href={entry.contact} target="_blank" rel="noopener noreferrer">{entry.contactLabel ?? 'Contato direto'} <span aria-hidden="true">↗</span></a>
+            <a class="directory-card__source" href={entry.contact} target={entry.contact.startsWith('tel:') ? undefined : '_blank'} rel={entry.contact.startsWith('tel:') ? undefined : 'noopener noreferrer'}>{entry.contactLabel ?? 'Contato direto'} <span aria-hidden="true">↗</span></a>
           )}
           {entry.source ? (
             <a class="directory-card__source" href={entry.source} target="_blank" rel="noopener noreferrer">{entry.sourceLabel} <span aria-hidden="true">↗</span></a>
