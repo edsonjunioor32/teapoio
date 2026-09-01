@@ -8,32 +8,54 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <h1 id="hero-title">Um próximo passo<br /><span>de cada vez.</span></h1>
     <p class="hero__lede">
       O TEAPOIO reúne orientações confiáveis e caminhos da Grande João Pessoa para ajudar pais,
-      mães e cuidadores a entender o TEA e encontrar apoio.
+      mães e cuidadores a entender o TEA e encontrar apoio com mais segurança.
     </p>
     <div class="hero__actions">
       <a class="button button--primary" href={`${base}/comece-aqui/`}>Comece por aqui <span aria-hidden="true">→</span></a>
       <a class="button button--quiet" href={`${base}/apoio/`}>Encontrar apoio <span aria-hidden="true">⌖</span></a>
     </div>
     <div class="hero__trust" aria-label="Compromissos do TEAPOIO">
-      <span><i aria-hidden="true">✓</i> Linguagem simples</span>
-      <span><i aria-hidden="true">✓</i> Fontes verificadas</span>
+      <span>Linguagem simples</span>
+      <span>Fontes verificadas</span>
+      <span>Foco local</span>
     </div>
   </div>
 
-  <div class="hero__visual">
-    <div class="hero__image-wrap">
-      <picture>
-        <source media="(max-width: 760px)" srcset={`${base}/teapoio-reference-symbol.jpg`} />
-        <img
-          src={`${base}/teapoio-reference-logo.jpg`}
-          alt="Imagem da identidade visual TEAPOIO com fita de conscientização, corações coloridos e símbolo do infinito"
-          width="2494"
-          height="1696"
-          fetchpriority="high"
-        />
-      </picture>
+  <div class="hero__visual" aria-label="Caminhos de orientação disponíveis no TEAPOIO">
+    <div class="hero-dashboard">
+      <div class="hero-dashboard__top">
+        <img class="hero-dashboard__brand" src={`${base}/teapoio-logo.svg`} alt="TEAPOIO" width="200" height="57" />
+        <span class="hero-dashboard__status">Conteúdo organizado</span>
+      </div>
+
+      <div class="hero-dashboard__intro">
+        <p class="hero-dashboard__eyebrow">POR ONDE COMEÇAR</p>
+        <h2>Informação para cada momento da família.</h2>
+        <p>Escolha o caminho mais próximo da sua necessidade atual.</p>
+      </div>
+
+      <div class="hero-paths">
+        <div class="hero-path">
+          <span class="hero-path__icon" aria-hidden="true">01</span>
+          <span><strong>Entender os primeiros passos</strong><small>Orientações para começar com mais clareza</small></span>
+          <span class="hero-path__arrow" aria-hidden="true">→</span>
+        </div>
+        <div class="hero-path">
+          <span class="hero-path__icon" aria-hidden="true">02</span>
+          <span><strong>Encontrar apoio na região</strong><small>Recursos organizados na Grande João Pessoa</small></span>
+          <span class="hero-path__arrow" aria-hidden="true">→</span>
+        </div>
+        <div class="hero-path">
+          <span class="hero-path__icon" aria-hidden="true">03</span>
+          <span><strong>Buscar informação confiável</strong><small>Conteúdo direto para famílias e educadores</small></span>
+          <span class="hero-path__arrow" aria-hidden="true">→</span>
+        </div>
+      </div>
+
+      <div class="hero-dashboard__footer">
+        <span><strong>TEAPOIO</strong> · Grande João Pessoa</span>
+        <span>Informação que orienta, sem complicar.</span>
+      </div>
     </div>
-    <div class="hero__note hero__note--top"><span aria-hidden="true">♥</span><strong>Acolhimento</strong><small>para cada família</small></div>
-    <div class="hero__note hero__note--bottom"><span aria-hidden="true">⌖</span><strong>Grande João Pessoa</strong><small>apoio mais perto</small></div>
   </div>
 </section>
