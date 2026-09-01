@@ -283,6 +283,26 @@ summary:focus-visible {
   content: "";
 }
 
+.menu-toggle__label {
+  line-height: 1.15;
+  text-align: left;
+}
+
+.menu-toggle__chevron {
+  margin-left: 2px;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform 0.2s var(--ease);
+}
+
+.mobile-nav[open] .menu-toggle__chevron {
+  transform: rotate(180deg);
+}
+
+.mobile-nav__title {
+  display: none;
+}
+
 .menu-toggle__icon {
   display: grid;
   gap: 4px;
@@ -2358,6 +2378,8 @@ body.menu-is-open {
 
   .mobile-nav > summary {
     display: inline-flex;
+    max-width: min(260px, 62vw);
+    min-height: 52px;
   }
 
   .site-header nav {
@@ -2373,7 +2395,9 @@ body.menu-is-open {
     gap: 0;
     padding: 10px 1rem 28px;
     background: rgba(255, 255, 255, 0.99);
+    box-shadow: 0 18px 35px rgba(8, 44, 85, 0.16);
     overflow-y: auto;
+    z-index: 60;
   }
 
   .mobile-nav nav.is-open,
@@ -2390,6 +2414,16 @@ body.menu-is-open {
 
   .site-header nav a::after {
     display: none;
+  }
+
+  .mobile-nav__title {
+    display: block;
+    margin: 8px 0 4px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   .hero.section-shell,

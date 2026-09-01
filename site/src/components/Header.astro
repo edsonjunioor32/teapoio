@@ -18,12 +18,14 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
     </a>
 
     <details class="mobile-nav">
-      <summary class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir opções do site">
+      <summary class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir opções que podem lhe ajudar">
         <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="menu-toggle__label">Navegar pelo site</span>
+        <span class="menu-toggle__label">Veja opções que podem lhe ajudar</span>
+        <span class="menu-toggle__chevron" aria-hidden="true">⌄</span>
       </summary>
 
       <nav id="site-menu" aria-label="Navegação principal">
+        <p class="mobile-nav__title">Escolha uma opção:</p>
         {links.map((link) => (
           <a href={link.path} aria-current={normalizePath(link.path) === currentPath ? 'page' : undefined}>{link.label}</a>
         ))}
@@ -49,7 +51,7 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
     const syncMenuState = () => {
       const isOpen = menuDisclosure.open;
       menuToggle.setAttribute('aria-expanded', String(isOpen));
-      menuToggle.setAttribute('aria-label', isOpen ? 'Fechar opções do site' : 'Abrir opções do site');
+      menuToggle.setAttribute('aria-label', isOpen ? 'Fechar opções que podem lhe ajudar' : 'Abrir opções que podem lhe ajudar');
       menu.classList.toggle('is-open', isOpen);
       document.body.classList.toggle('menu-is-open', isOpen);
     };
