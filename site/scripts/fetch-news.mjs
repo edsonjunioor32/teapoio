@@ -40,13 +40,13 @@ function decodeEntities(value = '') {
 }
 
 function cleanText(value = '') {
-  const withoutMarkup = value
-    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
-    .replace(/<[^>]*>/g, ' ')
+  let text = value.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1');
 
-  return decodeEntities(decodeEntities(withoutMarkup))
-    .replace(/\s+/g, ' ')
-    .trim();
+  for (let iteration = 0; iteration < 3; iteration += 1) {
+    text = decodeEntities(text).replace(/<[^>]*>/g, ' ');
+  }
+
+  return text.replace(/\s+/g, ' ').trim();
 }
 
 function readTag(block, tag) {
