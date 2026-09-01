@@ -55,6 +55,54 @@ const funadRoutes = [
   },
 ];
 
+const stateRights = [
+  {
+    title: 'Atenção integral à saúde',
+    basis: 'Lei nº 12.764/2012: diagnóstico precoce, atendimento multiprofissional, medicamentos e informações.',
+    href: 'https://planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12764.htm',
+    action: 'Ler a Lei nº 12.764',
+  },
+  {
+    title: 'CIPTEA e prioridade no atendimento',
+    basis: 'Lei nº 13.977/2020: identificação, pronto atendimento e prioridade em serviços públicos e privados.',
+    href: 'https://funad.pb.gov.br/passe-livre',
+    action: 'Ver CIPTEA na FUNAD',
+  },
+  {
+    title: 'Passe Livre Intermunicipal',
+    basis: 'Lei Estadual nº 7.529/2004, conforme legislação reunida pela FUNAD; sujeito a critérios e documentos.',
+    href: 'https://funad.pb.gov.br/institucional/legislacoes',
+    action: 'Consultar legislação',
+  },
+  {
+    title: 'Habilitação e reabilitação pública',
+    basis: 'A FUNAD/CER IV informa atendimento para pessoas com TEA por equipe multidisciplinar em todo o estado.',
+    href: 'https://funad.pb.gov.br/a-funad',
+    action: 'Conhecer a FUNAD',
+  },
+];
+
+const joaoPessoaRights = [
+  {
+    title: 'Passe Livre Municipal',
+    basis: 'Lei Municipal nº 7.170/1990, conforme orientação publicada pela FUNAD; confirme residência, estudo/trabalho e documentos exigidos.',
+    href: 'https://funad.pb.gov.br/centro',
+    action: 'Ver orientação da FUNAD',
+  },
+  {
+    title: 'Diagnóstico e acompanhamento multiprofissional',
+    basis: 'Notícia oficial da Prefeitura de João Pessoa cita o CRMIPD e o Centro de Referência Multiprofissional em Doenças Raras.',
+    href: 'https://www.joaopessoa.pb.gov.br/noticias/rede-municipal-de-saude-oferece-diagnostico-e-acompanhamento-para-criancas-e-adolescentes-com-autismo/',
+    action: 'Ler notícia da Prefeitura',
+  },
+  {
+    title: 'Educação inclusiva e AEE',
+    basis: 'Notícia oficial da Prefeitura informa serviços de educação especial e Atendimento Educacional Especializado para pessoas com TEA.',
+    href: 'https://www.joaopessoa.pb.gov.br/noticias/prefeitura-disponibiliza-servicos-especializados-para-pessoas-com-transtorno-do-espectro-do-autismo/',
+    action: 'Ver orientação educacional',
+  },
+];
+
 const preparation = [
   'Documento da criança e do responsável, quando solicitado.',
   'CPF e comprovante de residência, conforme o serviço.',
@@ -86,6 +134,38 @@ const preparation = [
             <a class="text-link" href={guide.href} target="_blank" rel="noopener noreferrer">{guide.action} <span aria-hidden="true">↗</span></a>
           </article>
         ))}
+      </div>
+    </section>
+
+    <section class="rights-map section-shell" aria-labelledby="state-rights-title">
+      <div class="rights-map__column rights-map__column--state">
+        <p class="eyebrow">PARAÍBA</p>
+        <h2 id="state-rights-title">É direito do autista na Paraíba ter acesso a:</h2>
+        <p class="rights-map__intro">Abaixo estão direitos e caminhos públicos encontrados em leis e fontes institucionais. A aplicação depende do caso, dos critérios e do fluxo de cada serviço.</p>
+        <ul class="rights-map__list">
+          {stateRights.map((right) => (
+            <li class="rights-point">
+              <strong class="rights-point__title">{right.title}</strong>
+              <span class="rights-point__basis">{right.basis}</span>
+              <a class="rights-point__link" href={right.href} target="_blank" rel="noopener noreferrer">{right.action} <span aria-hidden="true">↗</span></a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rights-map__column rights-map__column--city">
+        <p class="eyebrow">JOÃO PESSOA</p>
+        <h2 id="city-rights-title">É direito do autista em João Pessoa ter acesso a:</h2>
+        <p class="rights-map__intro">Aqui estão serviços e caminhos municipais identificados em fontes oficiais. Antes de ir, confirme encaminhamento, endereço, horários e disponibilidade.</p>
+        <ul class="rights-map__list" aria-labelledby="city-rights-title">
+          {joaoPessoaRights.map((right) => (
+            <li class="rights-point">
+              <strong class="rights-point__title">{right.title}</strong>
+              <span class="rights-point__basis">{right.basis}</span>
+              <a class="rights-point__link" href={right.href} target="_blank" rel="noopener noreferrer">{right.action} <span aria-hidden="true">↗</span></a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
 
@@ -143,12 +223,15 @@ const preparation = [
           <span>Consulte o Núcleo Especial de Saúde e as orientações de atendimento.</span>
           <span class="legal-guidance__action">Abrir canal oficial <span aria-hidden="true">↗</span></span>
         </a>
-        <a class="legal-guidance__link" href="https://www.oabpb.org.br/comissao/direitos-pessoa-com-deficiencia" target="_blank" rel="noopener noreferrer">
+        <div class="legal-guidance__link">
           <span class="legal-guidance__label">DIREITOS DA PESSOA COM DEFICIÊNCIA</span>
           <strong>Comissão da OAB-PB</strong>
-          <span>Conheça o canal institucional dedicado à defesa desses direitos.</span>
-          <span class="legal-guidance__action">Abrir canal oficial <span aria-hidden="true">↗</span></span>
-        </a>
+          <span>Use o Instagram da Comissão para contato e confira também a página institucional da OAB-PB.</span>
+          <div class="legal-guidance__actions">
+            <a class="legal-guidance__action" href="https://www.instagram.com/comissaopcd.oabpb/" target="_blank" rel="noopener noreferrer">Falar com a Comissão no Instagram <span aria-hidden="true">↗</span></a>
+            <a class="legal-guidance__action" href="https://portal.oabpb.org.br/comissao/comissao-de-defesa-dos-direitos-da-pessoa-com-deficiencia/" target="_blank" rel="noopener noreferrer">Ver página institucional da OAB-PB <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
       </div>
     </section>
 

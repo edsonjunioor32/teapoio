@@ -12,6 +12,9 @@
   --surface: #ffffff;
   --surface-blue: #eef5fc;
   --surface-yellow: #fff8df;
+  --surface-coral: #fff0f1;
+  --surface-green: #eaf7f5;
+  --surface-purple: #f5edfb;
   --line: #dce5ee;
   --font-heading: "Outfit", "Montserrat", sans-serif;
   --font-body: "Open Sans", "Roboto", sans-serif;
@@ -145,7 +148,9 @@ summary:focus-visible {
   top: 0;
   left: 0;
   width: 100%;
+  border-top: 3px solid transparent;
   border-bottom: 1px solid rgba(220, 229, 238, 0.82);
+  border-image: linear-gradient(90deg, var(--blue-bright), var(--coral), var(--yellow), var(--green), var(--purple)) 1;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(16px);
   transition: box-shadow 0.2s var(--ease), background 0.2s var(--ease);
@@ -159,7 +164,7 @@ summary:focus-visible {
 .site-header__inner {
   display: flex;
   width: min(1120px, calc(100% - 3rem));
-  min-height: 72px;
+  min-height: 88px;
   align-items: center;
   gap: 32px;
   margin-inline: auto;
@@ -177,6 +182,14 @@ summary:focus-visible {
   display: block;
   width: 148px;
   height: auto;
+}
+
+.brand__logo--reference {
+  width: 154px;
+  height: 82px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fff;
 }
 
 .site-header nav {
@@ -210,6 +223,18 @@ summary:focus-visible {
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.2s var(--ease);
+}
+
+.site-header nav a:nth-child(2)::after {
+  background: var(--coral);
+}
+
+.site-header nav a:nth-child(3)::after {
+  background: var(--yellow);
+}
+
+.site-header nav a:nth-child(4)::after {
+  background: var(--green);
 }
 
 .site-header nav a:hover,
@@ -545,7 +570,7 @@ body.menu-is-open {
   width: 100%;
   margin-top: 0;
   border-color: rgba(91, 122, 148, 0.48);
-  background: rgba(11, 34, 57, 0.97);
+  background: linear-gradient(135deg, rgba(11, 34, 57, 0.98) 0%, rgba(20, 46, 103, 0.98) 58%, rgba(59, 27, 87, 0.98) 100%);
   box-shadow: 0 18px 45px rgba(16, 42, 67, 0.2);
   color: #d9e5ef;
 }
@@ -764,6 +789,21 @@ body.menu-is-open {
   transition: transform 0.25s var(--ease), border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
+.path-card:nth-child(1) {
+  border-top: 4px solid var(--blue-bright);
+  background: linear-gradient(180deg, #fff 0%, #f4f8ff 100%);
+}
+
+.path-card:nth-child(2) {
+  border-top: 4px solid var(--coral);
+  background: linear-gradient(180deg, #fff 0%, var(--surface-coral) 100%);
+}
+
+.path-card:nth-child(3) {
+  border-top: 4px solid var(--yellow);
+  background: linear-gradient(180deg, #fff 0%, var(--surface-yellow) 100%);
+}
+
 .path-card:hover {
   border-color: #abc5dd;
   box-shadow: var(--shadow-small);
@@ -852,7 +892,9 @@ body.menu-is-open {
   padding-top: 124px;
   padding-bottom: 68px;
   border-bottom: 1px solid var(--line);
-  background: linear-gradient(180deg, #eef5fc 0%, #f8fafc 100%);
+  background:
+    radial-gradient(circle at 92% 18%, rgba(230, 57, 70, 0.1), transparent 22%),
+    linear-gradient(180deg, #eef5fc 0%, #fffaf0 100%);
 }
 
 .breadcrumbs {
@@ -912,6 +954,20 @@ body.menu-is-open {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
+}
+
+.info-card:nth-child(3n + 1) {
+  border-top: 4px solid var(--blue-bright);
+}
+
+.info-card:nth-child(3n + 2) {
+  border-top: 4px solid var(--coral);
+  background: linear-gradient(180deg, #fff 0%, var(--surface-coral) 100%);
+}
+
+.info-card:nth-child(3n) {
+  border-top: 4px solid var(--yellow);
+  background: linear-gradient(180deg, #fff 0%, var(--surface-yellow) 100%);
 }
 
 .journey-card__number,
@@ -1048,6 +1104,99 @@ body.menu-is-open {
   color: var(--blue);
   font-size: 0.76rem;
   font-weight: 800;
+}
+
+.legal-guidance__actions {
+  display: grid;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.legal-guidance__actions .legal-guidance__action {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.rights-map {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding-top: 18px;
+  padding-bottom: 88px;
+}
+
+.rights-map__column {
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow-small);
+}
+
+.rights-map__column--state {
+  border-color: #c9dcf2;
+  background: linear-gradient(145deg, #edf5ff 0%, #fff 78%);
+}
+
+.rights-map__column--city {
+  border-color: #f1d6b7;
+  background: linear-gradient(145deg, #fff4df 0%, #fff 78%);
+}
+
+.rights-map__column h2 {
+  max-width: 480px;
+  margin-top: 8px;
+  font-size: clamp(1.9rem, 3.2vw, 2.85rem);
+}
+
+.rights-map__intro {
+  max-width: 520px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.rights-map__list {
+  display: grid;
+  gap: 12px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rights-point {
+  padding: 18px;
+  border: 1px solid rgba(220, 229, 238, 0.95);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.rights-point__title,
+.rights-point__basis {
+  display: block;
+}
+
+.rights-point__title {
+  color: var(--navy);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.rights-point__basis {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.rights-point__link {
+  display: inline-flex;
+  gap: 6px;
+  margin-top: 11px;
+  color: var(--blue);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-decoration: none;
 }
 
 .rights-preparation details {
@@ -1663,7 +1812,8 @@ body.menu-is-open {
 }
 
 .footer .brand__logo--full {
-  filter: brightness(0) invert(1);
+  filter: none;
+  border: 4px solid #fff;
 }
 
 .footer__brand p {
@@ -1772,11 +1922,12 @@ body.menu-is-open {
 
   .site-header__inner {
     width: calc(100% - 2rem);
-    min-height: 66px;
+    min-height: 78px;
   }
 
-  .brand__logo--full {
+  .brand__logo--reference {
     width: 132px;
+    height: 72px;
   }
 
   .menu-toggle {
@@ -1785,7 +1936,7 @@ body.menu-is-open {
 
   .site-header nav {
     position: fixed;
-    top: 66px;
+    top: 78px;
     right: 0;
     bottom: 0;
     left: 0;
@@ -1847,6 +1998,12 @@ body.menu-is-open {
   .source-panel,
   .footer__main {
     display: block;
+  }
+
+  .rights-map {
+    grid-template-columns: 1fr;
+    padding-top: 0;
+    padding-bottom: 70px;
   }
 
   .section-heading-row .section-lede,

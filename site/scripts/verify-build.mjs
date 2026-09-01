@@ -37,8 +37,15 @@ for (const route of routes) {
 }
 
 const rightsPage = await readFile(new URL('../dist/direitos/index.html', import.meta.url), 'utf8');
-for (const fragment of ['A FUNAD pode ser um próximo passo.', 'Agendar triagem', 'Conhecer o SERI']) {
-  if (!rightsPage.includes(fragment)) throw new Error(`Missing FUNAD rights fragment: ${fragment}`);
+for (const fragment of [
+  'A FUNAD pode ser um próximo passo.',
+  'Agendar triagem',
+  'Conhecer o SERI',
+  'É direito do autista na Paraíba ter acesso a:',
+  'É direito do autista em João Pessoa ter acesso a:',
+  'comissaopcd.oabpb',
+]) {
+  if (!rightsPage.includes(fragment)) throw new Error(`Missing rights page fragment: ${fragment}`);
 }
 
 const sitemap = await readFile(new URL('../dist/sitemap.xml', import.meta.url), 'utf8');
