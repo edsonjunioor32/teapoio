@@ -17,7 +17,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   </div>
 
   <figure class="hero__visual">
-    <img src={`${base}/teapoio-identity.png`} alt="Símbolo colorido da identidade visual do TEAPOIO" width="600" height="600" fetchpriority="high" />
+    <picture>
+      <source media="(max-width: 720px)" srcset={`${base}/teapoio-identity.png`} />
+      <img
+        src={`${base}/teapoio-reference-symbol.jpg`}
+        alt="Símbolo colorido do infinito usado na identidade visual do TEAPOIO"
+        width="2494"
+        height="1696"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
     <figcaption>Acolhimento, diversidade e apoio.</figcaption>
   </figure>
 </section>

@@ -38,4 +38,4 @@ const robots = await readFile(new URL('../dist/robots.txt', import.meta.url), 'u
 const manifest = await readFile(new URL('../dist/site.webmanifest', import.meta.url), 'utf8');
 if (!sitemap.includes('/faq/')) throw new Error('Sitemap is missing the FAQ route.');
 if (!robots.includes('Sitemap:')) throw new Error('Robots file is missing its sitemap reference.');
-if (!manifest.includes('pwa-512.png')) throw new Error('Web manifest is missing the large app icon.');
+if (!manifest.includes('pwa-512.jpg')) throw new Error('Web manifest is missing the large app icon.');
