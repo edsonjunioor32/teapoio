@@ -11,6 +11,8 @@ export type DirectoryEntry = {
   verificationLabel: string;
   source?: string;
   sourceLabel: string;
+  contact?: string;
+  contactLabel?: string;
 };
 
 /**
@@ -173,6 +175,54 @@ export const directoryEntries: DirectoryEntry[] = [
     verificationLabel: 'Fonte oficial',
     source: 'https://linhasdecuidado.saude.gov.br/portal/transtorno-do-espectro-autista/',
     sourceLabel: 'Ler linha de cuidado',
+  },
+  {
+    id: 'raphaella-martins-advogada',
+    name: 'Raphaella Martins Advogada',
+    category: 'Orientação jurídica',
+    location: 'Atendimento online · cidade a confirmar',
+    region: 'online',
+    access: 'WhatsApp e Instagram',
+    description: 'Escritório de advocacia previdenciária informado pelo usuário, com atuação declarada em BPC/LOAS, benefícios para pessoas com autismo, aposentadorias, auxílios, revisão e planejamento previdenciário. Confirme a especialidade e as condições do atendimento.',
+    tags: 'raphaella martins advogada advogado advocacia jurídica juridica direito autismo tea bpc loas inss benefício beneficio aposentadoria auxílio auxilio previdenciário previdenciario joao pessoa paraiba whatsapp instagram',
+    verification: 'community',
+    verificationLabel: 'Contato informado pelo usuário',
+    source: 'https://www.instagram.com/raphaellamartins.advogada/',
+    sourceLabel: 'Ver Instagram profissional',
+    contact: 'https://wa.me/5583998638766',
+    contactLabel: 'WhatsApp · +55 83 99863-8766',
+  },
+  {
+    id: 'heluan-oliveira-advogado',
+    name: 'Heluan Oliveira | Advogado',
+    category: 'Orientação jurídica',
+    location: 'João Pessoa · atendimento a confirmar',
+    region: 'joao-pessoa',
+    access: 'WhatsApp e Instagram',
+    description: 'Advogado que se apresenta como atuante em paternidade atípica e direito das pessoas autistas. Confirme inscrição profissional, especialidade, valores e formato do atendimento antes de contratar.',
+    tags: 'heluan oliveira advogado advogada advocacia direito autistas autismo tea paternidade atípica atipica joao pessoa paraiba whatsapp instagram',
+    verification: 'community',
+    verificationLabel: 'Contato informado pelo usuário',
+    source: 'https://www.instagram.com/heluanoliveira.adv/',
+    sourceLabel: 'Ver Instagram profissional',
+    contact: 'https://wa.me/5583987043078',
+    contactLabel: 'WhatsApp · +55 83 98704-3078',
+  },
+  {
+    id: 'patricia-apolinario-advogada',
+    name: 'Dra. Patricia Apolinario Advogada',
+    category: 'Orientação jurídica',
+    location: 'Atendimento online · cidade a confirmar',
+    region: 'online',
+    access: 'Celular e Instagram',
+    description: 'Contato profissional informado pelo usuário. Confirme diretamente se há atendimento para demandas relacionadas a autismo, direitos da pessoa com deficiência e benefícios previdenciários.',
+    tags: 'patricia apolinario advogada advogado advocacia direito autismo tea pessoa deficiência direitos bpc loas inss benefícios beneficios whatsapp instagram',
+    verification: 'community',
+    verificationLabel: 'Contato informado pelo usuário',
+    source: 'https://www.instagram.com/patriciaapolinarioadv/',
+    sourceLabel: 'Ver Instagram profissional',
+    contact: 'https://wa.me/558399810355',
+    contactLabel: 'WhatsApp · +55 83 9981-0355',
   },
   {
     id: 'viver-kids',

@@ -20,6 +20,14 @@ describe('site search index', () => {
     expect(lawyerItem?.href).toBe('/direitos/#orientacao-juridica');
   });
 
+  it('indexes the user-provided lawyer contacts as rights resources', () => {
+    const raphaellaItem = searchItems.find((item) => item.title.includes('Raphaella Martins'));
+
+    expect(raphaellaItem?.topics).toContain('direitos');
+    expect(raphaellaItem?.regions).toContain('online');
+    expect(raphaellaItem?.href).toBe('/apoio/#raphaella-martins-advogada');
+  });
+
   it('classifies directory entries for topic and location filters', () => {
     const funadItem = searchItems.find((item) => item.title.includes('FUNAD'));
     const cerItem = searchItems.find((item) => item.title.includes('CER IV'));

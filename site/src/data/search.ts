@@ -82,7 +82,7 @@ const normalize = (value: string) => value
 const directoryItems: SearchItem[] = directoryEntries.map((entry) => {
   const text = normalize(`${entry.category} ${entry.tags}`);
   const location = normalize(`${entry.location} ${entry.access}`);
-  const topics = text.includes('beneficio') || text.includes('document') || text.includes('ciptea') || text.includes('passe livre')
+  const topics = text.includes('beneficio') || text.includes('document') || text.includes('ciptea') || text.includes('passe livre') || text.includes('advog') || text.includes('jurid')
     ? ['direitos']
     : text.includes('informacao') || text.includes('linha cuidado')
       ? ['primeiros-passos', 'servicos']

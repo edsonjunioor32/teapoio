@@ -62,11 +62,16 @@ import { directoryEntries } from '../data/directory';
           <div><dt>Localização</dt><dd>{entry.location}</dd></div>
           <div><dt>Como acessar</dt><dd>{entry.access}</dd></div>
         </dl>
-        {entry.source ? (
-          <a class="directory-card__source" href={entry.source} target="_blank" rel="noopener noreferrer">{entry.sourceLabel} <span aria-hidden="true">↗</span></a>
-        ) : (
-          <span class="directory-card__source directory-card__source--muted">{entry.sourceLabel}</span>
-        )}
+        <div class="directory-card__actions">
+          {entry.contact && (
+            <a class="directory-card__source" href={entry.contact} target="_blank" rel="noopener noreferrer">{entry.contactLabel ?? 'Contato direto'} <span aria-hidden="true">↗</span></a>
+          )}
+          {entry.source ? (
+            <a class="directory-card__source" href={entry.source} target="_blank" rel="noopener noreferrer">{entry.sourceLabel} <span aria-hidden="true">↗</span></a>
+          ) : (
+            <span class="directory-card__source directory-card__source--muted">{entry.sourceLabel}</span>
+          )}
+        </div>
       </article>
     ))}
   </div>

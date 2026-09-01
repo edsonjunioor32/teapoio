@@ -1321,6 +1321,18 @@ body.menu-is-open {
   text-decoration: none;
 }
 
+.directory-card__actions {
+  display: grid;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.directory-card__actions .directory-card__source {
+  padding-top: 0;
+  border-top: 0;
+}
+
 .directory-card__source--muted {
   color: var(--muted);
   font-size: 0.74rem;
