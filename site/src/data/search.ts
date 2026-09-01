@@ -39,7 +39,7 @@ const pageItems: SearchItem[] = [
     description: 'Caminhos para CIPTEA, Passe Livre, inclusão escolar e BPC.',
     category: 'Direitos',
     href: '/direitos/',
-    keywords: 'direitos documentos ciptea passe livre escola inclusão inclusao bpc loas benefício beneficio inss cras cadunico',
+    keywords: 'direitos documentos ciptea passe livre escola inclusão inclusao bpc loas benefício beneficio inss cras cadunico ipva icms ipi iof veículo veiculo carro isenção isencao cardápio cardapio pictograma meia entrada meia-entrada acompanhante utensílios utensilios símbolo simbolo atendimento prioritário prioritario',
     topics: ['direitos'],
     regions: ['todos'],
   },

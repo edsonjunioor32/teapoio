@@ -59,6 +59,18 @@ for (const fragment of [
   'Assento preferencial no transporte estadual',
   'Levar alimentos e itens de uso pessoal',
   'Ver a notícia da ALPB',
+  'Isenção de IPVA para veículo',
+  'Isenção de ICMS na compra de veículo',
+  'Cardápio com pictogramas',
+  'Símbolo do autismo no atendimento prioritário',
+  'Outros direitos para conhecer.',
+  'Meia-entrada em eventos culturais e esportivos',
+  'IPI e IOF na compra de veículo',
+  'Lei nº 14.383/2026',
+  'Lei nº 11.090/2018',
+  'Lei nº 15.676/2025',
+  'Lei nº 12.933/2013',
+  'Isenções de veículo',
 ]) {
   if (!rightsPage.includes(fragment)) throw new Error(`Missing rights page fragment: ${fragment}`);
 }

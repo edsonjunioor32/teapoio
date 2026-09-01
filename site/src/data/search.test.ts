@@ -21,6 +21,15 @@ describe('site search index', () => {
     expect(lawyerItem?.href).toBe('/direitos/#orientacao-juridica');
   });
 
+  it('makes the expanded rights guidance discoverable from the home search', () => {
+    const rightsItem = searchItems.find((item) => item.id === 'direitos-documentos');
+
+    expect(rightsItem?.keywords).toContain('ipva');
+    expect(rightsItem?.keywords).toContain('pictograma');
+    expect(rightsItem?.keywords).toContain('ipi');
+    expect(rightsItem?.keywords).toContain('meia-entrada');
+  });
+
   it('indexes the user-provided lawyer contacts as rights resources', () => {
     const raphaellaItem = searchItems.find((item) => item.title.includes('Raphaella Martins'));
 
