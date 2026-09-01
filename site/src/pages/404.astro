@@ -1,0 +1,20 @@
+---
+import Header from '../components/Header.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title="Página não encontrada | TEAPOIO" description="A página que você procurou não foi encontrada.">
+  <Header />
+  <main class="not-found section-shell" id="conteudo-principal" tabindex="-1">
+    <p class="eyebrow">CAMINHO NÃO ENCONTRADO</p>
+    <h1>Vamos voltar para um caminho conhecido?</h1>
+    <p>Esta página pode ter mudado de lugar. Você pode começar novamente ou encontrar apoio na região.</p>
+    <div class="page-actions">
+      <a class="button button--primary" href={`${base}/`}>Voltar ao início <span aria-hidden="true">→</span></a>
+      <a class="button button--quiet" href={`${base}/apoio/`}>Encontrar apoio <span aria-hidden="true">⌖</span></a>
+    </div>
+  </main>
+  <SiteFooter />
+</BaseLayout>

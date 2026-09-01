@@ -1,32 +1,37 @@
 ---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const resources = [
   {
     icon: '⌖',
     title: 'Como buscar avaliação',
     detail: 'Entenda quais perguntas levar para a conversa e como organizar o próximo passo.',
-    tags: 'saude diagnostico joao pessoa',
+    tags: 'saude diagnostico joao pessoa regiao',
     label: 'Comece aqui',
+    path: 'comece-aqui',
   },
   {
     icon: '⌂',
     title: 'Apoio na sua cidade',
     detail: 'Encontre uma lista regional organizada por município, tipo de apoio e público atendido.',
-    tags: 'local municipio apoio',
+    tags: 'local municipio apoio joao pessoa regiao',
     label: 'Rede local',
+    path: 'apoio',
   },
   {
     icon: '▦',
     title: 'Escola e direitos',
     detail: 'Guias para preparar conversas com a escola e conhecer caminhos de orientação.',
-    tags: 'escola direitos educacao',
+    tags: 'escola direitos educacao joao pessoa regiao',
     label: 'Guia prático',
+    path: 'entenda-o-tea',
   },
   {
     icon: '♡',
     title: 'Cuidar de quem cuida',
     detail: 'Informação para a rotina, a comunicação e o bem-estar de pais e cuidadores.',
-    tags: 'familia rotina bem estar',
+    tags: 'familia rotina bem estar joao pessoa regiao',
     label: 'Cotidiano',
+    path: 'faq',
   },
 ];
 ---
@@ -63,7 +68,7 @@ const resources = [
         <span class="feature-index">{resource.label}</span>
         <h3>{resource.title}</h3>
         <p>{resource.detail}</p>
-        <a class="text-link" href="#conteudo-inicial">Ver orientação <span aria-hidden="true">→</span></a>
+        <a class="text-link" href={`${base}/${resource.path}/`}>Ver orientação <span aria-hidden="true">→</span></a>
       </article>
     ))}
   </div>
@@ -86,7 +91,7 @@ const resources = [
     resourceCards.forEach((card) => {
       const tags = card.getAttribute('data-tags') ?? '';
       const matchesQuery = !query || tags.includes(query) || card.textContent?.toLowerCase().includes(query);
-      const matchesCity = !city || tags.includes(city);
+      const matchesCity = !city || city === 'regiao' || tags.includes(city);
       const show = matchesQuery && matchesCity;
       card.toggleAttribute('hidden', !show);
       if (show) visible += 1;

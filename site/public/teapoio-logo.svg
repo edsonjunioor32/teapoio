@@ -17,7 +17,7 @@
     <path d="M153 42c-6-7-16-1-12 7 3 5 12 8 12 8s9-4 9-10c0-6-6-8-9-5Z" fill="#25B7CE" />
   </g>
   <text x="208" y="96" fill="#4278AA" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="800" letter-spacing="-2">TEA</text>
-  <text x="364" y="96" fill="#EF806F" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="800" letter-spacing="-2">POIO</text>
+  <text x="345" y="96" fill="#EF806F" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="800" letter-spacing="-2">POIO</text>
   <path d="M212 119h300" stroke="#D8B563" stroke-width="5" stroke-linecap="round" opacity=".75" />
   <text x="214" y="155" fill="#4278AA" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="4">APOIO LOCAL</text>
 </svg>

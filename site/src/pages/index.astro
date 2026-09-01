@@ -6,32 +6,33 @@ import HeroSection from '../components/HeroSection.astro';
 import NewsSection from '../components/NewsSection.astro';
 import ScrollNarrative from '../components/ScrollNarrative.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <BaseLayout title="TEAPOIO — informação clara para o próximo passo" description="Orientação acolhedora e recursos de apoio para famílias de crianças com TEA na Grande João Pessoa.">
   <Header />
   <main id="conteudo-principal" tabindex="-1">
     <HeroSection />
-    <section class="welcome section-shell" id="entenda" aria-labelledby="welcome-title">
+    <section class="welcome section-shell" id="caminhos" aria-labelledby="welcome-title">
       <div class="welcome__intro">
         <p class="eyebrow">ESCOLHA O SEU CAMINHO</p>
         <h2 id="welcome-title">Não existe uma única forma de começar.</h2>
         <p>Você pode chegar com uma dúvida, uma suspeita, um diagnóstico ou apenas vontade de entender melhor. O TEAPOIO encontra um ponto de partida para cada momento.</p>
       </div>
       <div class="audience-grid" id="conteudo-inicial">
-        <a class="audience-card" href="#comece">
+        <a class="audience-card" href={`${base}/comece-aqui/`}>
           <span class="audience-card__icon" aria-hidden="true">⌁</span>
           <span class="audience-card__label">Para famílias iniciantes</span>
           <strong>Quero entender o que fazer agora</strong>
           <span class="text-link">Começar pelo básico <span aria-hidden="true">→</span></span>
         </a>
-        <a class="audience-card audience-card--coral" href="#recursos">
+        <a class="audience-card audience-card--coral" href={`${base}/apoio/`}>
           <span class="audience-card__icon" aria-hidden="true">⌖</span>
           <span class="audience-card__label">Para famílias em acompanhamento</span>
           <strong>Quero encontrar apoio na região</strong>
           <span class="text-link">Buscar recursos <span aria-hidden="true">→</span></span>
         </a>
-        <a class="audience-card audience-card--yellow" href="#noticias">
+        <a class="audience-card audience-card--yellow" href={`${base}/noticias/`}>
           <span class="audience-card__icon" aria-hidden="true">✦</span>
           <span class="audience-card__label">Para profissionais e educadores</span>
           <strong>Quero informação para orientar melhor</strong>
@@ -41,7 +42,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
     <ScrollNarrative />
     <FeatureGrid />
-    <NewsSection />
+    <NewsSection limit={3} />
     <FinalCta />
   </main>
 </BaseLayout>

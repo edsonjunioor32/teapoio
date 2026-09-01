@@ -1,0 +1,17 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<footer class="footer section-shell" id="contato">
+  <a class="brand" href={`${base}/`} aria-label="TEAPOIO — início">
+    <img class="brand__logo" src={`${base}/teapoio-symbol.svg`} alt="" width="38" height="38" />
+    <span class="brand__name">TEAPOIO</span>
+  </a>
+  <div class="footer__links">
+    <a href={`${base}/faq/`}>FAQ</a>
+    <a href={`${base}/entenda-o-tea/`}>Entenda o TEA</a>
+    <a href={`${base}/apoio/`}>Encontrar apoio</a>
+    <a href={`${base}/#atualizar`}>Informar atualização</a>
+  </div>
+  <p>Informação clara. Apoio perto.</p>
+</footer>

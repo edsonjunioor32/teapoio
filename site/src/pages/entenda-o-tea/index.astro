@@ -1,0 +1,79 @@
+---
+import Header from '../../components/Header.astro';
+import PageHero from '../../components/PageHero.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const points = [
+  { title: 'É uma condição do neurodesenvolvimento', text: 'O TEA pode influenciar comunicação, interação, comportamento e processamento sensorial de formas diferentes em cada pessoa.' },
+  { title: 'Cada pessoa tem uma trajetória', text: 'As necessidades de apoio, os interesses, as habilidades e os desafios variam. O cuidado deve considerar a pessoa e sua família.' },
+  { title: 'Sinais não são diagnóstico', text: 'Alguns sinais podem indicar a necessidade de uma avaliação, mas somente profissionais habilitados podem realizar o diagnóstico.' },
+  { title: 'Apoio pode começar antes do laudo', text: 'Mesmo durante a investigação, a família pode receber orientação e buscar apoio para a rotina, a comunicação e o desenvolvimento.' },
+];
+---
+
+<BaseLayout title="Entenda o TEA | TEAPOIO" description="Informação simples e respeitosa para entender o Transtorno do Espectro Autista.">
+  <Header />
+  <main id="conteudo-principal" tabindex="-1">
+    <PageHero eyebrow="INFORMAÇÃO SEM JARGÃO" current="Entenda o TEA" title="Entender ajuda a escolher o próximo passo." intro="O TEA se manifesta de formas diferentes. Informação boa acolhe a dúvida sem transformar uma pessoa em uma lista de sinais." />
+
+    <section class="page-section section-shell" aria-labelledby="tea-title">
+      <div class="section-heading-row">
+        <div>
+          <p class="eyebrow">O BÁSICO</p>
+          <h2 id="tea-title">Quatro ideias para começar.</h2>
+        </div>
+        <p class="section-lede">A avaliação deve ser individualizada e feita por profissionais habilitados. O TEAPOIO organiza informação geral e caminhos de apoio.</p>
+      </div>
+      <div class="info-grid">
+        {points.map((point, index) => (
+          <article class:list={['info-card', index % 2 === 1 && 'info-card--coral']}>
+            <span class="info-card__number">0{index + 1}</span>
+            <h3>{point.title}</h3>
+            <p>{point.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="myths section-shell" aria-labelledby="myths-title">
+      <div class="myths__heading">
+        <p class="eyebrow">PARA LER COM CALMA</p>
+        <h2 id="myths-title">Mitos que podem atrapalhar a busca por apoio.</h2>
+      </div>
+      <div class="myths__list">
+        <details>
+          <summary>“Um sinal isolado confirma TEA.”</summary>
+          <p>Não. Sinais podem ter diferentes causas. Eles indicam que vale conversar com um profissional, mas não confirmam um diagnóstico.</p>
+        </details>
+        <details>
+          <summary>“É preciso esperar o diagnóstico para pedir ajuda.”</summary>
+          <p>Não necessariamente. A família pode receber orientação e apoio durante a investigação, conforme a rede disponível no município.</p>
+        </details>
+        <details>
+          <summary>“Existe um único tipo de acompanhamento.”</summary>
+          <p>Não. As necessidades de apoio variam. A rede pode envolver saúde, educação, assistência social, cultura e comunidade.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="source-panel section-shell" aria-labelledby="source-title">
+      <div>
+        <p class="eyebrow">FONTES PARA APROFUNDAR</p>
+        <h2 id="source-title">Leia também em fontes oficiais.</h2>
+      </div>
+      <div class="source-links">
+        <a class="source-link" href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/autismo" target="_blank" rel="noopener noreferrer">Autismo — Ministério da Saúde <span aria-hidden="true">↗</span></a>
+        <a class="source-link" href="https://linhasdecuidado.saude.gov.br/portal/transtorno-do-espectro-autista/" target="_blank" rel="noopener noreferrer">Linha de cuidado para TEA <span aria-hidden="true">↗</span></a>
+        <a class="source-link" href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12764.htm" target="_blank" rel="noopener noreferrer">Lei nº 12.764/2012 <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="page-actions section-shell" aria-label="Próximos caminhos">
+      <a class="button button--primary" href={`${base}/comece-aqui/`}>Ver o passo a passo <span aria-hidden="true">→</span></a>
+      <a class="button button--quiet" href={`${base}/apoio/`}>Encontrar apoio <span aria-hidden="true">⌖</span></a>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>

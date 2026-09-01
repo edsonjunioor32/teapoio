@@ -40,8 +40,11 @@ function decodeEntities(value = '') {
 }
 
 function cleanText(value = '') {
-  return decodeEntities(value)
+  const withoutMarkup = value
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
     .replace(/<[^>]*>/g, ' ')
+
+  return decodeEntities(decodeEntities(withoutMarkup))
     .replace(/\s+/g, ' ')
     .trim();
 }

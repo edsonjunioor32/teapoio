@@ -1,0 +1,29 @@
+---
+const items = [
+  {
+    question: 'O TEAPOIO faz diagnóstico?',
+    answer: 'Não. O site organiza informação e caminhos de apoio. Diagnóstico e acompanhamento devem ser realizados por profissionais habilitados.',
+  },
+  {
+    question: 'Como encontro um serviço perto de mim?',
+    answer: 'Use a busca por município e tipo de apoio. Cada ficha deve informar como acessar, a fonte e quando o dado foi verificado.',
+  },
+  {
+    question: 'O que devo levar para uma conversa com profissionais?',
+    answer: 'Anote suas dúvidas, situações observadas no cotidiano e informações importantes sobre comunicação, rotina, escola e saúde da criança.',
+  },
+  {
+    question: 'Posso sugerir um serviço ou corrigir uma informação?',
+    answer: 'Sim. O TEAPOIO terá um canal para receber sugestões e avisos de atualização, sem solicitar dados sensíveis sobre a criança.',
+  },
+];
+---
+
+<div class="faq-list">
+  {items.map((item) => (
+    <details>
+      <summary>{item.question}</summary>
+      <p>{item.answer}</p>
+    </details>
+  ))}
+</div>

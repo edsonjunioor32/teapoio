@@ -1,0 +1,23 @@
+---
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import Header from '../../components/Header.astro';
+import PageHero from '../../components/PageHero.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Encontre apoio | TEAPOIO" description="Caminhos de apoio para famílias de crianças com TEA na Grande João Pessoa.">
+  <Header />
+  <main id="conteudo-principal" tabindex="-1">
+    <PageHero eyebrow="GRANDE JOÃO PESSOA" current="Encontre apoio" title="Apoio fica mais perto quando o caminho é claro." intro="Pesquise por uma necessidade, conheça os tipos de serviço e confira a fonte antes de entrar em contato." />
+    <FeatureGrid />
+    <section class="verification-panel section-shell" aria-labelledby="verification-title">
+      <div>
+        <p class="eyebrow">INFORMAÇÃO RESPONSÁVEL</p>
+        <h2 id="verification-title">Confira antes de sair de casa.</h2>
+      </div>
+      <p>Serviços podem mudar de endereço, horário ou forma de acesso. O TEAPOIO deve informar a fonte e a data de verificação de cada recurso. Em caso de dúvida, confirme diretamente com o canal oficial.</p>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>

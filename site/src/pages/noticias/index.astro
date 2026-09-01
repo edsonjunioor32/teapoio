@@ -1,0 +1,21 @@
+---
+import Header from '../../components/Header.astro';
+import NewsSection from '../../components/NewsSection.astro';
+import PageHero from '../../components/PageHero.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Notícias e agenda | TEAPOIO" description="Notícias nacionais, regionais e locais sobre autismo, reunidas automaticamente e apresentadas com a fonte original.">
+  <Header />
+  <main id="conteudo-principal" tabindex="-1">
+    <PageHero eyebrow="ATUALIZAÇÃO AUTOMÁTICA" current="Notícias e agenda" title="O que acontece, explicado de um jeito que ajuda." intro="Acompanhe publicações sobre autismo no Brasil, na Paraíba e em João Pessoa. Os links levam à fonte original." />
+    <NewsSection />
+    <section class="editorial-note section-shell" aria-labelledby="editorial-title">
+      <p class="eyebrow">COMO LER</p>
+      <h2 id="editorial-title">Uma notícia informa. A decisão continua sendo sua, com apoio adequado.</h2>
+      <p>Conteúdos jornalísticos não substituem orientação profissional. Use a informação como ponto de partida e confirme mudanças em canais oficiais.</p>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>

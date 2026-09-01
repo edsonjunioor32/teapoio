@@ -1,0 +1,28 @@
+---
+import FaqList from '../../components/FaqList.astro';
+import Header from '../../components/Header.astro';
+import PageHero from '../../components/PageHero.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title="Dúvidas frequentes | TEAPOIO" description="Respostas simples para dúvidas comuns de famílias que buscam apoio relacionado ao TEA.">
+  <Header />
+  <main id="conteudo-principal" tabindex="-1">
+    <PageHero eyebrow="PERGUNTAS COMUNS" current="Dúvidas frequentes" title="Comece pela pergunta que você já tem." intro="Respostas curtas para orientar o próximo passo, sem substituir avaliação ou acompanhamento profissional." />
+    <section class="faq-page section-shell" aria-labelledby="faq-page-title">
+      <div class="faq-page__heading">
+        <p class="eyebrow">RESPOSTAS DIRETAS</p>
+        <h2 id="faq-page-title">Quando a dúvida aparece, a informação precisa estar perto.</h2>
+      </div>
+      <FaqList />
+    </section>
+    <section class="page-actions section-shell" aria-label="Próximos caminhos">
+      <a class="button button--primary" href={`${base}/comece-aqui/`}>Ver o passo a passo <span aria-hidden="true">→</span></a>
+      <a class="button button--quiet" href={`${base}/apoio/`}>Encontrar apoio <span aria-hidden="true">⌖</span></a>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>

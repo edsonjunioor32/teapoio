@@ -1,14 +1,21 @@
 ---
 import news from '../data/news.json';
 
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
 const newsItems = Array.isArray(news.items) ? news.items : [];
+const visibleNewsItems = typeof limit === 'number' ? newsItems.slice(0, limit) : newsItems;
 const updatedLabel = news.updatedAt
   ? new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeZone: 'America/Sao_Paulo' }).format(new Date(news.updatedAt))
   : null;
 const formatDate = (value: string) => new Intl.DateTimeFormat('pt-BR', { dateStyle: 'medium', timeZone: 'America/Sao_Paulo' }).format(new Date(value));
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<section class="news section-shell" id="noticias" aria-labelledby="news-title">
+<section class:list={['news', 'section-shell', typeof limit === 'number' && 'news--preview']} id="noticias" aria-labelledby="news-title">
   <div class="news__heading">
     <div>
       <p class="eyebrow">NOTÍCIAS SEM COMPLICAÇÃO</p>
@@ -27,13 +34,13 @@ const formatDate = (value: string) => new Intl.DateTimeFormat('pt-BR', { dateSty
   </div>
 
   <p class="news-auto-note" aria-live="polite">
-    {updatedLabel ? `Atualizado automaticamente em ${updatedLabel}.` : 'A atualização automática será realizada na próxima publicação.'}
+    {updatedLabel ? `Atualizado automaticamente em ${updatedLabel}.` : 'A atualização automática será realizada na próxima publicação.'}{' '}
     Os links levam à publicação original.
   </p>
 
-  {newsItems.length > 0 ? (
+  {visibleNewsItems.length > 0 ? (
     <div class="news-grid" id="noticias-lista">
-      {newsItems.map((item, index) => (
+      {visibleNewsItems.map((item, index) => (
         <article class:list={['news-card', index === 0 && 'news-card--featured']} data-news-scope={item.scope}>
           <div class="news-card__visual" aria-hidden="true">
             <span>{item.scope === 'Nacional' ? 'BR' : item.scope === 'Regional' ? 'PB' : 'JP'}</span>
@@ -62,6 +69,9 @@ const formatDate = (value: string) => new Intl.DateTimeFormat('pt-BR', { dateSty
   )}
 
   <p class="filter-status" id="news-filter-status" aria-live="polite"></p>
+  {typeof limit === 'number' && (
+    <a class="news-more text-link" href={`${base}/noticias/`}>Ver todas as notícias <span aria-hidden="true">→</span></a>
+  )}
 </section>
 
 <script>
