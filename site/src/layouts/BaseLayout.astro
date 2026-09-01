@@ -20,18 +20,23 @@ const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href :
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#4278AA" />
+    <meta name="theme-color" content="#0A4386" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TEAPOIO" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={`${new URL(`${base}/og.png`, Astro.site ?? Astro.url).href}`} />
     <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+    <link rel="icon" href={`${base}/favicon-32.png`} sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}/apple-touch-icon.png`} />
+    <link rel="manifest" href={`${base}/site.webmanifest`} />
     <title>{title}</title>
   </head>
   <body>

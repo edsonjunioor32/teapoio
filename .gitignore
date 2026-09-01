@@ -2,5 +2,6 @@ site/node_modules/
 site/dist/
 site/.astro/
 site/public/*-preview.png
+tmp/
 .DS_Store
 Thumbs.db
