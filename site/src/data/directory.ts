@@ -14,7 +14,7 @@ export type DirectoryEntry = {
 };
 
 /**
- * O diretório separa fontes oficiais de referências recebidas pela comunidade.
+ * O diretório separa fontes oficiais de cadastros em confirmação.
  * Os registros encontrados no Google Maps devem ser confirmados antes do atendimento.
  */
 const mapsListingNote = 'Listagem encontrada em pesquisa do Google Maps. Confirme diretamente com o local se há atendimento relacionado ao TEA, endereço, agenda e condições de acesso antes de ir.';
@@ -82,11 +82,11 @@ export const directoryEntries: DirectoryEntry[] = [
     category: 'Clínica e terapias',
     location: 'João Pessoa · localização a confirmar',
     region: 'joao-pessoa',
-    access: 'Relato da comunidade',
-    description: 'O cartão compartilhado no grupo menciona psicologia, fonoaudiologia, psicopedagogia, fisioterapia, psicomotricidade, análise do comportamento e terapia ocupacional.',
+    access: 'Confirme antes de ir',
+    description: 'Clínica associada a serviços de apoio ao desenvolvimento infantil, como psicologia, fonoaudiologia, psicopedagogia, fisioterapia, psicomotricidade, análise do comportamento e terapia ocupacional. Confirme endereço, convênios e agenda.',
     tags: 'viver kids psicologia fonoaudiologia psicopedagogia fisioterapia psicomotricidade terapia ocupacional neurologista joao pessoa',
     verification: 'community',
-    verificationLabel: 'Relato da comunidade',
+    verificationLabel: 'Cadastro em confirmação',
     sourceLabel: 'Confirmar serviços, convênios e agenda',
   },
   {
@@ -95,11 +95,11 @@ export const directoryEntries: DirectoryEntry[] = [
     category: 'Clínica e terapias',
     location: 'Grande João Pessoa · localização a confirmar',
     region: 'grande-joao-pessoa',
-    access: 'Relato da comunidade',
-    description: 'Foi mencionado por famílias como um espaço acolhedor. O cadastro ainda precisa confirmar endereço, especialidades, convênios e disponibilidade.',
+    access: 'Confirme antes de ir',
+    description: 'Espaço de atendimento infantil com cadastro ainda em revisão. Confirme endereço, especialidades, convênios e disponibilidade antes de entrar em contato.',
     tags: 'recriare clinica terapias acolhimento grande joao pessoa',
     verification: 'community',
-    verificationLabel: 'Relato da comunidade',
+    verificationLabel: 'Cadastro em confirmação',
     sourceLabel: 'Confirmar dados antes de divulgar',
   },
   {
@@ -108,11 +108,11 @@ export const directoryEntries: DirectoryEntry[] = [
     category: 'Clínica e especialistas',
     location: 'João Pessoa · endereço a confirmar',
     region: 'joao-pessoa',
-    access: 'Relato da comunidade',
-    description: 'A conversa relaciona a clínica a atendimentos por plano de saúde. É necessário confirmar especialidades, convênios e formas de marcação.',
+    access: 'Confirme antes de ir',
+    description: 'Clínica com possibilidade de atendimento por plano de saúde. Confirme especialidades, convênios, endereço e formas de marcação diretamente com o local.',
     tags: 'cuidar saude clinica hapvida neuropediatra especialistas plano joao pessoa',
     verification: 'community',
-    verificationLabel: 'Relato da comunidade',
+    verificationLabel: 'Cadastro em confirmação',
     sourceLabel: 'Confirmar convênio e atendimento',
   },
   {
@@ -121,11 +121,11 @@ export const directoryEntries: DirectoryEntry[] = [
     category: 'Acesso a terapias',
     location: 'Paraíba · regras a confirmar',
     region: 'paraiba',
-    access: 'Relato da comunidade',
-    description: 'Famílias relataram uso para acesso a terapias e clínicas parceiras. Valores, rede credenciada e regras podem mudar e não são publicados como promessa.',
+    access: 'Confirme antes de contratar',
+    description: 'Serviço relacionado ao acesso a terapias e clínicas parceiras. Confirme valores, rede credenciada, regras e disponibilidade diretamente com o serviço.',
     tags: 'prevmed pb plano assistencia terapias clinicas parceiras joao pessoa',
     verification: 'community',
-    verificationLabel: 'Relato da comunidade',
+    verificationLabel: 'Cadastro em confirmação',
     sourceLabel: 'Confirmar condições diretamente',
   },
   {
