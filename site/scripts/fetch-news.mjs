@@ -16,6 +16,10 @@ const feeds = [
     url: 'https://news.google.com/rss/search?q=autismo+Para%C3%ADba&hl=pt-BR&gl=BR&ceid=BR%3Apt-419',
   },
   {
+    scope: 'Regional',
+    url: 'https://news.google.com/rss/search?q=site%3Afunad.pb.gov.br+autismo&hl=pt-BR&gl=BR&ceid=BR%3Apt-419',
+  },
+  {
     scope: 'Local',
     url: 'https://news.google.com/rss/search?q=autismo+%22Jo%C3%A3o+Pessoa%22&hl=pt-BR&gl=BR&ceid=BR%3Apt-419',
   },

@@ -7,6 +7,14 @@ describe('site search index', () => {
     expect(searchItems.some((item) => `${item.title} ${item.keywords}`.toLowerCase().includes('funad'))).toBe(true);
   });
 
+  it('makes the FUNAD TEA service discoverable by its practical terms', () => {
+    const seriItem = searchItems.find((item) => item.title.includes('SERI'));
+
+    expect(seriItem?.description).toContain('TEA');
+    expect(seriItem?.keywords).toContain('estimulação precoce');
+    expect(seriItem?.href).toBe('/apoio/#funad-seri-tea');
+  });
+
   it('contains an official-orientation destination for lawyer searches', () => {
     const lawyerItem = searchItems.find((item) => item.keywords.includes('advogados'));
     expect(lawyerItem?.href).toBe('/direitos/#orientacao-juridica');

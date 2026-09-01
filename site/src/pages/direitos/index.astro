@@ -29,6 +29,30 @@ const guides = [
   },
 ];
 
+const funadRoutes = [
+  {
+    number: '01',
+    title: 'Agendar triagem',
+    text: 'O CAD é a porta de entrada informada pela FUNAD para triagem, renovação de laudo e remarcação.',
+    action: 'Ver como acessar',
+    href: 'https://funad.pb.gov.br/nucleos',
+  },
+  {
+    number: '02',
+    title: 'Conhecer o SERI',
+    text: 'Serviço especializado que a FUNAD apresenta para pessoas com deficiência intelectual e pessoas com TEA.',
+    action: 'Ver serviços para TEA',
+    href: 'https://funad.pb.gov.br/assessorias',
+  },
+  {
+    number: '03',
+    title: 'Solicitar CIPTEA',
+    text: 'Consulte a plataforma, o laudo padrão e os documentos indicados para o pedido online.',
+    action: 'Consultar a FUNAD',
+    href: 'https://funad.pb.gov.br/passe-livre',
+  },
+];
+
 const preparation = [
   'Documento da criança e do responsável, quando solicitado.',
   'CPF e comprovante de residência, conforme o serviço.',
@@ -58,6 +82,26 @@ const preparation = [
             <h3>{guide.title}</h3>
             <p>{guide.text}</p>
             <a class="text-link" href={guide.href} target="_blank" rel="noopener noreferrer">{guide.action} <span aria-hidden="true">↗</span></a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="page-section section-shell" aria-labelledby="funad-title">
+      <div class="section-heading-row">
+        <div>
+          <p class="eyebrow">REFERÊNCIA PÚBLICA NA PARAÍBA</p>
+          <h2 id="funad-title">A FUNAD pode ser um próximo passo.</h2>
+        </div>
+        <p class="section-lede">Ela informa atendimento em habilitação, reabilitação, educação e inclusão para pessoas com TEA. Confirme critérios, documentos e disponibilidade no canal oficial.</p>
+      </div>
+      <div class="info-grid">
+        {funadRoutes.map((route, index) => (
+          <article class:list={['info-card', index === 1 && 'info-card--coral']}>
+            <span class="info-card__number">{route.number}</span>
+            <h3>{route.title}</h3>
+            <p>{route.text}</p>
+            <a class="text-link" href={route.href} target="_blank" rel="noopener noreferrer">{route.action} <span aria-hidden="true">↗</span></a>
           </article>
         ))}
       </div>
