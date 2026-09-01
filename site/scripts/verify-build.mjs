@@ -67,6 +67,9 @@ for (const fragment of [
   'Clínicas e terapias',
   'Órgãos e serviços públicos',
   'Direitos, benefícios e documentos',
+  'Fornecedores de canabidiol',
+  'Abrace Esperança',
+  'Acaflor',
 ]) {
   if (!supportPage.includes(fragment)) throw new Error(`Missing support page fragment: ${fragment}`);
 }

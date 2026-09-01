@@ -66,4 +66,15 @@ describe('site search index', () => {
     expect(clinic && getDirectorySegment(clinic)).toBe('clinicas-terapias');
     expect(publicChannel && getDirectorySegment(publicChannel)).toBe('orgaos-servicos-publicos');
   });
+
+  it('indexes cannabidiol suppliers with their dedicated segment and contact links', () => {
+    const abraceItem = searchItems.find((item) => item.title === 'Abrace Esperança');
+    const acaflorItem = searchItems.find((item) => item.title === 'Acaflor');
+
+    expect(abraceItem?.category).toBe('Fornecedores de canabidiol');
+    expect(abraceItem?.keywords).toContain('canabidiol');
+    expect(abraceItem?.href).toBe('/apoio/#abrace-esperanca-canabidiol');
+    expect(acaflorItem?.keywords).toContain('cbd');
+    expect(acaflorItem?.href).toBe('/apoio/#acaflor-canabidiol');
+  });
 });

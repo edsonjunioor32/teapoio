@@ -13,10 +13,13 @@ export type DirectoryEntry = {
   sourceLabel: string;
   contact?: string;
   contactLabel?: string;
+  social?: string;
+  socialLabel?: string;
 };
 
 export type DirectorySegmentId =
   | 'clinicas-terapias'
+  | 'canabidiol'
   | 'orgaos-servicos-publicos'
   | 'direitos-beneficios'
   | 'educacao-inclusao'
@@ -33,6 +36,7 @@ export type DirectorySegment = {
 
 export const directorySegments: DirectorySegment[] = [
   { id: 'clinicas-terapias', label: 'Clínicas e terapias', description: 'Espaços, profissionais e terapias para desenvolvimento e cuidado.' },
+  { id: 'canabidiol', label: 'Fornecedores de canabidiol', description: 'Contatos para conhecer produtos e condições de acesso, com confirmação de requisitos antes da compra ou do uso.' },
   { id: 'orgaos-servicos-publicos', label: 'Órgãos e serviços públicos', description: 'Instituições públicas, canais oficiais e portas de entrada.' },
   { id: 'direitos-beneficios', label: 'Direitos, benefícios e documentos', description: 'CIPTEA, Passe Livre, BPC e outras orientações previstas em políticas públicas.' },
   { id: 'educacao-inclusao', label: 'Educação e inclusão', description: 'Escolas, educação especializada e caminhos de inclusão.' },
@@ -46,6 +50,7 @@ export const getDirectorySegment = (entry: DirectoryEntry): DirectorySegmentId =
   const category = entry.category.toLocaleLowerCase('pt-BR');
   const id = entry.id.toLocaleLowerCase('pt-BR');
 
+  if (category.includes('canabidiol') || category.includes('cbd')) return 'canabidiol';
   if (category.includes('jurídica') || category.includes('juridica')) return 'orientacao-juridica';
   if (category.includes('planos de saúde') || category.includes('planos de saude')) return 'planos-saude';
   if (category.includes('direito') || category.includes('benefício') || category.includes('beneficio') || category.includes('documentação') || category.includes('documentacao') || category.includes('transporte')) {
@@ -227,6 +232,42 @@ export const directoryEntries: DirectoryEntry[] = [
     verificationLabel: 'Fonte oficial',
     source: 'https://linhasdecuidado.saude.gov.br/portal/transtorno-do-espectro-autista/',
     sourceLabel: 'Ler linha de cuidado',
+  },
+  {
+    id: 'abrace-esperanca-canabidiol',
+    name: 'Abrace Esperança',
+    category: 'Fornecedores de canabidiol',
+    location: 'Atendimento online · abrangência a confirmar',
+    region: 'online',
+    access: 'Site, Instagram e WhatsApp',
+    description: 'Contato informado pelo usuário para conhecer produtos e condições de acesso a canabidiol. Confirme diretamente requisitos, documentação, prescrição quando aplicável, regularização e orientação profissional antes de comprar ou utilizar qualquer produto.',
+    tags: 'abrace esperança esperanca canabidiol cbd cannabis medicinal óleo oleo fornecedor fornecimento associação associacao autismo tea contato whatsapp instagram',
+    verification: 'community',
+    verificationLabel: 'Contato informado pelo usuário',
+    source: 'https://abraceesperanca.org.br/',
+    sourceLabel: 'Acessar site da Abrace Esperança',
+    contact: 'https://wa.me/5583998720072',
+    contactLabel: 'WhatsApp · +55 83 99872-0072',
+    social: 'https://www.instagram.com/abraceesperanca/',
+    socialLabel: 'Instagram · @abraceesperanca',
+  },
+  {
+    id: 'acaflor-canabidiol',
+    name: 'Acaflor',
+    category: 'Fornecedores de canabidiol',
+    location: 'Atendimento online · abrangência a confirmar',
+    region: 'online',
+    access: 'Site, Instagram e WhatsApp',
+    description: 'Contato informado pelo usuário para conhecer produtos e condições de acesso a canabidiol. Confirme diretamente requisitos, documentação, prescrição quando aplicável, regularização e orientação profissional antes de comprar ou utilizar qualquer produto.',
+    tags: 'acaflor canabidiol cbd cannabis medicinal óleo oleo fornecedor fornecimento associação associacao autismo tea contato whatsapp instagram',
+    verification: 'community',
+    verificationLabel: 'Contato informado pelo usuário',
+    source: 'https://acaflor.org.br/',
+    sourceLabel: 'Acessar site da Acaflor',
+    contact: 'https://wa.me/5583996745445',
+    contactLabel: 'WhatsApp · +55 83 99674-5445',
+    social: 'https://www.instagram.com/acaflor_/',
+    socialLabel: 'Instagram · @acaflor_',
   },
   {
     id: 'raphaella-martins-advogada',

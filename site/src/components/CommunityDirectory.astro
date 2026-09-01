@@ -98,6 +98,9 @@ const directoryGroups = directorySegments.map((segment) => ({
                 {entry.contact && (
                   <a class="directory-card__source" href={entry.contact} target={entry.contact.startsWith('tel:') ? undefined : '_blank'} rel={entry.contact.startsWith('tel:') ? undefined : 'noopener noreferrer'}>{entry.contactLabel ?? 'Contato direto'} <span aria-hidden="true">↗</span></a>
                 )}
+                {entry.social && (
+                  <a class="directory-card__source" href={entry.social} target="_blank" rel="noopener noreferrer">{entry.socialLabel ?? 'Instagram'} <span aria-hidden="true">↗</span></a>
+                )}
                 {entry.source ? (
                   <a class="directory-card__source" href={entry.source} target="_blank" rel="noopener noreferrer">{entry.sourceLabel} <span aria-hidden="true">↗</span></a>
                 ) : (
