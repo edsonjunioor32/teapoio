@@ -1,4 +1,6 @@
 ---
+import SearchPanel from './SearchPanel.astro';
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
@@ -9,10 +11,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <p class="hero__lede">
       O TEAPOIO ajuda famílias a entender por onde começar, encontrar apoio perto e acessar informações sobre direitos.
     </p>
-    <div class="hero__actions">
-      <a class="button button--primary" href={`${base}/comece-aqui/`}>Ver primeiros passos <span aria-hidden="true">→</span></a>
-      <a class="button button--quiet" href={`${base}/apoio/`}>Encontrar apoio perto</a>
-    </div>
     <p class="hero__meta">Linguagem simples · fontes identificadas · foco local</p>
   </div>
 
@@ -30,4 +28,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </picture>
     <figcaption>Acolhimento, diversidade e apoio.</figcaption>
   </figure>
+
+  <SearchPanel />
 </section>

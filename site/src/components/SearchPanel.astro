@@ -9,25 +9,67 @@ const { mode = 'home' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const inputId = `site-search-${mode}`;
 const titleId = `search-title-${mode}`;
+const topicId = `site-search-topic-${mode}`;
+const regionId = `site-search-region-${mode}`;
 const maxResults = mode === 'home' ? 5 : searchItems.length;
 ---
 
-<section class:list={['search-panel', 'section-shell', mode === 'home' ? 'search-panel--home' : 'search-panel--page']} data-search-root data-max-results={maxResults} data-search-mode={mode} aria-labelledby={titleId}>
+<section class:list={['search-panel', mode === 'page' && 'section-shell', mode === 'home' ? 'search-panel--home' : 'search-panel--page']} data-search-root data-max-results={maxResults} data-search-mode={mode} aria-labelledby={titleId}>
   <div class="search-panel__heading">
-    <p class="eyebrow">BUSCA RÁPIDA</p>
-    <h2 id={titleId}>{mode === 'home' ? 'O que você procura?' : 'Digite uma palavra-chave.'}</h2>
-    <p>Busque por serviço, direito, documento ou assunto.</p>
+    <div>
+      <p class="eyebrow">{mode === 'home' ? 'REFINE SUA BUSCA' : 'BUSCA NO TEAPOIO'}</p>
+      <h2 id={titleId}>{mode === 'home' ? 'Encontre o que precisa.' : 'Digite uma palavra-chave.'}</h2>
+      <p>Pesquise por nome, assunto ou tipo de ajuda.</p>
+    </div>
+    <button class="search-reset" type="button" data-search-reset>Limpar</button>
   </div>
 
   <form class="site-search" data-search-form role="search">
-    <label class="sr-only" for={inputId}>Buscar no TEAPOIO</label>
-    <div class="site-search__field">
-      <svg class="site-search__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
-        <circle cx="11" cy="11" r="6.5"></circle>
-        <path d="m16 16 4 4"></path>
-      </svg>
-      <input id={inputId} data-search-input type="search" placeholder="Ex.: FUNAD, advogados, terapia, escola" autocomplete="off" spellcheck="false" />
-      <button type="submit">Buscar</button>
+    <div class="search-filter-grid">
+      <label class="search-filter search-filter--query" for={inputId}>
+        <span>Palavra-chave</span>
+        <span class="search-filter__control">
+          <svg class="site-search__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="6.5"></circle>
+            <path d="m16 16 4 4"></path>
+          </svg>
+          <input id={inputId} data-search-input type="search" placeholder="FUNAD, advogados, terapia..." autocomplete="off" spellcheck="false" />
+        </span>
+      </label>
+
+      <label class="search-filter" for={topicId}>
+        <span>Tipo de ajuda</span>
+        <span class="search-filter__control search-filter__control--select">
+          <select id={topicId} data-search-topic>
+            <option value="">Todos os assuntos</option>
+            <option value="servicos">Serviços e terapias</option>
+            <option value="direitos">Direitos e benefícios</option>
+            <option value="primeiros-passos">Primeiros passos</option>
+            <option value="noticias">Notícias</option>
+          </select>
+        </span>
+      </label>
+
+      <label class="search-filter" for={regionId}>
+        <span>Localidade</span>
+        <span class="search-filter__control search-filter__control--select">
+          <select id={regionId} data-search-region>
+            <option value="">Toda a região</option>
+            <option value="joao-pessoa">João Pessoa</option>
+            <option value="grande-joao-pessoa">Grande João Pessoa</option>
+            <option value="paraiba">Paraíba</option>
+            <option value="online">Atendimento online</option>
+          </select>
+        </span>
+      </label>
+
+      <button class="search-submit" type="submit">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+          <circle cx="11" cy="11" r="6.5"></circle>
+          <path d="m16 16 4 4"></path>
+        </svg>
+        Buscar
+      </button>
     </div>
   </form>
 
@@ -38,10 +80,10 @@ const maxResults = mode === 'home' ? 5 : searchItems.length;
     ))}
   </div>
 
-  <p class="search-status" data-search-status aria-live="polite">Digite pelo menos duas letras para buscar.</p>
+  <p class="search-status" data-search-status aria-live="polite">Digite uma palavra ou use os filtros.</p>
   <div class="search-results" data-search-results hidden>
     {searchItems.map((item) => (
-      <a class="search-result" href={`${base}${item.href}`} data-search-item data-search-text={`${item.title} ${item.description} ${item.category} ${item.keywords}`}>
+      <a class="search-result" href={`${base}${item.href}`} data-search-item data-search-text={`${item.title} ${item.description} ${item.category} ${item.keywords}`} data-search-topics={item.topics.join(' ')} data-search-regions={item.regions.join(' ')}>
         <span class="search-result__category">{item.category}</span>
         <strong>{item.title}</strong>
         <p>{item.description}</p>
@@ -65,6 +107,9 @@ const maxResults = mode === 'home' ? 5 : searchItems.length;
     const results = root.querySelector<HTMLElement>('[data-search-results]');
     const status = root.querySelector<HTMLElement>('[data-search-status]');
     const empty = root.querySelector<HTMLElement>('[data-search-empty]');
+    const topic = root.querySelector<HTMLSelectElement>('[data-search-topic]');
+    const region = root.querySelector<HTMLSelectElement>('[data-search-region]');
+    const reset = root.querySelector<HTMLButtonElement>('[data-search-reset]');
     const suggestions = root.querySelectorAll<HTMLButtonElement>('[data-search-suggestion]');
     const items = [...root.querySelectorAll<HTMLElement>('[data-search-item]')];
     const maxResults = Number(root.dataset.maxResults || items.length);
@@ -73,13 +118,23 @@ const maxResults = mode === 'home' ? 5 : searchItems.length;
 
     const runSearch = () => {
       const query = normalizeSearchText(input.value);
+      const selectedTopic = topic?.value || '';
+      const selectedRegion = region?.value || '';
+      const hasFilter = Boolean(selectedTopic || selectedRegion);
 
       items.forEach((item) => item.hidden = true);
 
-      if (query.length < 2) {
+      if (query.length === 1) {
         results.hidden = true;
         empty.hidden = true;
         status.textContent = 'Digite pelo menos duas letras para buscar.';
+        return;
+      }
+
+      if (!query && !hasFilter) {
+        results.hidden = true;
+        empty.hidden = true;
+        status.textContent = 'Digite uma palavra ou use os filtros.';
         return;
       }
 
@@ -87,7 +142,14 @@ const maxResults = mode === 'home' ? 5 : searchItems.length;
         .map((item) => {
           const text = normalizeSearchText(item.dataset.searchText || '');
           const title = normalizeSearchText(item.querySelector('strong')?.textContent || '');
-          const score = title.startsWith(query) ? 4 : title.includes(query) ? 3 : text.includes(query) ? 1 : 0;
+          const topics = (item.dataset.searchTopics || '').split(' ');
+          const regions = (item.dataset.searchRegions || '').split(' ');
+          const queryMatches = !query || text.includes(query);
+          const topicMatches = !selectedTopic || topics.includes(selectedTopic);
+          const regionMatches = !selectedRegion || regions.includes(selectedRegion) || regions.includes('todos');
+          const score = !query ? 1 : title.startsWith(query) ? 4 : title.includes(query) ? 3 : text.includes(query) ? 1 : 0;
+
+          if (!queryMatches || !topicMatches || !regionMatches) return { item, score: 0 };
           return { item, score };
         })
         .filter(({ score }) => score > 0)
@@ -101,9 +163,10 @@ const maxResults = mode === 'home' ? 5 : searchItems.length;
       const visible = Math.min(matches.length, maxResults);
       results.hidden = visible === 0;
       empty.hidden = visible !== 0;
+      const description = query ? ` para “${input.value.trim()}”` : '';
       status.textContent = visible === 0
-        ? `Nenhum resultado para “${input.value.trim()}”.`
-        : `${visible} resultado${visible === 1 ? '' : 's'} para “${input.value.trim()}”.`;
+        ? 'Nenhum resultado para os filtros escolhidos.'
+        : `${visible} resultado${visible === 1 ? '' : 's'}${description}.`;
     };
 
     form.addEventListener('submit', (event) => {
@@ -112,6 +175,16 @@ const maxResults = mode === 'home' ? 5 : searchItems.length;
     });
 
     input.addEventListener('input', runSearch);
+    topic?.addEventListener('change', runSearch);
+    region?.addEventListener('change', runSearch);
+
+    reset?.addEventListener('click', () => {
+      input.value = '';
+      if (topic) topic.value = '';
+      if (region) region.value = '';
+      runSearch();
+      input.focus();
+    });
 
     suggestions.forEach((button) => {
       button.addEventListener('click', () => {

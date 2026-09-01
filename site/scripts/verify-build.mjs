@@ -6,7 +6,9 @@ const required = [
   'TEAPOIO',
   'Ver primeiros passos',
   'O que você precisa agora?',
-  'O que você procura?',
+  'Encontre o que precisa.',
+  'Tipo de ajuda',
+  'Localidade',
   'Atualizações recentes',
   'Dúvidas frequentes',
 ];

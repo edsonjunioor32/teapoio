@@ -7,6 +7,8 @@ export type SearchItem = {
   category: string;
   href: string;
   keywords: string;
+  topics: string[];
+  regions: string[];
 };
 
 const pageItems: SearchItem[] = [
@@ -17,6 +19,8 @@ const pageItems: SearchItem[] = [
     category: 'Comece aqui',
     href: '/comece-aqui/',
     keywords: 'começar comecar suspeita sinais avaliação avaliacao diagnóstico diagnostico laudo médico medico pediatra onde ir',
+    topics: ['primeiros-passos'],
+    regions: ['todos'],
   },
   {
     id: 'entenda-tea',
@@ -25,6 +29,8 @@ const pageItems: SearchItem[] = [
     category: 'Informação',
     href: '/entenda-o-tea/',
     keywords: 'autismo tea transtorno espectro sinais neurodesenvolvimento comportamento comunicação comunicacao',
+    topics: ['primeiros-passos'],
+    regions: ['todos'],
   },
   {
     id: 'direitos-documentos',
@@ -33,6 +39,8 @@ const pageItems: SearchItem[] = [
     category: 'Direitos',
     href: '/direitos/',
     keywords: 'direitos documentos ciptea passe livre escola inclusão inclusao bpc loas benefício beneficio inss cras cadunico',
+    topics: ['direitos'],
+    regions: ['todos'],
   },
   {
     id: 'orientacao-juridica',
@@ -41,6 +49,8 @@ const pageItems: SearchItem[] = [
     category: 'Direitos',
     href: '/direitos/#orientacao-juridica',
     keywords: 'advogado advogada advogados advocacia jurídico juridico justiça justica defensoria pública publica oab denúncia denuncia processo ação acao direito negado escola plano saúde saude',
+    topics: ['direitos'],
+    regions: ['paraiba'],
   },
   {
     id: 'duvidas-frequentes',
@@ -49,6 +59,8 @@ const pageItems: SearchItem[] = [
     category: 'Orientação',
     href: '/faq/',
     keywords: 'dúvidas duvidas perguntas respostas terapia sus escola medicamento remédio remedio ciptea bpc',
+    topics: ['primeiros-passos', 'servicos', 'direitos'],
+    regions: ['todos'],
   },
   {
     id: 'noticias',
@@ -57,16 +69,42 @@ const pageItems: SearchItem[] = [
     category: 'Notícias',
     href: '/noticias/',
     keywords: 'notícias noticias novidade agenda evento pesquisa brasil paraíba paraiba joão pessoa joao pessoa',
+    topics: ['noticias'],
+    regions: ['todos'],
   },
 ];
 
-const directoryItems: SearchItem[] = directoryEntries.map((entry) => ({
-  id: `diretorio-${entry.id}`,
-  title: entry.name,
-  description: entry.description,
-  category: entry.category,
-  href: `/apoio/#${entry.id}`,
-  keywords: `${entry.tags} ${entry.location} ${entry.access} ${entry.verificationLabel}`,
-}));
+const normalize = (value: string) => value
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase();
+
+const directoryItems: SearchItem[] = directoryEntries.map((entry) => {
+  const text = normalize(`${entry.category} ${entry.tags}`);
+  const location = normalize(`${entry.location} ${entry.access}`);
+  const topics = text.includes('beneficio') || text.includes('document') || text.includes('ciptea') || text.includes('passe livre')
+    ? ['direitos']
+    : text.includes('informacao') || text.includes('linha cuidado')
+      ? ['primeiros-passos', 'servicos']
+      : ['servicos'];
+  const regions = new Set<string>();
+
+  if (location.includes('joao pessoa')) regions.add('joao-pessoa');
+  if (location.includes('grande joao pessoa') || location.includes('joao pessoa')) regions.add('grande-joao-pessoa');
+  if (location.includes('paraiba') || location.includes('joao pessoa')) regions.add('paraiba');
+  if (location.includes('online') || location.includes('consulta online') || location.includes('meu inss')) regions.add('online');
+  if (regions.size === 0) regions.add('todos');
+
+  return {
+    id: `diretorio-${entry.id}`,
+    title: entry.name,
+    description: entry.description,
+    category: entry.category,
+    href: `/apoio/#${entry.id}`,
+    keywords: `${entry.tags} ${entry.location} ${entry.access} ${entry.verificationLabel}`,
+    topics,
+    regions: [...regions],
+  };
+});
 
 export const searchItems: SearchItem[] = [...pageItems, ...directoryItems];
