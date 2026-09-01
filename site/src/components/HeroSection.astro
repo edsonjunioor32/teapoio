@@ -21,41 +21,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
   </div>
 
-  <div class="hero__visual" aria-label="Caminhos de orientação disponíveis no TEAPOIO">
-    <div class="hero-dashboard">
-      <div class="hero-dashboard__top">
-        <img class="hero-dashboard__brand" src={`${base}/teapoio-logo.svg`} alt="TEAPOIO" width="200" height="57" />
-        <span class="hero-dashboard__status">Conteúdo organizado</span>
-      </div>
-
-      <div class="hero-dashboard__intro">
-        <p class="hero-dashboard__eyebrow">POR ONDE COMEÇAR</p>
-        <h2>Informação para cada momento da família.</h2>
-        <p>Escolha o caminho mais próximo da sua necessidade atual.</p>
-      </div>
-
-      <div class="hero-paths">
-        <div class="hero-path">
-          <span class="hero-path__icon" aria-hidden="true">01</span>
-          <span><strong>Entender os primeiros passos</strong><small>Orientações para começar com mais clareza</small></span>
-          <span class="hero-path__arrow" aria-hidden="true">→</span>
-        </div>
-        <div class="hero-path">
-          <span class="hero-path__icon" aria-hidden="true">02</span>
-          <span><strong>Encontrar apoio na região</strong><small>Recursos organizados na Grande João Pessoa</small></span>
-          <span class="hero-path__arrow" aria-hidden="true">→</span>
-        </div>
-        <div class="hero-path">
-          <span class="hero-path__icon" aria-hidden="true">03</span>
-          <span><strong>Buscar informação confiável</strong><small>Conteúdo direto para famílias e educadores</small></span>
-          <span class="hero-path__arrow" aria-hidden="true">→</span>
-        </div>
-      </div>
-
-      <div class="hero-dashboard__footer">
-        <span><strong>TEAPOIO</strong> · Grande João Pessoa</span>
-        <span>Informação que orienta, sem complicar.</span>
-      </div>
+  <div class="hero__visual" aria-label="Identidade visual do TEAPOIO">
+    <div class="hero__image-wrap hero__image-wrap--supplied">
+      <picture>
+        <source media="(max-width: 760px)" srcset={`${base}/teapoio-reference-symbol.jpg`} />
+        <img
+          src={`${base}/teapoio-reference-logo.jpg`}
+          alt="Identidade visual TEAPOIO com laço de apoio, corações coloridos e símbolo do infinito"
+          width="2494"
+          height="1696"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
     </div>
   </div>
 </section>
