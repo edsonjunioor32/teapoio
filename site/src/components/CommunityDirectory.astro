@@ -1,0 +1,94 @@
+---
+import { directoryEntries } from '../data/directory';
+
+const reviewedAt = new Intl.DateTimeFormat('pt-BR').format(new Date());
+---
+
+<section class="directory-section section-shell" aria-labelledby="directory-title">
+  <div class="directory-section__heading">
+    <div>
+      <p class="eyebrow">REFERÊNCIAS LOCAIS</p>
+      <h2 id="directory-title">Serviços e caminhos para confirmar antes de ir.</h2>
+    </div>
+    <p class="section-lede">Começamos com fontes públicas e referências citadas pela comunidade. O TEAPOIO não substitui o contato oficial nem endossa uma indicação individual.</p>
+  </div>
+
+  <div class="directory-toolbar directory-toolbar--local" role="search" aria-label="Buscar serviços e caminhos locais">
+    <label class="search-field">
+      <span aria-hidden="true">⌕</span>
+      <span class="sr-only">Buscar serviço</span>
+      <input id="directory-search" type="search" placeholder="Ex.: terapia, FUNAD, Bancários" autocomplete="off" />
+    </label>
+    <label class="select-field">
+      <span class="sr-only">Filtrar por origem</span>
+      <select id="directory-verification">
+        <option value="">Todas as origens</option>
+        <option value="official">Fontes oficiais</option>
+        <option value="community">Relatos da comunidade</option>
+      </select>
+    </label>
+    <button class="filter-clear" type="button" id="clear-directory-filters">Limpar filtros</button>
+  </div>
+  <p class="filter-status" id="directory-status" aria-live="polite">Mostrando todos os caminhos.</p>
+
+  <div class="directory-grid" id="directory-list">
+    {directoryEntries.map((entry) => (
+      <article class="directory-card" data-directory data-search={`${entry.name} ${entry.category} ${entry.location} ${entry.tags}`} data-verification={entry.verification}>
+        <div class="directory-card__top">
+          <span class:list={['status-badge', entry.verification === 'official' ? 'status-badge--official' : 'status-badge--community']}>
+            {entry.verificationLabel}
+          </span>
+          <span class="directory-card__category">{entry.category}</span>
+        </div>
+        <h3>{entry.name}</h3>
+        <p>{entry.description}</p>
+        <dl class="directory-card__facts">
+          <div><dt>Localização</dt><dd>{entry.location}</dd></div>
+          <div><dt>Como acessar</dt><dd>{entry.access}</dd></div>
+        </dl>
+        {entry.source ? (
+          <a class="directory-card__source" href={entry.source} target="_blank" rel="noopener noreferrer">{entry.sourceLabel} <span aria-hidden="true">↗</span></a>
+        ) : (
+          <span class="directory-card__source directory-card__source--muted">{entry.sourceLabel}</span>
+        )}
+      </article>
+    ))}
+  </div>
+  <p class="empty-state" id="directory-empty" hidden>Nenhum serviço encontrado. Tente outra palavra ou mude o filtro de origem.</p>
+  <p class="directory-note">Fontes oficiais consultadas em {reviewedAt}. Referências da comunidade continuam pendentes de confirmação.</p>
+</section>
+
+<script>
+  const directorySearch = document.querySelector<HTMLInputElement>('#directory-search');
+  const directoryVerification = document.querySelector<HTMLSelectElement>('#directory-verification');
+  const directoryStatus = document.querySelector<HTMLParagraphElement>('#directory-status');
+  const directoryEmpty = document.querySelector<HTMLParagraphElement>('#directory-empty');
+  const clearDirectoryFilters = document.querySelector<HTMLButtonElement>('#clear-directory-filters');
+  const directoryCards = [...document.querySelectorAll<HTMLElement>('[data-directory]')];
+
+  const filterDirectory = () => {
+    const query = directorySearch?.value.trim().toLowerCase() ?? '';
+    const verification = directoryVerification?.value ?? '';
+    let visible = 0;
+
+    directoryCards.forEach((card) => {
+      const searchText = card.getAttribute('data-search')?.toLowerCase() ?? '';
+      const cardVerification = card.getAttribute('data-verification') ?? '';
+      const show = (!query || searchText.includes(query)) && (!verification || cardVerification === verification);
+      card.toggleAttribute('hidden', !show);
+      if (show) visible += 1;
+    });
+
+    if (directoryStatus) directoryStatus.textContent = `${visible} caminho${visible === 1 ? '' : 's'} disponível${visible === 1 ? '' : 'is'} no diretório.`;
+    if (directoryEmpty) directoryEmpty.hidden = visible !== 0;
+  };
+
+  directorySearch?.addEventListener('input', filterDirectory);
+  directoryVerification?.addEventListener('change', filterDirectory);
+  clearDirectoryFilters?.addEventListener('click', () => {
+    if (directorySearch) directorySearch.value = '';
+    if (directoryVerification) directoryVerification.value = '';
+    filterDirectory();
+    directorySearch?.focus();
+  });
+</script>

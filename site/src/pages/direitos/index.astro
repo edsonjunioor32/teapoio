@@ -1,0 +1,99 @@
+---
+import Header from '../../components/Header.astro';
+import PageHero from '../../components/PageHero.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const guides = [
+  {
+    number: '01',
+    title: 'CIPTEA e Passe Livre',
+    text: 'A FUNAD informa o caminho online, a documentação e as etapas de acompanhamento. Os requisitos podem mudar; use sempre a página oficial antes de enviar documentos ou sair de casa.',
+  },
+  {
+    number: '02',
+    title: 'Escola e inclusão',
+    text: 'Registre pedidos e reuniões por escrito, guarde protocolos e busque orientação na rede de educação ou de defesa de direitos quando uma situação não for resolvida.',
+  },
+  {
+    number: '03',
+    title: 'BPC e assistência social',
+    text: 'O BPC é solicitado pelos canais do INSS e depende de critérios próprios. O CadÚnico e os documentos da família devem estar de acordo com a orientação oficial vigente.',
+  },
+];
+
+const preparation = [
+  'Documento da criança e do responsável, quando solicitado.',
+  'CPF e comprovante de residência, conforme o serviço.',
+  'Laudo ou relatório profissional, somente quando a página oficial exigir.',
+  'Encaminhamento, protocolo e comprovantes de atendimento.',
+  'Anotações das dúvidas e o nome do canal que orientou você.',
+];
+---
+
+<BaseLayout title="Direitos e documentos | TEAPOIO" description="Guias simples para organizar documentos, benefícios e caminhos de inclusão para famílias de pessoas com TEA.">
+  <Header />
+  <main id="conteudo-principal" tabindex="-1">
+    <PageHero eyebrow="DIREITOS E DOCUMENTOS" current="Direitos e documentos" title="Chegar preparado também é uma forma de cuidado." intro="Reunimos os caminhos que mais aparecem nas dúvidas das famílias, com links para as fontes responsáveis e alertas para confirmar as regras atuais." />
+
+    <section class="page-section section-shell" aria-labelledby="rights-title">
+      <div class="section-heading-row">
+        <div>
+          <p class="eyebrow">GUIAS PRIORITÁRIOS</p>
+          <h2 id="rights-title">Informação prática para o próximo atendimento.</h2>
+        </div>
+        <p class="section-lede">Uma conversa de comunidade pode apontar um caminho, mas apenas a instituição responsável confirma documentos, prazos, elegibilidade e disponibilidade.</p>
+      </div>
+      <div class="info-grid">
+        {guides.map((guide, index) => (
+          <article class:list={['info-card', index === 1 && 'info-card--coral']}>
+            <span class="info-card__number">{guide.number}</span>
+            <h3>{guide.title}</h3>
+            <p>{guide.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="rights-checklist section-shell" aria-labelledby="checklist-title">
+      <div>
+        <p class="eyebrow">CHECKLIST DE SAÍDA</p>
+        <h2 id="checklist-title">Antes de ir, confira o que pode ajudar.</h2>
+      </div>
+      <div>
+        <ul class="check-list">
+          {preparation.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="rights-checklist__note">Esta é uma lista de organização, não uma lista universal de exigências. Cada serviço tem regras próprias.</p>
+      </div>
+    </section>
+
+    <section class="source-panel section-shell" aria-labelledby="rights-sources-title">
+      <div>
+        <p class="eyebrow">FONTES RESPONSÁVEIS</p>
+        <h2 id="rights-sources-title">Comece pelos canais oficiais.</h2>
+      </div>
+      <div class="source-links">
+        <a class="source-link" href="https://funad.pb.gov.br/passe-livre" target="_blank" rel="noopener noreferrer">FUNAD — CIPTEA e Passe Livre <span aria-hidden="true">↗</span></a>
+        <a class="source-link" href="https://www.gov.br/pt-br/servicos/solicitar-beneficio-assistencial-a-pessoa-com-deficiencia" target="_blank" rel="noopener noreferrer">Gov.br — solicitar BPC/LOAS <span aria-hidden="true">↗</span></a>
+        <a class="source-link" href="https://linhasdecuidado.saude.gov.br/portal/transtorno-do-espectro-autista/" target="_blank" rel="noopener noreferrer">Ministério da Saúde — linha de cuidado para TEA <span aria-hidden="true">↗</span></a>
+        <a class="source-link" href="https://planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12764.htm" target="_blank" rel="noopener noreferrer">Planalto — Lei nº 12.764/2012 <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="verification-panel section-shell" aria-labelledby="rights-alert-title">
+      <div>
+        <p class="eyebrow">ATENÇÃO</p>
+        <h2 id="rights-alert-title">Regra, prazo e endereço podem mudar.</h2>
+      </div>
+      <p>O TEAPOIO não solicita CPF, laudo, receita ou dados sensíveis. Use o site para entender o caminho e acesse o canal oficial para concluir o atendimento com segurança.</p>
+    </section>
+
+    <section class="page-actions section-shell" aria-label="Próximos caminhos">
+      <a class="button button--primary" href={`${base}/apoio/`}>Encontrar apoio perto <span aria-hidden="true">→</span></a>
+      <a class="button button--quiet" href={`${base}/entenda-o-tea/`}>Entender o TEA <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>
