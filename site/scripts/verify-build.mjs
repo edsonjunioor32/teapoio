@@ -11,6 +11,8 @@ const required = [
   'Localidade',
   'Atualizações recentes',
   'Dúvidas frequentes',
+  'Navegar pelo site',
+  'Encontrar apoio',
 ];
 
 for (const fragment of required) {

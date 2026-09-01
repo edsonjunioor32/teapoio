@@ -3,9 +3,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const links = [
   { label: 'Comece aqui', path: `${base}/comece-aqui/` },
-  { label: 'Apoio perto', path: `${base}/apoio/` },
+  { label: 'Encontrar apoio', path: `${base}/apoio/` },
   { label: 'Direitos', path: `${base}/direitos/` },
   { label: 'Notícias', path: `${base}/noticias/` },
+  { label: 'Dúvidas frequentes', path: `${base}/faq/` },
 ];
 const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
 ---
@@ -16,22 +17,25 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
       <img class="brand__logo--full brand__logo--reference" src={`${base}/teapoio-reference-logo.jpg`} alt="TEAPOIO" width="2494" height="1696" />
     </a>
 
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menu principal">
-      <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span>Menu</span>
-    </button>
+    <details class="mobile-nav">
+      <summary class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir opções do site">
+        <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="menu-toggle__label">Navegar pelo site</span>
+      </summary>
 
-    <nav id="site-menu" aria-label="Navegação principal">
-      {links.map((link) => (
-        <a href={link.path} aria-current={normalizePath(link.path) === currentPath ? 'page' : undefined}>{link.label}</a>
-      ))}
-    </nav>
+      <nav id="site-menu" aria-label="Navegação principal">
+        {links.map((link) => (
+          <a href={link.path} aria-current={normalizePath(link.path) === currentPath ? 'page' : undefined}>{link.label}</a>
+        ))}
+      </nav>
+    </details>
   </div>
 </header>
 
 <script>
   const header = document.querySelector<HTMLElement>('.site-header');
-  const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menuDisclosure = document.querySelector<HTMLDetailsElement>('.mobile-nav');
+  const menuToggle = document.querySelector<HTMLElement>('.menu-toggle');
   const menu = document.querySelector<HTMLElement>('#site-menu');
 
   const syncHeaderState = () => {
@@ -41,43 +45,40 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
   syncHeaderState();
   window.addEventListener('scroll', syncHeaderState, { passive: true });
 
-  if (menuToggle && menu) {
+  if (menuDisclosure && menuToggle && menu) {
+    const syncMenuState = () => {
+      const isOpen = menuDisclosure.open;
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Fechar opções do site' : 'Abrir opções do site');
+      menu.classList.toggle('is-open', isOpen);
+      document.body.classList.toggle('menu-is-open', isOpen);
+    };
+
     const closeMenu = () => {
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Abrir menu principal');
-      menu.classList.remove('is-open');
-      document.body.classList.remove('menu-is-open');
+      menuDisclosure.open = false;
+      syncMenuState();
     };
 
-    const openMenu = () => {
-      menuToggle.setAttribute('aria-expanded', 'true');
-      menuToggle.setAttribute('aria-label', 'Fechar menu principal');
-      menu.classList.add('is-open');
-      document.body.classList.add('menu-is-open');
-    };
-
-    menuToggle.addEventListener('click', () => {
-      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-      if (isOpen) closeMenu();
-      else openMenu();
-    });
+    menuDisclosure.addEventListener('toggle', syncMenuState);
 
     menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+      if (event.key === 'Escape' && menuDisclosure.open) {
         closeMenu();
         menuToggle.focus();
       }
     });
 
     document.addEventListener('click', (event) => {
-      if (menuToggle.getAttribute('aria-expanded') !== 'true') return;
+      if (!menuDisclosure.open) return;
       if (!(event.target instanceof Element) || !event.target.closest('.site-header')) closeMenu();
     });
 
     window.addEventListener('resize', () => {
       if (window.innerWidth > 760) closeMenu();
     });
+
+    syncMenuState();
   }
 </script>

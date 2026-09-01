@@ -192,6 +192,14 @@ summary:focus-visible {
   background: #fff;
 }
 
+.mobile-nav {
+  display: contents;
+}
+
+.mobile-nav > summary {
+  display: none;
+}
+
 .site-header nav {
   display: flex;
   flex: 1;
@@ -239,6 +247,10 @@ summary:focus-visible {
   background: var(--green);
 }
 
+.site-header nav a:nth-child(5)::after {
+  background: var(--purple);
+}
+
 .site-header nav a:hover,
 .site-header nav a[aria-current="page"] {
   color: var(--blue);
@@ -250,7 +262,6 @@ summary:focus-visible {
 }
 
 .menu-toggle {
-  display: none;
   align-items: center;
   gap: 8px;
   margin-left: auto;
@@ -262,6 +273,14 @@ summary:focus-visible {
   cursor: pointer;
   font-size: 0.78rem;
   font-weight: 800;
+}
+
+.menu-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.menu-toggle::marker {
+  content: "";
 }
 
 .menu-toggle__icon {
@@ -2332,6 +2351,15 @@ body.menu-is-open {
     display: inline-flex;
   }
 
+  .mobile-nav {
+    display: block;
+    margin-left: auto;
+  }
+
+  .mobile-nav > summary {
+    display: inline-flex;
+  }
+
   .site-header nav {
     position: fixed;
     top: 78px;
@@ -2348,7 +2376,8 @@ body.menu-is-open {
     overflow-y: auto;
   }
 
-  .site-header nav.is-open {
+  .mobile-nav nav.is-open,
+  .mobile-nav[open] nav {
     display: flex;
   }
 
