@@ -17,7 +17,7 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
       <img class="brand__logo--full brand__logo--reference" src={`${base}/teapoio-reference-logo.jpg`} alt="TEAPOIO" width="2494" height="1696" />
     </a>
 
-    <details class="mobile-nav">
+    <details class="mobile-nav" open>
       <summary class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir opções que podem lhe ajudar">
         <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i><i></i></span>
         <span class="menu-toggle__label">Veja opções que podem lhe ajudar</span>
@@ -53,7 +53,7 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
       menuToggle.setAttribute('aria-expanded', String(isOpen));
       menuToggle.setAttribute('aria-label', isOpen ? 'Fechar opções que podem lhe ajudar' : 'Abrir opções que podem lhe ajudar');
       menu.classList.toggle('is-open', isOpen);
-      document.body.classList.toggle('menu-is-open', isOpen);
+      document.body.classList.toggle('menu-is-open', isOpen && window.matchMedia('(max-width: 720px)').matches);
     };
 
     const closeMenu = () => {
@@ -73,14 +73,19 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
     });
 
     document.addEventListener('click', (event) => {
-      if (!menuDisclosure.open) return;
+      if (!menuDisclosure.open || !window.matchMedia('(max-width: 720px)').matches) return;
       if (!(event.target instanceof Element) || !event.target.closest('.site-header')) closeMenu();
     });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 760) closeMenu();
+      if (window.matchMedia('(max-width: 720px)').matches) closeMenu();
+      else {
+        menuDisclosure.open = true;
+        syncMenuState();
+      }
     });
 
-    syncMenuState();
+    if (window.matchMedia('(max-width: 720px)').matches) closeMenu();
+    else syncMenuState();
   }
 </script>
