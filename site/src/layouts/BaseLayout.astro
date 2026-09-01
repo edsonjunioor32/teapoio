@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/professional.css';
+import '../styles/supplied-artwork.css';
 
 interface Props {
   title?: string;
@@ -27,7 +28,7 @@ const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href :
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="TEAPOIO" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={`${new URL(`${base}/og.png`, Astro.site ?? Astro.url).href}`} />
+    <meta property="og:image" content={`${new URL(`${base}/teapoio-reference-logo.jpg`, Astro.site ?? Astro.url).href}`} />
     <meta property="og:locale" content="pt_BR" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href={canonicalUrl} />
