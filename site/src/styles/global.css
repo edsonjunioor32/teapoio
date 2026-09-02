@@ -1350,6 +1350,75 @@ body.menu-is-open {
   padding-bottom: 32px;
 }
 
+.info-card__links {
+  display: grid;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid rgba(32, 56, 79, 0.12);
+}
+
+.info-card__links .text-link {
+  margin-top: 0;
+}
+
+.rights-school-note {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+  gap: 20px 56px;
+  align-items: start;
+  margin-bottom: 64px;
+  padding: 34px 38px;
+  border-left: 5px solid var(--green);
+  border-radius: 8px;
+  background: var(--surface-green);
+}
+
+.rights-school-note h2 {
+  margin-top: 8px;
+  color: var(--navy);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+
+.rights-school-note > div:first-child p:last-child {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.rights-school-note__steps {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 22px;
+  color: var(--navy);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.rights-school-note__steps li::marker {
+  color: var(--green);
+  font-weight: 800;
+}
+
+.rights-school-note__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  grid-column: 2;
+}
+
+.rights-school-note__fine-print {
+  grid-column: 1 / -1;
+  margin: 2px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(42, 157, 143, 0.24);
+  color: #2d5d58;
+  font-size: 0.77rem;
+  line-height: 1.6;
+}
+
 .legal-guidance {
   display: grid;
   grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
@@ -2836,6 +2905,19 @@ body.menu-is-open {
     padding-bottom: 70px;
   }
 
+  .rights-school-note {
+    display: block;
+    padding: 30px;
+  }
+
+  .rights-school-note__steps {
+    margin-top: 26px;
+  }
+
+  .rights-school-note__actions {
+    margin-top: 26px;
+  }
+
   .section-heading-row .section-lede,
   .directory-section__heading .section-lede {
     margin-top: 18px;
@@ -3047,6 +3129,18 @@ body.menu-is-open {
     padding: 24px 20px;
   }
 
+  .rights-school-note {
+    padding: 24px 20px;
+  }
+
+  .rights-school-note__actions {
+    display: grid;
+  }
+
+  .rights-school-note__actions .button {
+    width: 100%;
+  }
+
   .search-field,
   .select-field,
   .filter-clear {
@@ -3083,4 +3177,3 @@ body.menu-is-open {
     transform: none;
   }
 }
-

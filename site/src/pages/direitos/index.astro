@@ -130,6 +130,12 @@ const stateRights = [
     href: 'https://www.al.pb.leg.br/wp-content/uploads/2018/03/DPL-22.03.2018.pdf',
     action: 'Consultar a Lei nº 11.090/2018',
   },
+  {
+    title: 'Acompanhante terapêutico ou atendente pessoal na escola',
+    basis: 'Lei Estadual nº 14.298/2026 assegura o ingresso e a permanência de AT e/ou AP nas instituições públicas e privadas da Paraíba. O texto prevê solicitação formal, análise da autoridade competente, laudo que comprove a necessidade, plano de intervenção e termo de compromisso. A lei trata esse AT/AP como uma figura própria, indicada pelo responsável e custeada pela família; ela não substitui o profissional de apoio escolar previsto na legislação federal.',
+    href: 'https://www.al.pb.leg.br/64097/agora-e-lei-paraiba-garante-acompanhante-terapeutico-a-estudantes-com-tea-nas-escolas.html',
+    action: 'Ler a Lei Estadual nº 14.298/2026',
+  },
 ];
 
 const joaoPessoaRights = [
@@ -162,6 +168,50 @@ const joaoPessoaRights = [
     basis: 'Lei Municipal nº 15.676/2025 trata do uso de utensílios pessoais em estabelecimentos comerciais de acesso público e privado em João Pessoa. Confirme a forma de comprovação e a aplicação diretamente no texto oficial.',
     href: 'https://sapl.joaopessoa.pb.leg.br/norma/22429?display=',
     action: 'Consultar a Lei nº 15.676/2025',
+  },
+];
+
+const federalEducationRights = [
+  {
+    title: 'Educação inclusiva, acesso e permanência',
+    text: 'A pessoa com TEA tem direito a estudar em um sistema inclusivo, com condições de acesso, participação, aprendizagem e adaptações razoáveis de acordo com suas necessidades. A escola deve trabalhar para remover barreiras, não apenas matricular.',
+    sources: [
+      { label: 'Consultar a Lei Brasileira de Inclusão', href: 'https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm' },
+      { label: 'Consultar a Lei nº 12.764/2012', href: 'https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12764.htm' },
+    ],
+  },
+  {
+    title: 'Acompanhante especializado quando houver necessidade comprovada',
+    text: 'A Lei Berenice Piana garante acompanhante especializado ao estudante autista incluído na classe comum quando a necessidade for comprovada. A regulamentação cita apoio para comunicação, interação social, locomoção, alimentação e cuidados pessoais.',
+    sources: [
+      { label: 'Ler a Lei nº 12.764/2012', href: 'https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12764.htm' },
+      { label: 'Ler o Decreto nº 8.368/2014', href: 'https://planalto.gov.br/ccivil_03/_ato2011-2014/2014/decreto/d8368.htm' },
+    ],
+  },
+  {
+    title: 'Profissional de apoio escolar',
+    text: 'A escola deve organizar profissional de apoio escolar quando o estudo de caso indicar essa necessidade. Esse profissional apoia acesso e participação, locomoção, higiene, alimentação, comunicação, interação social e o uso de recursos de acessibilidade; ele não substitui o professor nem realiza procedimentos próprios de profissões regulamentadas.',
+    sources: [
+      { label: 'Ver o art. 28 da Lei Brasileira de Inclusão', href: 'https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm' },
+      { label: 'Ver o Decreto nº 12.686/2025', href: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12686.htm' },
+      { label: 'Ver a atualização do Decreto nº 12.773/2025', href: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12773.htm' },
+    ],
+  },
+  {
+    title: 'A escola particular não pode cobrar valor adicional',
+    text: 'Na rede privada, a escola deve cumprir as medidas de acessibilidade, adaptações razoáveis e oferta de profissional de apoio escolar sem cobrar taxa extra na matrícula, mensalidade ou anuidade por esse cumprimento. Também não pode recusar, cancelar ou dificultar a matrícula por causa da deficiência.',
+    sources: [
+      { label: 'Consultar a Lei Brasileira de Inclusão', href: 'https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm' },
+      { label: 'Consultar a Lei nº 7.853/1989', href: 'https://planalto.gov.br/ccivil_03/leis/l7853compilado.htm' },
+    ],
+  },
+  {
+    title: 'AEE, estudo de caso, PAEE e PEI',
+    text: 'O Atendimento Educacional Especializado (AEE) complementa a escolarização e não substitui a matrícula na classe comum. O estudo de caso ajuda a identificar barreiras e apoios; o PAEE e o PEI registram estratégias e recursos para orientar a sala de aula, o AEE e a participação da família.',
+    sources: [
+      { label: 'Ver a Política Nacional de Educação Especial Inclusiva', href: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12686.htm' },
+      { label: 'Ver as regras atualizadas de PAEE e PEI', href: 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12773.htm' },
+    ],
   },
 ];
 
@@ -263,6 +313,48 @@ const preparation = [
           ))}
         </ul>
       </div>
+    </section>
+
+    <section class="page-section section-shell" id="direitos-federais-escola" aria-labelledby="federal-education-rights-title">
+      <div class="section-heading-row">
+        <div>
+          <p class="eyebrow">DIREITOS FEDERAIS</p>
+          <h2 id="federal-education-rights-title">No Brasil, o autista tem direito a:</h2>
+        </div>
+        <p class="section-lede">A legislação garante inclusão e apoio conforme as necessidades do estudante. Leia o resumo e abra a fonte oficial para conferir o texto completo.</p>
+      </div>
+      <div class="info-grid">
+        {federalEducationRights.map((right, index) => (
+          <article class:list={['info-card', index === 1 && 'info-card--coral']}>
+            <span class="info-card__number">DIREITO {String(index + 1).padStart(2, '0')}</span>
+            <h3>{right.title}</h3>
+            <p>{right.text}</p>
+            <div class="info-card__links" aria-label={`Fontes do direito: ${right.title}`}>
+              {right.sources.map((source) => (
+                <a class="text-link" href={source.href} target="_blank" rel="noopener noreferrer">{source.label} <span aria-hidden="true">↗</span></a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="rights-school-note section-shell" aria-labelledby="school-rights-next-title">
+      <div>
+        <p class="eyebrow">COMO AGIR</p>
+        <h2 id="school-rights-next-title">Como pedir esse apoio na escola.</h2>
+        <p>O apoio não deve ser definido apenas pelo nome do diagnóstico. O mais importante é descrever as barreiras que o estudante enfrenta e os apoios necessários para participar e aprender.</p>
+      </div>
+      <ol class="rights-school-note__steps">
+        <li>Faça o pedido por escrito à direção e descreva as situações em que a criança precisa de apoio.</li>
+        <li>Peça um estudo de caso e a elaboração ou atualização do PAEE/PEI com participação da família.</li>
+        <li>Solicite uma resposta por escrito. Se houver recusa de matrícula, cobrança adicional ou falta de apoio, procure orientação jurídica pública.</li>
+      </ol>
+      <div class="rights-school-note__actions">
+        <a class="button button--primary" href="#orientacao-juridica">Buscar orientação jurídica <span aria-hidden="true">→</span></a>
+        <a class="button button--quiet" href="#checklist-title">Ver checklist de documentos <span aria-hidden="true">↓</span></a>
+      </div>
+      <p class="rights-school-note__fine-print"><strong>Importante:</strong> profissional de apoio escolar e acompanhante especializado são apoios educacionais. O AT clínico, como aplicador de uma terapia, é uma atuação diferente. Na Paraíba, a Lei Estadual nº 14.298/2026 criou regras próprias para ingresso e permanência de AT e/ou atendente pessoal; antes de contratar alguém, peça à escola e ao profissional que expliquem por escrito qual função será exercida e quem é responsável por cada custo.</p>
     </section>
 
     <section class="page-section section-shell" aria-labelledby="national-rights-title">
@@ -428,4 +520,3 @@ const preparation = [
   </main>
   <SiteFooter />
 </BaseLayout>
-

@@ -30,6 +30,11 @@ describe('site search index', () => {
     expect(rightsItem?.keywords).toContain('meia-entrada');
     expect(rightsItem?.keywords).toContain('interestadual');
     expect(rightsItem?.keywords).toContain('cia');
+    expect(rightsItem?.keywords).toContain('acompanhante especializado');
+    expect(rightsItem?.keywords).toContain('profissional de apoio escolar');
+    expect(rightsItem?.keywords).toContain('paee');
+    expect(rightsItem?.keywords).toContain('pei');
+    expect(rightsItem?.href).toBe('/direitos/#direitos-federais-escola');
   });
 
   it('makes medication guidance discoverable from the home search', () => {
@@ -139,4 +144,3 @@ describe('site search index', () => {
     expect(directoryEntries.some((entry) => entry.name.includes('ABC Autismo 123'))).toBe(false);
   });
 });
-

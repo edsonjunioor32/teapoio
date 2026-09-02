@@ -54,6 +54,13 @@ for (const fragment of [
   'Conhecer o SERI',
   'É direito do autista na Paraíba ter acesso a:',
   'É direito do autista em João Pessoa ter acesso a:',
+  'No Brasil, o autista tem direito a:',
+  'Acompanhante especializado quando houver necessidade comprovada',
+  'Profissional de apoio escolar',
+  'A escola particular não pode cobrar valor adicional',
+  'AEE, estudo de caso, PAEE e PEI',
+  'Como pedir esse apoio na escola.',
+  'Lei Estadual nº 14.298/2026',
   'comissaopcd.oabpb',
   'defparaiba',
   'ANS — Agência Nacional de Saúde Suplementar',
@@ -180,4 +187,3 @@ if (!sitemap.includes('/faq/')) throw new Error('Sitemap is missing the FAQ rout
 if (sitemap.includes('/busca/')) throw new Error('Sitemap still contains the removed search route.');
 if (!robots.includes('Sitemap:')) throw new Error('Robots file is missing its sitemap reference.');
 if (!manifest.includes('pwa-512.jpg')) throw new Error('Web manifest is missing the large app icon.');
-
