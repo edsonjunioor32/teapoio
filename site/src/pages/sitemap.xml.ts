@@ -9,6 +9,7 @@ const routes = [
   '/direitos/',
   '/noticias/',
   '/faq/',
+  '/sugestoes/',
 ];
 
 export const GET: APIRoute = ({ site }) => {
@@ -21,3 +22,4 @@ export const GET: APIRoute = ({ site }) => {
     headers: { 'Content-Type': 'application/xml; charset=utf-8' },
   });
 };
+

@@ -1,0 +1,63 @@
+---
+import Header from '../../components/Header.astro';
+import PageHero from '../../components/PageHero.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title="Sugestões | TEAPOIO" description="Envie ideias para ajudar o TEAPOIO a ficar cada vez mais claro, útil e acolhedor para as famílias.">
+  <Header />
+  <main id="conteudo-principal" tabindex="-1">
+    <PageHero eyebrow="CONSTRUÍDO COM VOCÊ" current="Sugestões" title="Sua sugestão pode fazer diferença." intro="Estamos aceitando sugestões para tornar o TEAPOIO ainda melhor, mais claro e mais útil para as famílias." />
+
+    <section class="page-section section-shell" aria-labelledby="suggestions-title">
+      <div class="section-heading-row">
+        <div>
+          <p class="eyebrow">AJUDE A MELHORAR</p>
+          <h2 id="suggestions-title">O que você gostaria de encontrar aqui?</h2>
+        </div>
+        <p class="section-lede">Quem usa o site todos os dias percebe necessidades que nem sempre aparecem no planejamento. Sua experiência ajuda a orientar as próximas melhorias.</p>
+      </div>
+
+      <div class="info-grid info-grid--two">
+        <article class="info-card">
+          <span class="info-card__number">01</span>
+          <h3>Uma informação que está faltando</h3>
+          <p>Indique um serviço, direito, profissional, endereço ou orientação que poderia ajudar outras famílias.</p>
+        </article>
+        <article class="info-card">
+          <span class="info-card__number">02</span>
+          <h3>Uma dificuldade para navegar</h3>
+          <p>Conte se algum texto, botão ou caminho ficou difícil de entender. A clareza do site também depende do seu olhar.</p>
+        </article>
+        <article class="info-card">
+          <span class="info-card__number">03</span>
+          <h3>Uma ideia para o próximo passo</h3>
+          <p>Sugira novas categorias, recursos ou formas de organizar o conteúdo para facilitar a busca no celular.</p>
+        </article>
+        <article class="info-card">
+          <span class="info-card__number">04</span>
+          <h3>Um link para revisar</h3>
+          <p>Se encontrar um contato desatualizado ou uma página que não abre, avise para que possamos verificar.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="help-band section-shell" aria-labelledby="suggestions-note-title">
+      <div>
+        <p class="eyebrow">OBRIGADO POR PARTICIPAR</p>
+        <h2 id="suggestions-note-title">Cada sugestão ajuda o TEAPOIO a chegar mais perto de quem precisa.</h2>
+        <p>O objetivo é construir, de forma contínua, uma porta de entrada acolhedora e confiável para a Grande João Pessoa.</p>
+      </div>
+    </section>
+
+    <section class="page-actions section-shell" aria-label="Próximos caminhos">
+      <a class="button button--primary" href={`${base}/`}>Voltar ao início <span aria-hidden="true">→</span></a>
+      <a class="button button--quiet" href={`${base}/apoio/`}>Encontrar apoio <span aria-hidden="true">⌖</span></a>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>
+

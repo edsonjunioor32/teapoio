@@ -36,6 +36,7 @@ const routes = [
   'direitos/index.html',
   'noticias/index.html',
   'faq/index.html',
+  'sugestoes/index.html',
   '404.html',
 ];
 
@@ -140,6 +141,16 @@ for (const fragment of [
   'Abrir no Google Maps',
 ]) {
   if (!leisurePage.includes(fragment)) throw new Error(`Missing leisure page fragment: ${fragment}`);
+}
+
+const suggestionsPage = await readFile(new URL('../dist/sugestoes/index.html', import.meta.url), 'utf8');
+for (const fragment of [
+  'Sua sugestão pode fazer diferença.',
+  'Estamos aceitando sugestões',
+  'Uma informação que está faltando',
+  'Uma dificuldade para navegar',
+]) {
+  if (!suggestionsPage.includes(fragment)) throw new Error(`Missing suggestions page fragment: ${fragment}`);
 }
 
 const sitemap = await readFile(new URL('../dist/sitemap.xml', import.meta.url), 'utf8');
