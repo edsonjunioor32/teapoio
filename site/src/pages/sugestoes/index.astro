@@ -45,6 +45,42 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       </div>
     </section>
 
+    <section class="suggestion-form-section section-shell" aria-labelledby="suggestion-form-title">
+      <div class="suggestion-form-card">
+        <div class="suggestion-form-card__intro">
+          <p class="eyebrow">ESCREVA SUA SUGESTÃO</p>
+          <h2 id="suggestion-form-title">O que podemos melhorar?</h2>
+          <p>Use este espaço para registrar sua ideia com suas próprias palavras. Quanto mais específico for o relato, mais fácil será entender o próximo passo.</p>
+        </div>
+
+        <form class="suggestion-form" data-suggestion-form>
+          <div class="suggestion-form__field">
+            <label for="suggestion-category">Sobre o que é a sua sugestão? <span>(opcional)</span></label>
+            <select id="suggestion-category" name="category">
+              <option value="">Escolha uma categoria</option>
+              <option value="Informação">Informação ou conteúdo</option>
+              <option value="Apoio">Encontrar apoio</option>
+              <option value="Direitos">Direitos e benefícios</option>
+              <option value="Navegação">Navegação pelo site</option>
+              <option value="Outro">Outro assunto</option>
+            </select>
+          </div>
+
+          <div class="suggestion-form__field">
+            <label for="suggestion-text">Sua sugestão <span aria-hidden="true">*</span></label>
+            <textarea id="suggestion-text" name="suggestion" rows="7" required placeholder="Escreva aqui o que está faltando, o que poderia ficar mais claro ou uma ideia para o TEAPOIO..."></textarea>
+          </div>
+
+          <div class="suggestion-form__actions">
+            <button class="button button--primary" type="submit">Copiar sugestão <span aria-hidden="true">↗</span></button>
+            <button class="button button--quiet" type="reset">Limpar</button>
+          </div>
+          <p class="suggestion-form__note">O TEAPOIO é um site estático hospedado no GitHub Pages. O botão copia sua mensagem para que ela possa ser encaminhada pelo canal de contato do projeto.</p>
+          <p class="suggestion-form__status" data-suggestion-status role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+
     <section class="help-band section-shell" aria-labelledby="suggestions-note-title">
       <div>
         <p class="eyebrow">OBRIGADO POR PARTICIPAR</p>
@@ -60,4 +96,37 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   </main>
   <SiteFooter />
 </BaseLayout>
+
+<script>
+  const suggestionForm = document.querySelector<HTMLFormElement>('[data-suggestion-form]');
+  const suggestionStatus = document.querySelector<HTMLElement>('[data-suggestion-status]');
+  const suggestionText = document.querySelector<HTMLTextAreaElement>('#suggestion-text');
+  const suggestionCategory = document.querySelector<HTMLSelectElement>('#suggestion-category');
+
+  suggestionForm?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!suggestionText?.value.trim()) return;
+
+    const category = suggestionCategory?.value ? `Categoria: ${suggestionCategory.value}\n\n` : '';
+    const message = `${category}${suggestionText.value.trim()}`;
+
+    try {
+      await navigator.clipboard.writeText(message);
+      if (suggestionStatus) {
+        suggestionStatus.textContent = 'Sugestão copiada. Agora você pode encaminhá-la pelo canal de contato do projeto.';
+        suggestionStatus.hidden = false;
+      }
+    } catch {
+      suggestionText.select();
+      if (suggestionStatus) {
+        suggestionStatus.textContent = 'Selecione o texto acima e use a opção copiar do seu dispositivo para encaminhar a sugestão.';
+        suggestionStatus.hidden = false;
+      }
+    }
+  });
+
+  suggestionForm?.addEventListener('reset', () => {
+    if (suggestionStatus) suggestionStatus.hidden = true;
+  });
+</script>
 

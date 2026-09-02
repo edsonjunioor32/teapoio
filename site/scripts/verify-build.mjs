@@ -149,6 +149,8 @@ for (const fragment of [
   'Estamos aceitando sugestões',
   'Uma informação que está faltando',
   'Uma dificuldade para navegar',
+  'name="suggestion"',
+  'Copiar sugestão',
 ]) {
   if (!suggestionsPage.includes(fragment)) throw new Error(`Missing suggestions page fragment: ${fragment}`);
 }

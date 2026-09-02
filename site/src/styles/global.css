@@ -1020,6 +1020,105 @@ body.menu-is-open {
   padding-bottom: 96px;
 }
 
+.suggestion-form-section {
+  padding-bottom: 96px;
+}
+
+.suggestion-form-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(28px, 5vw, 72px);
+  margin-top: 42px;
+  padding: clamp(24px, 4vw, 42px);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--blue-bright);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow-small);
+}
+
+.suggestion-form-card__intro > p:last-child {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.suggestion-form {
+  display: grid;
+  gap: 18px;
+}
+
+.suggestion-form__field {
+  display: grid;
+  gap: 8px;
+}
+
+.suggestion-form__field label {
+  color: var(--navy);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.suggestion-form__field label span {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.suggestion-form__field select,
+.suggestion-form__field textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.92rem;
+}
+
+.suggestion-form__field select {
+  min-height: 48px;
+  padding: 0 14px;
+}
+
+.suggestion-form__field textarea {
+  min-height: 172px;
+  padding: 14px;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+.suggestion-form__field textarea::placeholder {
+  color: #81909c;
+}
+
+.suggestion-form__field select:focus,
+.suggestion-form__field textarea:focus {
+  border-color: var(--blue-bright);
+  outline: 3px solid rgba(0, 102, 196, 0.16);
+  outline-offset: 2px;
+}
+
+.suggestion-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.suggestion-form__note,
+.suggestion-form__status {
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.55;
+}
+
+.suggestion-form__status {
+  padding: 12px 14px;
+  border-left: 3px solid var(--green);
+  background: var(--surface-green);
+  color: #1c665d;
+  font-weight: 700;
+}
+
 /* Primeiros passos e conteúdo informativo */
 .journey-list,
 .info-grid {
@@ -2742,6 +2841,7 @@ body.menu-is-open {
 
   .home-paths,
   .page-section,
+  .suggestion-form-section,
   .medication-section,
   .leisure-section,
   .faq-page,
@@ -2851,6 +2951,14 @@ body.menu-is-open {
     align-items: flex-start;
     flex-direction: column;
     gap: 6px;
+  }
+
+  .suggestion-form-card {
+    display: block;
+  }
+
+  .suggestion-form {
+    margin-top: 32px;
   }
 
   .news__tools {
