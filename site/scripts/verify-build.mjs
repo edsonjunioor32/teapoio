@@ -12,6 +12,8 @@ const required = [
   'Atualizações recentes',
   'Dúvidas frequentes',
   'Veja opções que podem lhe ajudar',
+  'class="menu-toggle" type="button"',
+  'aria-controls="site-menu"',
   'Encontrar apoio',
   'Lazer',
 ];
@@ -20,6 +22,10 @@ for (const fragment of required) {
   if (!html.includes(fragment)) {
     throw new Error(`Missing landing fragment: ${fragment}`);
   }
+}
+
+if (html.includes('<details class="mobile-nav"')) {
+  throw new Error('Mobile navigation must use the explicit menu button controller.');
 }
 
 const routes = [

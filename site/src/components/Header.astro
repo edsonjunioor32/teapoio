@@ -18,12 +18,12 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
       <img class="brand__logo--full brand__logo--reference" src={`${base}/teapoio-reference-logo.jpg`} alt="TEAPOIO" width="2494" height="1696" />
     </a>
 
-    <details class="mobile-nav" open>
-      <summary class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir opções que podem lhe ajudar">
+    <div class="mobile-nav">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir opções que podem lhe ajudar">
         <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i><i></i></span>
         <span class="menu-toggle__label">Veja opções que podem lhe ajudar</span>
         <span class="menu-toggle__chevron" aria-hidden="true">⌄</span>
-      </summary>
+      </button>
 
       <nav id="site-menu" aria-label="Navegação principal">
         <p class="mobile-nav__title">Escolha uma opção:</p>
@@ -31,15 +31,16 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
           <a href={link.path} aria-current={normalizePath(link.path) === currentPath ? 'page' : undefined}>{link.label}</a>
         ))}
       </nav>
-    </details>
+    </div>
   </div>
 </header>
 
 <script>
   const header = document.querySelector<HTMLElement>('.site-header');
-  const menuDisclosure = document.querySelector<HTMLDetailsElement>('.mobile-nav');
-  const menuToggle = document.querySelector<HTMLElement>('.menu-toggle');
+  const menuDisclosure = document.querySelector<HTMLElement>('.mobile-nav');
+  const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const menu = document.querySelector<HTMLElement>('#site-menu');
+  const mobileQuery = window.matchMedia('(max-width: 720px)');
 
   const syncHeaderState = () => {
     header?.classList.toggle('is-scrolled', window.scrollY > 12);
@@ -49,44 +50,41 @@ const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';
   window.addEventListener('scroll', syncHeaderState, { passive: true });
 
   if (menuDisclosure && menuToggle && menu) {
-    const syncMenuState = () => {
-      const isOpen = menuDisclosure.open;
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-      menuToggle.setAttribute('aria-label', isOpen ? 'Fechar opções que podem lhe ajudar' : 'Abrir opções que podem lhe ajudar');
-      menu.classList.toggle('is-open', isOpen);
-      document.body.classList.toggle('menu-is-open', isOpen && window.matchMedia('(max-width: 720px)').matches);
+    const syncMenuState = (isOpen = menuDisclosure.classList.contains('is-open')) => {
+      const isMobile = mobileQuery.matches;
+      const shouldBeOpen = isMobile && isOpen;
+      menuDisclosure.classList.toggle('is-open', shouldBeOpen);
+      menuToggle.setAttribute('aria-expanded', String(shouldBeOpen));
+      menuToggle.setAttribute('aria-label', shouldBeOpen ? 'Fechar opções que podem lhe ajudar' : 'Abrir opções que podem lhe ajudar');
+      menu.setAttribute('aria-hidden', String(isMobile && !shouldBeOpen));
+      document.body.classList.toggle('menu-is-open', shouldBeOpen);
     };
 
     const closeMenu = () => {
-      menuDisclosure.open = false;
-      syncMenuState();
+      syncMenuState(false);
     };
 
-    menuDisclosure.addEventListener('toggle', syncMenuState);
+    menuToggle.addEventListener('click', () => {
+      syncMenuState(!menuDisclosure.classList.contains('is-open'));
+    });
 
     menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && menuDisclosure.open) {
+      if (event.key === 'Escape' && menuDisclosure.classList.contains('is-open')) {
         closeMenu();
         menuToggle.focus();
       }
     });
 
     document.addEventListener('click', (event) => {
-      if (!menuDisclosure.open || !window.matchMedia('(max-width: 720px)').matches) return;
+      if (!menuDisclosure.classList.contains('is-open') || !mobileQuery.matches) return;
       if (!(event.target instanceof Element) || !event.target.closest('.site-header')) closeMenu();
     });
 
-    window.addEventListener('resize', () => {
-      if (window.matchMedia('(max-width: 720px)').matches) closeMenu();
-      else {
-        menuDisclosure.open = true;
-        syncMenuState();
-      }
-    });
+    window.addEventListener('resize', () => syncMenuState(false));
 
-    if (window.matchMedia('(max-width: 720px)').matches) closeMenu();
-    else syncMenuState();
+    syncMenuState(false);
   }
 </script>
+
