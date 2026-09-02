@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-02T13:48:39.989Z",
+  "updatedAt": "2026-09-02T13:55:22.200Z",
   "items": [
     {
       "id": "Nacional-autismo-brasil-lan-a-aplicativo-gratuito-para-ajudar-na-comunica-o-de-",
@@ -18,15 +18,6 @@
       "source": "CNN Brasil",
       "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxONXE1RzZ4MWc0WXFDTWhtYzBQN0l2VlR5LXFUNGwzanVJdWllZjg5c2dpOWVmRDBLeUM1NGdocG5FYVZ1ZHJNNHZVWm1ydGVxLWFWM05NMzdYQkxDak1RMFpkbFpVTndzOTJmZ093OWl0ZS16RW5semZaVFhiY3BPdmpUaXVERHpGbDZfRUYwSU85Q3dHZFQ0?oc=5",
       "publishedAt": "2026-08-29T23:00:26.000Z"
-    },
-    {
-      "id": "Nacional-pesquisa-aponta-demora-de-anos-no-diagn-stico-de-autismo-no-brasil",
-      "scope": "Nacional",
-      "title": "Pesquisa aponta demora de anos no diagnóstico de autismo no Brasil",
-      "summary": "Pesquisa aponta demora de anos no diagnóstico de autismo no Brasil opovo.com.br",
-      "source": "opovo.com.br",
-      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNRHNKRHlReVd0Y29sdDZMNXR3d3Jqa2JEVFN1bXY2RHA5cUVDU3VVb25mLVNzS09HT3FZcWNQcU51QUp0SEMtYjBxeGR1QmRxQnBHQW9wZ1ZJTUZMa2I0OW5FVmdVTklIR3g0MndjR2xmSXd1UUhVTFY2UFhJbVAtMGxXY0pIREdicUhVeGM0bkdwZ3QwZllkYjN1RUxpNkV5YWFFTHlDX2lEMFZBLVdpY0tDdmFuSWhjXzhXQTJWYVQ?oc=5",
-      "publishedAt": "2026-08-29T11:00:00.000Z"
     },
     {
       "id": "Nacional-disque-autismo-criado-no-rio-para-proteger-direitos-e-orientar-fam-lia",
@@ -83,6 +74,15 @@
       "publishedAt": "2026-08-26T12:30:00.000Z"
     },
     {
+      "id": "Nacional-autismo-at-69-das-crian-as-t-m-seletividade-alimentar-guia-in-dito-tra",
+      "scope": "Nacional",
+      "title": "Autismo: até 69% das crianças têm seletividade alimentar; guia inédito traz orientações",
+      "summary": "Autismo: até 69% das crianças têm seletividade alimentar; guia inédito traz orientações VEJA",
+      "source": "VEJA",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNTUw1aWpHTnZqZGpia1A1SGZ4N2lHVU93LXNsY1pUMS02MXBuWXByZks2eVYydnlLclU2bGljRjVXUjJNTmFtcTJQbndtTHFKY1REZjNPRVRJVzRuejhSa01sYThGNFNlWVI1ZFdxVnh0OHU3NEhYZDF2N2tKaGZnS0pScGhYejU0Vi1aemhTUHNxMk14SWVDZkQxVnVCVzJVZkFrd3lJaE5Pazd1NXNGeG9Ud3ZxZFI5?oc=5",
+      "publishedAt": "2026-08-24T07:00:00.000Z"
+    },
+    {
       "id": "Nacional-autismo-pode-ser-um-efeito-colateral-da-evolu-o-do-c-rebro-humano-ente",
       "scope": "Nacional",
       "title": "Autismo pode ser um efeito colateral da evolução do cérebro humano; entenda",
@@ -108,24 +108,6 @@
       "source": "joaopessoa.pb.leg.br",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOVXF4V3BVdXRrZTJ3UTFybFdiSjFVWmVXLUdSNUVKTmpHTWhGMjI1dXV6OUFoaDBYX3hYaVZEdUpFSGhZNW9PYURGZTVKNjByNWM0TFdsU04tcTgxZzZvcTFxQlpJMjE1MG9hTlZNTnIxcFFSM2JiUGhTTmdVY0VjbjdYMkFyLVJiU01GUm5ianFBbE8ybE9FaXZqRjlfR2RFZlE?oc=5",
       "publishedAt": "2026-08-20T07:00:00.000Z"
-    },
-    {
-      "id": "Nacional-pioneiro-no-brasil-o-curso-aqua-tea-abordagens-aqu-ticas-no-autismo-al",
-      "scope": "Nacional",
-      "title": "Pioneiro no Brasil, o curso Aqua TEA | Abordagens Aquáticas no Autismo alia ciência e técnica a um olhar humanizado",
-      "summary": "Pioneiro no Brasil, o curso Aqua TEA | Abordagens Aquáticas no Autismo alia ciência e técnica a um olhar humanizado O GLOBO",
-      "source": "O GLOBO",
-      "link": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQZHNJZWtZbkJja3V3MnhYcVJGOWhaNGRpd3doVE9JRjhQRXlNYmJRaUtSZU1mMDNhVVpPX3hMMGttTTF3WHV6TktNc0E0ZUFiRUhTaFFHVmlzd0JLY0JuZURrOFF0YTllaW1BeHAyOWRrd0I4SFRnVUk5T0ZtdmRvbUFoVUtyMEpMVnFSZ3NYVzlsNmJReFJYSU0tTVMwY0U3M3JCYVB0REcySUtnN0hLUnhfVjJkckVJdDJQM1UwOEVjcFQzX0xuSkd0TVNuQlczdHdxVjFMazNJRDdLOHd3T1JPZlIxNTlQLW5JTl9VTzVjVzZaV0hfY3N6LTFqZHhmdENjR080QdIBlgJBVV95cUxPQWVkN2szdERoXzdYcm1VZXRWem9VVVFNNEpkdHc2NGQyV3hfcmpvbGl4MklsdGZsNktqN1B2QkJhVU1GaG5yOVFLQmxNdWNXTzNFX3B0NUZCZVI1aFJidmpac05HZXdfamwwOHdndG5VM0pPc1RyelZCcF9nZmw3UWx0UzJPeDVkZlcza2syUjJnV25idmhENW81ZkFrb3g5M0JNU1l6OGt4Z0JFaG5mVmdkR0Nhc1YzbnFDa0JENE5OSkxYUS1GOTJ6UEs4VWJvNi1PTVFSRnZpa1lvOUgwUVlUUDZWZFl5bTlQVFpCdmxSZW1vemo3Sks0TnpqVEFMSzdrSDVkVTZkRXN0aHhnblJndjlqQQ?oc=5",
-      "publishedAt": "2026-08-19T07:00:00.000Z"
-    },
-    {
-      "id": "Nacional-robbie-williams-revela-diagn-stico-de-autismo-explica-muita-coisa-",
-      "scope": "Nacional",
-      "title": "Robbie Williams revela diagnóstico de autismo: “Explica muita coisa”",
-      "summary": "Robbie Williams revela diagnóstico de autismo: “Explica muita coisa” CNN Brasil",
-      "source": "CNN Brasil",
-      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOU2VJUmJ3amNxQmI3X1dBZ1pJam52ejBLTUM5MVRad1FlOUJDNGppb2I3ZENDQUxJX09LN3BRY280OUVVVHFJdHdILUd3UkFGVUdoZWZQY0tndUdYOTRPZjRkX1FCZFBhY0UzbGVRaUpod0ZEMFJKTGRXSUJJWko3QWVHNEU3MlNid09rTUNURmZINnFSSnk5blg2SVVvUS1WWlRvS3M3UXZLVFpoOWNZbGh3?oc=5",
-      "publishedAt": "2026-08-14T07:00:00.000Z"
     },
     {
       "id": "Nacional-liam-gallagher-responde-diagn-stico-de-autismo-de-robbie-williams-fui-",
@@ -162,6 +144,24 @@
       "source": "Rádio Metrópole",
       "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQUEFCdXh4bEc4clhucWdublRwaU9IVWVmUnBaalEwTDEzM2RwNkFEUVJRcVNPTmNiUHNoRlZsaDE2OFZtWGw3SUdTU25CeGRfd0FnSzdpSFlBeVdBZzFhTFljSnRlVG9oSzl4WGU2RWhtY0ZkcEY5UlRxcGFCaWY1UmhIY1UwWjhNNTFsczUzSzVxTUtVUVpER2VtdEUtWHNwajVIM3pKOGN4eHI3SFJ4OG9jT3laSXNSVklrd2RENVU1WnJDdnpfNzQ4b3kxQQ?oc=5",
       "publishedAt": "2026-08-04T07:00:00.000Z"
+    },
+    {
+      "id": "Nacional-stf-derruba-restri-o-a-benef-cio-para-autistas-n-vel-1-comprarem-carro",
+      "scope": "Nacional",
+      "title": "STF derruba restrição a benefício para autistas nível 1 comprarem carro",
+      "summary": "STF derruba restrição a benefício para autistas nível 1 comprarem carro CNN Brasil",
+      "source": "CNN Brasil",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOcWdZWndnb1hyWUNyTUUxTXRLWG9UamNSei1yeFFTdHFNcUppbS1xT3hKRzl1eFBqc3hxcnJpLUtUMzgwR1RKS0lwcFhqSGNYZnhvalNUQUhmc2hFcVpNMDRtei1tUzJJbERod0RjR3c1c25JOUFWbmtRZHluMklWUWh1NFpCZ2J2S1MweTB2VEtUT1NLZHR4dDRFdTY2T3Etc3F2TmduVmlfay1SSmww?oc=5",
+      "publishedAt": "2026-08-03T07:00:00.000Z"
+    },
+    {
+      "id": "Nacional-stf-derruba-restri-o-da-reforma-tribut-ria-e-amplia-isen-o-para-compra",
+      "scope": "Nacional",
+      "title": "STF derruba restrição da Reforma Tributária e amplia isenção para compra de carro por autistas e pessoas com deficiência mental",
+      "summary": "STF derruba restrição da Reforma Tributária e amplia isenção para compra de carro por autistas e pessoas com deficiência mental O GLOBO",
+      "source": "O GLOBO",
+      "link": "https://news.google.com/rss/articles/CBMilAJBVV95cUxNbWhEVVh6R1JLeTRpTGgwNTNPRFVBdGJ6eHQzN1Jpa0xWdWw2Y1l6ekV2aFFlWTdVb0Z1c1hRdFJmUk9iaDJzQkFJVWRXU215ZW0zMnRFNjR0Nm55UllZN2VFaEJQUnVoR1V5M2xOMVE1aF9KalEySUtLWkFZeHAtNmNyb3cxeGFOLS1hdjdTN0RBZ0lKa0NDYXM5dHVFVEgwWnZRS0wzdmFvSDMxX0tLWGJJZTVnN3VWNVpVSXVneXFpa0JYMGhGR1FvODhTTTllY0w3TFRFVlA5Y0ZVQ1JzaG5SbThiOXlOSzkwUlBhTm5aOVdiSkx1ZWx1cmF0M2RyS0FZSVp2RWxIaG45WEllM3FFUHLSAaMCQVVfeXFMTmlibGZ5ZDlsY2d0RXhVVllxMU9xR0U5MXJlelpIRE81Tjdta1E4Qi1LUzkwRUlCQ3pEVHlfWVF4WkwxTkF6dFZ4cThhREcwYzR0U3NZVnBFYlNRVk56b2RsQlBhMXZucWZmMlgxWlRYTUwyOUxWeW5FTWZ2UE9QV1hDYWNSdF9vU3FWempad2JrNlc0Vkc3TFp3QW14UU9DRExoR3Y3OFluWk9aQlpKblNDNG41V1JuaTNKaFJFVl9nLUR0X3BIRmFfT1VaOHU0VWl5WWlVTzliQmVuZUVFRHR3R0UySVJ0ZFBaLTVhcWZ1SHB2MEh6RHpsTHJ5dHMya1pxZWVFTFIxQmFGSXRzSmJScS1fOVR0aFNJMlJ1S0hjUVpr?oc=5",
+      "publishedAt": "2026-08-03T07:00:00.000Z"
     }
   ],
   "errors": []

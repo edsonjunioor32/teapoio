@@ -4,29 +4,30 @@ interface Props {
 }
 
 const { searchable = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const items = [
   {
     question: 'O TEAPOIO faz diagnóstico?',
     answer: 'Não. O site organiza informação e caminhos de apoio. Diagnóstico e acompanhamento devem ser realizados por profissionais habilitados.',
     links: [
-      { href: '/comece-aqui/', label: 'Ver primeiros passos' },
-      { href: '/apoio/', label: 'Encontrar apoio' },
+      { href: `${base}/comece-aqui/`, label: 'Ver primeiros passos' },
+      { href: `${base}/apoio/`, label: 'Encontrar apoio' },
     ],
   },
   {
     question: 'Como encontro um serviço perto de mim?',
     answer: 'Abra o catálogo de apoio e use a busca por palavra, cidade ou segmento. Cada resultado informa a localização, como acessar e se a fonte é oficial ou um cadastro em confirmação.',
     links: [
-      { href: '/apoio/', label: 'Abrir catálogo de apoio' },
-      { href: '/apoio/#segmento-educacao-inclusao', label: 'Ver escolas inclusivas' },
+      { href: `${base}/apoio/`, label: 'Abrir catálogo de apoio' },
+      { href: `${base}/apoio/#segmento-educacao-inclusao`, label: 'Ver escolas inclusivas' },
     ],
   },
   {
     question: 'Como começo a busca por terapia pelo SUS?',
     answer: 'Comece pela Unidade Básica de Saúde ou pelo canal indicado pelo seu município. Pergunte qual é o fluxo atual, peça orientação sobre encaminhamento e guarde o protocolo. A forma de acesso pode variar conforme o serviço.',
     links: [
-      { href: '/apoio/#funad-triagem-cad', label: 'Ver triagem e CAD da FUNAD' },
+      { href: `${base}/apoio/#funad-triagem-cad`, label: 'Ver triagem e CAD da FUNAD' },
       { href: 'https://funad.pb.gov.br/nucleos', label: 'Abrir orientação da FUNAD' },
     ],
   },
@@ -34,16 +35,16 @@ const items = [
     question: 'O que posso fazer quando a escola não acolhe uma necessidade?',
     answer: 'Registre o pedido por escrito, anote datas e guarde as respostas. Peça uma reunião com a escola e, se a situação não for resolvida, procure a Secretaria de Educação ou um órgão de defesa de direitos para orientação sobre o caso.',
     links: [
-      { href: '/direitos/#rights-title', label: 'Ver guia de direitos' },
-      { href: '/direitos/#orientacao-juridica', label: 'Buscar orientação jurídica' },
-      { href: '/apoio/#segmento-educacao-inclusao', label: 'Ver escolas inclusivas' },
+      { href: `${base}/direitos/#rights-title`, label: 'Ver guia de direitos' },
+      { href: `${base}/direitos/#orientacao-juridica`, label: 'Buscar orientação jurídica' },
+      { href: `${base}/apoio/#segmento-educacao-inclusao`, label: 'Ver escolas inclusivas' },
     ],
   },
   {
     question: 'Onde encontro informações sobre CIPTEA e Passe Livre?',
     answer: 'A FUNAD mantém a página oficial com requerimento, documentos, acompanhamento e orientações para segunda via. Consulte a fonte antes de enviar arquivos ou sair de casa, porque o fluxo pode ser atualizado.',
     links: [
-      { href: '/apoio/#funad-ciptea', label: 'Ver CIPTEA e Passe Livre' },
+      { href: `${base}/apoio/#funad-ciptea`, label: 'Ver CIPTEA e Passe Livre' },
       { href: 'https://funad.pb.gov.br/passe-livre', label: 'Abrir página da FUNAD' },
     ],
   },
@@ -51,7 +52,7 @@ const items = [
     question: 'A FUNAD atende pessoas com TEA?',
     answer: 'Sim. A FUNAD informa que o SERI atende pessoas com deficiência intelectual e pessoas com TEA, com serviços como estimulação precoce, apoio à família, atividades de vida diária e atendimentos psicológico e psicopedagógico. O primeiro passo informado é consultar a triagem e o CAD.',
     links: [
-      { href: '/apoio/#funad-seri-tea', label: 'Ver serviço SERI para TEA' },
+      { href: `${base}/apoio/#funad-seri-tea`, label: 'Ver serviço SERI para TEA' },
       { href: 'https://funad.pb.gov.br/assessorias', label: 'Abrir informações da FUNAD' },
     ],
   },
@@ -59,7 +60,7 @@ const items = [
     question: 'Como começo a solicitação do BPC?',
     answer: 'Consulte o serviço oficial do INSS e confira se o CadÚnico, os CPFs e os documentos da família estão atualizados. O pedido pode ser iniciado pelos canais digitais do Meu INSS; em caso de dificuldade, o telefone 135 orienta o atendimento.',
     links: [
-      { href: '/direitos/#rights-title', label: 'Ver guia de direitos e benefícios' },
+      { href: `${base}/direitos/#rights-title`, label: 'Ver guia de direitos e benefícios' },
       { href: 'https://www.gov.br/pt-br/servicos/solicitar-beneficio-assistencial-a-pessoa-com-deficiencia', label: 'Iniciar pedido no Gov.br' },
     ],
   },
@@ -67,15 +68,15 @@ const items = [
     question: 'Posso mudar a dose ou trocar um medicamento por conta própria?',
     answer: 'Não. Experiências compartilhadas por outras famílias não substituem avaliação profissional. Não altere dose, horário ou medicamento sem falar com o profissional que acompanha a criança; em caso de reação importante, procure atendimento de saúde.',
     links: [
-      { href: '/entenda-o-tea/#medicamentos', label: 'Ler orientações sobre medicamentos' },
+      { href: `${base}/entenda-o-tea/#medicamentos`, label: 'Ler orientações sobre medicamentos' },
     ],
   },
   {
     question: 'O que devo levar para uma conversa com profissionais?',
     answer: 'Anote suas dúvidas, situações observadas no cotidiano e informações importantes sobre comunicação, rotina, escola e saúde da criança.',
     links: [
-      { href: '/comece-aqui/', label: 'Ver roteiro para começar' },
-      { href: '/direitos/#checklist-title', label: 'Ver checklist de documentos' },
+      { href: `${base}/comece-aqui/`, label: 'Ver roteiro para começar' },
+      { href: `${base}/direitos/#checklist-title`, label: 'Ver checklist de documentos' },
     ],
   },
 ];
