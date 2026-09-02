@@ -39,7 +39,7 @@ const pageItems: SearchItem[] = [
     description: 'Caminhos para CIPTEA, Passe Livre, inclusão escolar e BPC.',
     category: 'Direitos',
     href: '/direitos/',
-    keywords: 'direitos documentos ciptea passe livre escola inclusão inclusao bpc loas benefício beneficio inss cras cadunico ipva icms ipi iof veículo veiculo carro isenção isencao cardápio cardapio pictograma meia entrada meia-entrada acompanhante utensílios utensilios símbolo simbolo atendimento prioritário prioritario',
+    keywords: 'direitos documentos ciptea cia carteira estadual identificação identificacao autista lei 11210 passe livre interestadual lei 8899 decreto 3691 escola inclusão inclusao bpc loas benefício beneficio inss cras cadunico ipva icms ipi iof veículo veiculo carro isenção isencao cardápio cardapio pictograma meia entrada meia-entrada acompanhante utensílios utensilios símbolo simbolo atendimento prioritário prioritario',
     topics: ['direitos'],
     regions: ['todos'],
   },
@@ -139,3 +139,4 @@ const leisureItems: SearchItem[] = leisureEntries.map((entry) => ({
 }));
 
 export const searchItems: SearchItem[] = [...pageItems, ...directoryItems, ...leisureItems];
+

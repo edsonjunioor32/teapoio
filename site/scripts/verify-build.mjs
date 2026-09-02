@@ -68,6 +68,10 @@ for (const fragment of [
   'IPI e IOF na compra de veículo',
   'Lei nº 14.383/2026',
   'Lei nº 11.090/2018',
+  'Carteira estadual de identificação do autista',
+  'Lei Estadual nº 11.210/2018',
+  'Passe Livre Federal interestadual',
+  'Lei Federal nº 8.899/1994',
   'Lei nº 15.676/2025',
   'Lei nº 12.933/2013',
   'Isenções de veículo',
@@ -105,6 +109,15 @@ for (const fragment of [
   '+55 83 99329-9823',
   '@fisioeestimulos',
   'Abrir localização no Google Maps',
+  'Rede Fono com Amor',
+  'Pro Kids Clínica',
+  'Alcance Desenvolvimento Comportamental',
+  'Sentidos Clínica',
+  'Dra. Laila Schulz',
+  'Dr. Renato Pacheco',
+  'Dr. Pedro de Lourenzo Resende',
+  'Dra. Marina Cavalcanti',
+  '+55 83 99175-6966',
 ]) {
   if (!supportPage.includes(fragment)) throw new Error(`Missing support page fragment: ${fragment}`);
 }
@@ -130,3 +143,4 @@ if (!sitemap.includes('/faq/')) throw new Error('Sitemap is missing the FAQ rout
 if (sitemap.includes('/busca/')) throw new Error('Sitemap still contains the removed search route.');
 if (!robots.includes('Sitemap:')) throw new Error('Robots file is missing its sitemap reference.');
 if (!manifest.includes('pwa-512.jpg')) throw new Error('Web manifest is missing the large app icon.');
+

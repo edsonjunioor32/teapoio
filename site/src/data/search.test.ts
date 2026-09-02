@@ -28,6 +28,8 @@ describe('site search index', () => {
     expect(rightsItem?.keywords).toContain('pictograma');
     expect(rightsItem?.keywords).toContain('ipi');
     expect(rightsItem?.keywords).toContain('meia-entrada');
+    expect(rightsItem?.keywords).toContain('interestadual');
+    expect(rightsItem?.keywords).toContain('cia');
   });
 
   it('makes medication guidance discoverable from the home search', () => {
@@ -110,8 +112,25 @@ describe('site search index', () => {
     expect(fisioItem?.social).toBe('https://www.instagram.com/fisioeestimulos/');
   });
 
+  it('indexes researched clinics and neuropediatricians with their practical contacts', () => {
+    const fonoItem = directoryEntries.find((entry) => entry.id === 'rede-fono-com-amor');
+    const proKidsItem = directoryEntries.find((entry) => entry.id === 'pro-kids-clinica-joao-pessoa');
+    const alcanceItem = directoryEntries.find((entry) => entry.id === 'alcance-aba-joao-pessoa');
+    const sentidosItem = directoryEntries.find((entry) => entry.id === 'sentidos-clinica-joao-pessoa');
+    const lailaItem = directoryEntries.find((entry) => entry.id === 'dra-laila-schulz-neuropediatra');
+    const pedroItem = directoryEntries.find((entry) => entry.id === 'dr-pedro-lourenzo-neuropediatra');
+
+    expect(fonoItem?.contact).toBe('https://wa.me/5583991502899');
+    expect(proKidsItem?.source).toBe('https://www.prokidsclinica.com/');
+    expect(alcanceItem?.social).toBe('https://www.instagram.com/alcanceaba/');
+    expect(sentidosItem?.contact).toBe('https://wa.me/5583996840409');
+    expect(lailaItem && getDirectorySegment(lailaItem)).toBe('clinicas-terapias');
+    expect(pedroItem?.tags).toContain('neuropediatra');
+  });
+
   it('does not keep the directory entries requested for removal', () => {
     expect(directoryEntries.some((entry) => entry.name.includes('Instituto Lápis de Cera'))).toBe(false);
     expect(directoryEntries.some((entry) => entry.name.includes('ABC Autismo 123'))).toBe(false);
   });
 });
+
