@@ -77,11 +77,17 @@ describe('site search index', () => {
   it('keeps the support directory divided into clear segments', () => {
     const funadRights = directoryEntries.find((entry) => entry.id === 'funad-ciptea');
     const funadEducation = directoryEntries.find((entry) => entry.id === 'funad-educacao-inclusiva');
+    const poligono = directoryEntries.find((entry) => entry.id === 'colegio-poligono');
+    const poligonoKids = directoryEntries.find((entry) => entry.id === 'poligono-kids');
+    const ie = directoryEntries.find((entry) => entry.id === 'ie-colegio-e-curso');
     const clinic = directoryEntries.find((entry) => entry.id === 'viver-kids');
     const publicChannel = directoryEntries.find((entry) => entry.id === 'defensoria-publica-paraiba');
 
     expect(funadRights && getDirectorySegment(funadRights)).toBe('direitos-beneficios');
     expect(funadEducation && getDirectorySegment(funadEducation)).toBe('educacao-inclusao');
+    expect(poligono && getDirectorySegment(poligono)).toBe('educacao-inclusao');
+    expect(poligonoKids?.social).toBe('https://www.instagram.com/colegiopoligono/');
+    expect(ie?.contact).toBe('tel:+558332212288');
     expect(clinic && getDirectorySegment(clinic)).toBe('clinicas-terapias');
     expect(publicChannel && getDirectorySegment(publicChannel)).toBe('orgaos-servicos-publicos');
   });

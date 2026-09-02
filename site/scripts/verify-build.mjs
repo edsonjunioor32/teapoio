@@ -103,13 +103,31 @@ for (const fragment of [
 
 if (teaPage.includes('dose recomendada')) throw new Error('Medication guidance must not publish dosing.');
 
+const faqPage = await readFile(new URL('../dist/faq/index.html', import.meta.url), 'utf8');
+for (const fragment of [
+  'Ver primeiros passos',
+  'Abrir catálogo de apoio',
+  'Ver escolas inclusivas',
+  'Ver CIPTEA e Passe Livre',
+  'Iniciar pedido no Gov.br',
+  'Ler orientações sobre medicamentos',
+]) {
+  if (!faqPage.includes(fragment)) throw new Error(`Missing FAQ action link: ${fragment}`);
+}
+
 const supportPage = await readFile(new URL('../dist/apoio/index.html', import.meta.url), 'utf8');
 for (const fragment of [
   'Encontre apoio por tipo.',
   'Clínicas e terapias',
   'Órgãos e serviços públicos',
   'Direitos, benefícios e documentos',
+  'Escolas inclusivas',
   'Fornecedores de canabidiol',
+  'Colégio Polígono',
+  'Polígono Kids',
+  'IE Colégio e Curso',
+  'colegiopoligono',
+  'colegioie',
   'Abrace Esperança',
   'Acaflor',
   'Fisio&amp;Estímulos',
