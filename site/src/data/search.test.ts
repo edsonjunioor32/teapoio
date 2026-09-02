@@ -37,6 +37,15 @@ describe('site search index', () => {
     expect(rightsItem?.href).toBe('/direitos/#direitos-federais-escola');
   });
 
+  it('makes health plan rights discoverable from the home search', () => {
+    const planRightsItem = searchItems.find((item) => item.id === 'direitos-planos-saude');
+
+    expect(planRightsItem?.href).toBe('/direitos/#direitos-plano-saude');
+    expect(planRightsItem?.keywords).toContain('reembolso');
+    expect(planRightsItem?.keywords).toContain('negativa');
+    expect(planRightsItem?.keywords).toContain('rn 539');
+  });
+
   it('makes medication guidance discoverable from the home search', () => {
     const teaItem = searchItems.find((item) => item.id === 'entenda-tea');
 

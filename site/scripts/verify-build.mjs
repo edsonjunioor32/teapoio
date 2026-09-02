@@ -61,6 +61,11 @@ for (const fragment of [
   'AEE, estudo de caso, PAEE e PEI',
   'Como pedir esse apoio na escola.',
   'Lei Estadual nº 14.298/2026',
+  'O que o plano de saúde deve garantir para o TEA.',
+  'Sessões sem limite anual para quatro terapias',
+  'Reembolso integral quando a operadora falha',
+  'Negativa deve ser explicada por escrito',
+  'Tratamento fora do Rol não é automático',
   'comissaopcd.oabpb',
   'defparaiba',
   'ANS — Agência Nacional de Saúde Suplementar',
@@ -118,6 +123,8 @@ for (const fragment of [
   'Ver CIPTEA e Passe Livre',
   'Iniciar pedido no Gov.br',
   'Ler orientações sobre medicamentos',
+  'O que fazer se o plano de saúde negar uma terapia?',
+  'Ver direitos sobre plano de saúde',
 ]) {
   if (!faqPage.includes(fragment)) throw new Error(`Missing FAQ action link: ${fragment}`);
 }

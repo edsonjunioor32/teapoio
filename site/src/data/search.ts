@@ -44,6 +44,16 @@ const pageItems: SearchItem[] = [
     regions: ['todos'],
   },
   {
+    id: 'direitos-planos-saude',
+    title: 'Direitos no plano de saúde',
+    description: 'Entenda cobertura de terapias, sessões sem limite anual, prazos, reembolso e como agir diante de uma negativa.',
+    category: 'Direitos',
+    href: '/direitos/#direitos-plano-saude',
+    keywords: 'plano planos saúde saude convênio convenio cobertura terapia terapias psicologia psicólogo psicologo fonoaudiologia fonoaudiólogo fonoaudiologo terapia ocupacional fisioterapia sessões sessoes ilimitadas método metodo técnica tecnica rol ans carência carencia reembolso rede credenciada credenciado negativa protocolo reclamação reclamacao operadora contrato fora do rol lei 9656 lei 14454 rn 539 rn 566 rn 623 stj tema 1295',
+    topics: ['direitos', 'servicos'],
+    regions: ['todos'],
+  },
+  {
     id: 'orientacao-juridica',
     title: 'Advogados e orientação jurídica',
     description: 'Canais oficiais para orientação sobre direitos, saúde e inclusão, sem indicação de profissionais particulares.',

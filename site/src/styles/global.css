@@ -1362,6 +1362,34 @@ body.menu-is-open {
   margin-top: 0;
 }
 
+.health-plan-rights__alert {
+  margin-top: 22px;
+  padding: 24px 28px;
+  border-left: 4px solid var(--coral);
+  border-radius: 8px;
+  background: #fff8eb;
+}
+
+.health-plan-rights__alert strong {
+  color: var(--navy);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+}
+
+.health-plan-rights__alert p {
+  max-width: 900px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.health-plan-rights__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
 .rights-school-note {
   display: grid;
   grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
@@ -2918,6 +2946,10 @@ body.menu-is-open {
     margin-top: 26px;
   }
 
+  .health-plan-rights__actions {
+    margin-top: 20px;
+  }
+
   .section-heading-row .section-lede,
   .directory-section__heading .section-lede {
     margin-top: 18px;
@@ -3138,6 +3170,18 @@ body.menu-is-open {
   }
 
   .rights-school-note__actions .button {
+    width: 100%;
+  }
+
+  .health-plan-rights__alert {
+    padding: 22px 20px;
+  }
+
+  .health-plan-rights__actions {
+    display: grid;
+  }
+
+  .health-plan-rights__actions .button {
     width: 100%;
   }
 
